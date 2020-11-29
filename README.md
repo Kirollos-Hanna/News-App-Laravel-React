@@ -52,10 +52,72 @@ Then add the following code...
 DB_CONNECTION=sqlite
 ```
 
+Then run the following command to migrate your database
+
+```
+php artisan migrate
+```
+
 Step 4:
 
 Generate your App Key
 
 ```
 php artisan key:generate
+```
+
+Step 5:
+
+Next, you should run the passport:install command. This command will create the encryption keys needed to generate secure access tokens. In addition, the command will create "personal access" and "password grant" clients which will be used to generate access tokens:
+
+```
+php artisan passport:install
+```
+
+Add the **Client ID** and **Client secret** to the bottom of your **.env** file
+
+```
+PASSPORT_CLIENT_ID={YOUR CLIENT ID HERE}
+PASSPORT_CLIENT_SECRET={YOUR CLIENT SECRET HERE}
+```
+
+Make sure to secure your **Client ID** and **Client secret** somewhere safe where you can access.
+
+Step 6:
+
+In your **.env** file go to the mail section
+
+```
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=null
+MAIL_PASSWORD=null
+MAIL_ENCRYPTION=null
+MAIL_FROM_ADDRESS=null
+MAIL_FROM_NAME="${APP_NAME}"
+```
+
+and replace it with the following...
+
+```
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.googlemail.com
+MAIL_PORT=465
+MAIL_USERNAME={Your User Name}
+MAIL_PASSWORD={Your Email Address' Password}
+MAIL_ENCRYPTION=ssl
+MAIL_FROM_ADDRESS={Your Email Address}
+MAIL_FROM_NAME="${APP_NAME}"
+```
+
+It is preferable to use a gmail account
+
+Final Step:
+
+Run the app locally
+```
+npm run watch
+
+php artisan serve
 ```

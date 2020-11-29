@@ -1,12 +1,14 @@
-import React from "react";
+import React, { Component } from "react";
 import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
 import Login from "../components/Login";
 import Header from "../components/Header";
 import Register from "../components/Register";
 import Home from "../components/Home";
+import Favorites from "../components/Favorites";
 import Forgot from "../components/Forgot";
 import Reset from "../components/Reset";
 import { setContext } from "@apollo/client/link/context";
+import { AUTH_TOKEN } from "../constants";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
@@ -16,17 +18,17 @@ import {
     gql
 } from "@apollo/client";
 
-const authLink = setContext((_, { headers }) => {
-    // get the authentication token from local storage if it exists
-    const token = localStorage.getItem("token");
-    // return the headers to the context so httpLink can read them
-    return {
-        headers: {
-            ...headers,
-            authorization: token ? `Bearer ${token}` : ""
-        }
-    };
-});
+// const authLink = setContext((_, { headers }) => {
+//     // get the authentication token from local storage if it exists
+//     const token = localStorage.getItem(AUTH_TOKEN);
+//     // return the headers to the context so httpLink can read them
+//     return {
+//         headers: {
+//             ...headers,
+//             authorization: token ? `Bearer ${token}` : ""
+//         }
+//     };
+// });
 
 const client = new ApolloClient({
     uri: "http://localhost:8000/graphql",
@@ -34,71 +36,66 @@ const client = new ApolloClient({
     cache: new InMemoryCache()
 });
 
-client
-    .query({
-        query: gql`
-            query User {
-                user(id: "1") {
-                    name
-                }
-            }
-        `
-    })
-    .then(result => console.log(result));
-
-//This is example code, delete later
-// const client = new ApolloClient({
-//     uri: httpLink,
-//     cache: new InMemoryCache(),
-//     onError: ({ graphQLErrors, networkError, operation, forward }) => {
-//         if (networkError) {
-//             console.log(networkError);
-//         }
-//         if (graphQLErrors) {
-//             for (let err of graphQLErrors) {
-//                 // handle errors differently based on its error code
-//                 switch (err.extensions.code) {
-//                     case "UNAUTHENTICATED":
-//                         // old token has expired throwing AuthenticationError,
-//                         // one way to handle is to obtain a new token and
-//                         // add it to the operation context
-//                         const headers = operation.getContext().headers;
-//                         operation.setContext({
-//                             headers: {
-//                                 ...headers,
-//                                 authorization: getNewToken()
-//                             }
-//                         });
-//                         // Now, pass the modified operation to the next link
-//                         // in the chain. This effectively intercepts the old
-//                         // failed request, and retries it with a new token
-//                         return forward(operation);
-
-//                     // handle other errors
-//                     case "ANOTHER_ERROR_CODE":
-//                     // ...
+// client
+//     .query({
+//         query: gql`
+//             query User {
+//                 user(id: "1") {
+//                     name
 //                 }
 //             }
-//         }
-//     }
-// });
+//         `
+//     })
+//     .then(result => console.log(result));
 
-function App() {
-    return (
-        <ApolloProvider client={client}>
-            <BrowserRouter>
-                <Header />
-                <Switch>
-                    <Route exact path="/" render={() => <h1>Welcome</h1>} />
-                    <Route path="/login" component={Login} />
-                    <Route path="/register" component={Register} />
-                    <Route path="/home" component={Home} />
-                    <Route path="/forgotpassword" component={Forgot} />
-                    <Route path="/password/reset/:token" component={Reset} />
-                </Switch>
-            </BrowserRouter>
-        </ApolloProvider>
-    );
+// const token = localStorage.getItem(AUTH_TOKEN);
+
+class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            authToken: localStorage.getItem(AUTH_TOKEN)
+        };
+        this.handleAuthTokenChange = this.handleAuthTokenChange.bind(this);
+    }
+
+    handleAuthTokenChange(token) {
+        this.setState({ authToken: token });
+    }
+
+    render() {
+        return (
+            <ApolloProvider client={client}>
+                <BrowserRouter>
+                    <Header
+                        authToken={this.state.authToken}
+                        handleAuthTokenChange={this.handleAuthTokenChange}
+                    />
+                    <Switch>
+                        <Route exact path="/" render={() => <h1>Welcome</h1>} />
+                        <Route
+                            path="/login"
+                            render={() => (
+                                <Login
+                                    handleAuthTokenChange={
+                                        this.handleAuthTokenChange
+                                    }
+                                />
+                            )}
+                        />
+                        <Route path="/register" component={Register} />
+                        <Route path="/home" component={Home} />
+                        <Route path="/favorites" component={Favorites} />
+                        <Route path="/forgotpassword" component={Forgot} />
+                        <Route
+                            path="/password/reset/:token"
+                            component={Reset}
+                        />
+                    </Switch>
+                </BrowserRouter>
+            </ApolloProvider>
+        );
+    }
 }
 
 export default App;

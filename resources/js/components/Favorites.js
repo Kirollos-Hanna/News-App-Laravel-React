@@ -16,7 +16,7 @@ import { Redirect } from "react-router-dom";
 
 // TODO Create a filter that changes the results of your api call
 
-class Home extends Component {
+class Favorites extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -86,4 +86,4 @@ class Home extends Component {
     }
 }
 
-export default Home;
+export default Favorites;

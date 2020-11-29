@@ -37,7 +37,8 @@ function Headline(props) {
                 Time: {props.publishedAt.substring(11, 19)}
             </div>
             <div className="content">
-                {props.description.substring(0, 100)}...
+                {props.description ? props.description.substring(0, 100) : " "}
+                ...
             </div>
             <div className="source">
                 <a href={props.url}>Read More</a>

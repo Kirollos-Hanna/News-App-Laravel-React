@@ -50,7 +50,7 @@ class App extends Component {
                             exact
                             path="/"
                             render={() => (
-                                <div className="container">
+                                <div className="container d-flex justify-content-center mt-4">
                                     <h1>Welcome</h1>
                                 </div>
                             )}

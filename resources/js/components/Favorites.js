@@ -4,18 +4,6 @@ import Headline from "./Headline";
 import { AUTH_TOKEN } from "../constants";
 import { Redirect } from "react-router-dom";
 
-// const authLink = setContext((_, { headers }) => {
-//     const token = localStorage.getItem(AUTH_TOKEN);
-//     return {
-//         headers: {
-//             ...headers,
-//             authorization: token ? `Bearer ${token}` : ""
-//         }
-//     };
-// });
-
-// TODO Create a filter that changes the results of your api call
-
 class Favorites extends Component {
     constructor(props) {
         super(props);

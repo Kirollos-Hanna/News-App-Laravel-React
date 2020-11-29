@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { AUTH_TOKEN } from "../constants";
 import { Form, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import randomString from "random-string";
 import { setContext } from "@apollo/client/link/context";
 import {
     ApolloProvider,
@@ -55,41 +56,13 @@ const SIGNUP_MUTATION = gql`
     }
 `;
 
-// const _confirm = async () => {
-//     // const { token } = this.state.login ? data.login : data.signup;
-//     this._saveUserData(token);
-//     this.props.history.push(`/home`);
-// };
-
-// const _saveUserData = token => {
-//     localStorage.setItem(AUTH_TOKEN, token);
-// };
-
 function Register(props) {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         login: true, // switch between Login and SignUp
-    //         email: "",
-    //         password: "",
-    //         name: ""
-    //     };
-
-    //     // This binding is necessary to make `this` work in the callback
-    //     this.loginUser = this.loginUser.bind(this);
-    //     this.registerUser = this.registerUser.bind(this);
-    // }
-
     const [signupMutation] = useMutation(SIGNUP_MUTATION);
-
-    // function registerUser() {
-    //     console.log("registeration");
-    //     console.log(name + " " + email + " " + password);
-    // }
+    const history = useHistory();
 
     let name = "";
     let email = "";
-    let password = "";
+    let password = randomString({ length: 8 });
 
     return (
         <div className="container mt-2">
@@ -110,14 +83,6 @@ function Register(props) {
                         onChange={e => (email = e.target.value)}
                     />
                 </Form.Group>
-                <Form.Group controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control
-                        type="password"
-                        placeholder="Password"
-                        onChange={e => (password = e.target.value)}
-                    />
-                </Form.Group>
 
                 <Button
                     className="mr-2"
@@ -127,7 +92,19 @@ function Register(props) {
                         e.preventDefault();
                         signupMutation({
                             variables: { email, password, name }
-                        });
+                        })
+                            .then(data => {
+                                axios
+                                    .post(
+                                        "http://localhost:8000/send-mail/" +
+                                            password +
+                                            "/" +
+                                            email
+                                    )
+                                    .then(data => history.push(`/login`))
+                                    .catch(err => console.log("Err: " + err));
+                            })
+                            .catch(err => console.log("Err: " + err));
                     }}
                 >
                     Register

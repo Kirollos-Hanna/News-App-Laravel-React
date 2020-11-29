@@ -18,37 +18,11 @@ import {
     gql
 } from "@apollo/client";
 
-// const authLink = setContext((_, { headers }) => {
-//     // get the authentication token from local storage if it exists
-//     const token = localStorage.getItem(AUTH_TOKEN);
-//     // return the headers to the context so httpLink can read them
-//     return {
-//         headers: {
-//             ...headers,
-//             authorization: token ? `Bearer ${token}` : ""
-//         }
-//     };
-// });
-
 const client = new ApolloClient({
     uri: "http://localhost:8000/graphql",
     credentials: "same-origin",
     cache: new InMemoryCache()
 });
-
-// client
-//     .query({
-//         query: gql`
-//             query User {
-//                 user(id: "1") {
-//                     name
-//                 }
-//             }
-//         `
-//     })
-//     .then(result => console.log(result));
-
-// const token = localStorage.getItem(AUTH_TOKEN);
 
 class App extends Component {
     constructor(props) {
@@ -86,10 +60,12 @@ class App extends Component {
                         <Route path="/register" component={Register} />
                         <Route path="/home" component={Home} />
                         <Route path="/favorites" component={Favorites} />
-                        <Route path="/forgotpassword" component={Forgot} />
                         <Route
-                            path="/password/reset/:token"
-                            component={Reset}
+                            exact
+                            path="/test"
+                            render={() =>
+                                (window.location = "http://localhost:8000/test")
+                            }
                         />
                     </Switch>
                 </BrowserRouter>
@@ -97,5 +73,12 @@ class App extends Component {
         );
     }
 }
+
+// TODO: add the below routes with their functionality
+// <Route path="/forgotpassword" component={Forgot} />
+// <Route
+//     path="/password/reset/:token"
+//     component={Reset}
+// />
 
 export default App;

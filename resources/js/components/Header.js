@@ -44,7 +44,8 @@ class Header extends Component {
                     )}
                     <Nav.Link>
                         {this.props.authToken ? (
-                            <Link
+                            <a
+                                href="#"
                                 onClick={() => {
                                     localStorage.removeItem(AUTH_TOKEN);
                                     this.props.handleAuthTokenChange("");
@@ -55,7 +56,7 @@ class Header extends Component {
                                 style={{ color: "white" }}
                             >
                                 Logout
-                            </Link>
+                            </a>
                         ) : (
                             <Link to="/login" style={{ color: "white" }}>
                                 Login

@@ -43,15 +43,14 @@ const LOGIN_MUTATION = gql`
     }
 `;
 
+let email = "";
+let password = "";
+
 function Login(props) {
     const [loginMutation] = useMutation(LOGIN_MUTATION);
     const history = useHistory();
 
-    let email = "";
-    let password = "";
-
     let token = "";
-
     return (
         <div className="container mt-2">
             <Form>
@@ -80,12 +79,14 @@ function Login(props) {
                         e.preventDefault();
                         loginMutation({
                             variables: { email, password }
-                        }).then(data => {
-                            token = data.data.login.access_token;
-                            localStorage.setItem(AUTH_TOKEN, token);
-                            props.handleAuthTokenChange(token);
-                            history.push(`/home`);
-                        });
+                        })
+                            .then(data => {
+                                token = data.data.login.access_token;
+                                localStorage.setItem(AUTH_TOKEN, token);
+                                props.handleAuthTokenChange(token);
+                                history.push(`/home`);
+                            })
+                            .catch(err => console.log("Err: " + err));
                     }}
                 >
                     Login

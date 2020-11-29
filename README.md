@@ -121,3 +121,6 @@ npm run watch
 
 php artisan serve
 ```
+
+## Notes:
+Use localhost:8000 to access the app to avoid CORS errors

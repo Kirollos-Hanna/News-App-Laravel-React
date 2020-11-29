@@ -39,6 +39,5 @@ class User extends Authenticatable
      *
      * @var array
      */
-    // TODO: Send random password to email instead of verfication
     protected $casts = [];
 }

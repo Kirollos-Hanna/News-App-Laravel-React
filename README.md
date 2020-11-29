@@ -13,6 +13,49 @@ Download the appropriate version for your own OS from the links. Once you've ins
 
 ```
 composer global require laravel/installer  // This is to download laravel
+```
+
+## How to use locally
+Step 1:
+```
+git clone https://github.com/Kirollos-Hanna/News-App-Laravel-React
+
+cd News-App-Laravel-React/
+
 composer install  // This is to download the required dependancies for laravel
+
 npm install       // This is to download the required dependancies for the front-end
+```
+
+Step 2:
+
+If you don't know how to set up a database with laravel follow this step. If you do, then skip this.
+
+go to the **database** folder and create a file called **database.sqlite** inside.
+
+Step 3:
+
+Copy the **.env.example** file into another file and call it **.env**
+
+Navigate to the DB section and remove the following...
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=newsappserver
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+Then add the following code...
+```
+DB_CONNECTION=sqlite
+```
+
+Step 4:
+
+Generate your App Key
+
+```
+php artisan key:generate
 ```

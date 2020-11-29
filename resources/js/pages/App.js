@@ -46,7 +46,15 @@ class App extends Component {
                         handleAuthTokenChange={this.handleAuthTokenChange}
                     />
                     <Switch>
-                        <Route exact path="/" render={() => <h1>Welcome</h1>} />
+                        <Route
+                            exact
+                            path="/"
+                            render={() => (
+                                <div className="container">
+                                    <h1>Welcome</h1>
+                                </div>
+                            )}
+                        />
                         <Route
                             path="/login"
                             render={() => (

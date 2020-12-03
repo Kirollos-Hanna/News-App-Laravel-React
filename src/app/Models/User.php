@@ -40,7 +40,7 @@ class User extends Authenticatable
      */
     protected $casts = [];
 
-    public function user(){
+    public function favorites(){
         return $this->hasMany('App\Models\Favorite');
     }
 }

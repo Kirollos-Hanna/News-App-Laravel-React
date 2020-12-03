@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\BelongsTo;
 
 class Favorite extends Resource
 {
@@ -21,7 +22,7 @@ class Favorite extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'title';
 
     /**
      * The columns that should be searched.
@@ -49,7 +50,12 @@ class Favorite extends Resource
                 ->creationRules('unique:favorites,title'),
 
             Text::make('Article Source', 'source')
-                ->sortable(),
+                ->sortable()
+                ->rules('required', 'source'),
+
+            BelongsTo::make('User', 'user')
+            ->sortable()
+            ->rules('required', 'source'),
         ];
     }
 

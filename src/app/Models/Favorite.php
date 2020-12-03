@@ -36,7 +36,7 @@ class Favorite extends Model
      */
     protected $casts = [];
 
-    public function favorites(){
+    public function user(){
         return $this->belongsTo('App\Models\User');
     }
 }

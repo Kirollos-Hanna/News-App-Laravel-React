@@ -7,6 +7,7 @@ use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\HasMany;
 
 class User extends Resource
 {
@@ -46,20 +47,23 @@ class User extends Resource
 
             Gravatar::make()->maxWidth(50),
 
-            Text::make('Name')
+            Text::make('Name', 'name')
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            Text::make('Email')
+            Text::make('E-mail', 'email')
                 ->sortable()
                 ->rules('required', 'email', 'max:254')
                 ->creationRules('unique:users,email')
                 ->updateRules('unique:users,email,{{resourceId}}'),
 
-            Password::make('Password')
+            Password::make('Password', 'password')
                 ->onlyOnForms()
                 ->creationRules('required', 'string', 'min:8')
                 ->updateRules('nullable', 'string', 'min:8'),
+
+            HasMany::make('Favorites', 'favorites')
+            ->sortable()
         ];
     }
 

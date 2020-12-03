@@ -15,13 +15,14 @@
         "joselfonseca/lighthouse-graphql-passport-auth": "^5.1",
         "kirill-latish/laravel-newsapi": "^1.0",
         "laravel/framework": "^8.12",
+        "laravel/nova": "*",
         "laravel/passport": "^10.1",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.1",
         "mll-lab/laravel-graphql-playground": "^2.4",
         "nuwave/lighthouse": "^4.18",
-        "tymon/jwt-auth": "^1.0",
-        "laravel/nova": "*"
+        "silber/bouncer": "v1.0.0-rc.9",
+        "tymon/jwt-auth": "^1.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

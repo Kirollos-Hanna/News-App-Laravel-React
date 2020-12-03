@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\BelongsTo;
 
 class Favorite extends Resource
@@ -53,9 +54,12 @@ class Favorite extends Resource
                 ->sortable()
                 ->rules('required', 'source'),
 
+            DateTime::make('Created At', 'created_at')
+                ->sortable(),
+
             BelongsTo::make('User', 'user')
             ->sortable()
-            ->rules('required', 'source'),
+            ->rules('required', 'user'),
         ];
     }
 
@@ -87,6 +91,8 @@ class Favorite extends Resource
     {
         return [
             new Filters\FilterFavoriteByUser,
+            new Filters\DateAfterFilter,
+            new Filters\DateBeforeFilter,
         ];
     }
 

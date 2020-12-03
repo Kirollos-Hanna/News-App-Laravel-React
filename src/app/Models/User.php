@@ -41,6 +41,6 @@ class User extends Authenticatable
     protected $casts = [];
 
     public function user(){
-        return $this->belongsTo('App\Models\User');
+        return $this->hasMany('App\Models\Favorite');
     }
 }

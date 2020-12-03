@@ -37,6 +37,6 @@ class Favorite extends Model
     protected $casts = [];
 
     public function favorites(){
-        return $this->hasMany('App\Models\Favorite');
+        return $this->belongsTo('App\Models\User');
     }
 }

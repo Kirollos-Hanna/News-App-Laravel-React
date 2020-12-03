@@ -29,7 +29,7 @@ class Favorite extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'id', 'title', 'source',
     ];
 
     /**
@@ -43,12 +43,12 @@ class Favorite extends Resource
         return [
             ID::make(__('ID'), 'id')->sortable(),
 
-            Text::make('title')
+            Text::make('Article Title', 'title')
                 ->sortable()
                 ->rules('required', 'title', 'max:254')
                 ->creationRules('unique:favorites,title'),
 
-            Text::make('source')
+            Text::make('Article Source', 'source')
                 ->sortable(),
         ];
     }

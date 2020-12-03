@@ -87,6 +87,8 @@ class Favorite extends Resource
     {
         return [
             new Filters\FilterFavoriteByUser,
+            new Filters\DateAfterFilter,
+            new Filters\DateBeforeFilter,
         ];
     }
 

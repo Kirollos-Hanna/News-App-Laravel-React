@@ -36,6 +36,6 @@ class FilterFavoriteByUser extends Filter
      */
     public function options(Request $request)
     {
-        return User::pluck('id','name');
+        return User::pluck('id','name')->toArray();
     }
 }

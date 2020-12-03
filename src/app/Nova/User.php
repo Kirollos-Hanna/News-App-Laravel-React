@@ -68,6 +68,13 @@ class User extends Resource
     }
 
     /**
+ * The relationships that should be eager loaded on index queries.
+    *
+    * @var array
+    */
+    public static $with = ['favorites'];
+
+    /**
      * Get the cards available for the request.
      *
      * @param  \Illuminate\Http\Request  $request

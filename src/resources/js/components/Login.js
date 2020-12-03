@@ -18,18 +18,6 @@ const link = createHttpLink({
     credentials: "same-origin"
 });
 
-// const authLink = setContext((_, { headers }) => {
-//     // get the authentication token from local storage if it exists
-//     const token = localStorage.getItem("token");
-//     // return the headers to the context so httpLink can read them
-//     return {
-//         headers: {
-//             ...headers,
-//             authorization: token ? `Bearer ${token}` : ""
-//         }
-//     };
-// });
-
 const client = new ApolloClient({
     cache: new InMemoryCache(),
     link
@@ -86,7 +74,7 @@ function Login(props) {
                                 props.handleAuthTokenChange(token);
                                 history.push(`/home`);
                             })
-                            .catch(err => console.log("Err: " + err));
+                            .catch(err => console.log("Login Err: " + err));
                     }}
                 >
                     Login

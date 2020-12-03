@@ -30,6 +30,9 @@ function Headline(props) {
                     "By Unknown"
                 )}
             </div>
+            <div className="favorite">
+                <p>favorite</p>
+            </div>
             <div className="date">
                 Date: {props.publishedAt.substring(0, 10)}
             </div>

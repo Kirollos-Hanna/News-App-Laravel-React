@@ -11,6 +11,8 @@ type Query {
 }
 
 type Mutation {
+    addFavorite(user_id: Int!, title: String!, source: String!) : Favorite @create
+    removeFavorite(id: ID!) : Favorite @delete
     login(input: LoginInput @spread): AuthPayload!
         @field(
             resolver: "Joselfonseca\\LighthouseGraphQLPassport\\GraphQL\\Mutations\\Login@resolve"
@@ -60,4 +62,11 @@ type User {
     email: String!
     created_at: DateTime!
     updated_at: DateTime!
+}
+
+type Favorite {
+    id: ID!
+    title: String!
+    source: String!
+    user_id: Int!
 }

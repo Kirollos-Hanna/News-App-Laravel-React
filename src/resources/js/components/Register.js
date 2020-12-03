@@ -102,7 +102,7 @@ function Register(props) {
                                             email
                                     )
                                     .then(data => history.push(`/login`))
-                                    .catch(err => console.log("Err: " + err));
+                                    .catch(err => console.log("Err Axios: " + err));
                             })
                             .catch(err => console.log("Err: " + err));
                     }}

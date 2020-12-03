@@ -24,8 +24,29 @@ Route::post('/send-mail/{password}/{email}', function ($password, $email) {
     return "Email sent";
 });
 
-Route::get('{slug}', function () {
-    return view('welcome');
-})->where('slug', '(?!api)([A-z\d\-\/_.]+)?');
+// Route::get('{slug}', function () {
+//     return view('welcome');
+// })->where('slug', '(?!api)([A-z\d\-\/_.]+)?');
 
-Auth::routes();
+
+Route::get('/login', function(){
+    return view('welcome');
+});
+
+Route::get('/', function(){
+    return view('welcome');
+});
+
+Route::get('/home', function(){
+    return view('welcome');
+});
+
+Route::get('/register', function(){
+    return view('welcome');
+});
+
+Route::get('/favorites', function(){
+    return view('welcome');
+});
+
+// Auth::routes();

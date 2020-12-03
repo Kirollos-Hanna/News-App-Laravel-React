@@ -55,8 +55,7 @@ class Favorite extends Resource
                 ->rules('required', 'source'),
 
             Date::make('Created At', 'created_at')
-                ->sortable()
-                ->rules('required', 'created_at'),
+                ->sortable(),
 
             BelongsTo::make('User', 'user')
             ->sortable()

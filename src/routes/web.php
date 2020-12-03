@@ -49,4 +49,8 @@ Route::get('/favorites', function(){
     return view('welcome');
 });
 
+Route::group(['middleware' =>['role:admin']], function(){
+    Route::get('/nova/resources');
+});
+
 // Auth::routes();

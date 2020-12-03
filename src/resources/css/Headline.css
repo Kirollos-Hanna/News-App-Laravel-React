@@ -1,0 +1,9 @@
+.headline-container{
+    width: 350px !important;
+}
+
+@media(max-width: 991px){
+    .headline-container{
+        width: 300px !important;
+    }
+}

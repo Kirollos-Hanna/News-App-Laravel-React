@@ -1,126 +1,35 @@
-# News-App-Laravel-React
-A news app that retrieves news updates from newsapi.org and displays them to the user. 
+# docker-compose-laravel
+A pretty simplified Docker Compose workflow that sets up a LEMP network of containers for local Laravel development. You can view the full article that inspired this repo [here](https://dev.to/aschmelyun/the-beauty-of-docker-for-local-laravel-development-13c0).
 
-## Technologies required
--   [PHP>=7.4](https://www.php.net/downloads)
--   [Composer>=2.0](https://getcomposer.org/)
--   [Laravel>=8.12](https://laravel.com/docs/8.x/installation)
--   [NPM>=6.14](https://nodejs.org/en/)
--   [Node>=12.18](https://nodejs.org/en/)
--   [Lighthouse>=4.18](https://lighthouse-php.com/4.18/getting-started/installation.html#install-via-composer)
 
-Download the appropriate version for your own OS from the links. Once you've installed Composer and added it to your environment. *cd* into your project directory and run the following commands
+## Usage
 
-```
-composer global require laravel/installer  // This is to download laravel
-```
+To get started, make sure you have [Docker installed](https://docs.docker.com/docker-for-mac/install/) on your system, and then clone this repository.
 
-## How to use locally
-Step 1:
-```
-git clone https://github.com/Kirollos-Hanna/News-App-Laravel-React
+Next, navigate in your terminal to the directory you cloned this, and spin up the containers for the web server by running `docker-compose up -d --build site`.
 
-cd News-App-Laravel-React/
+After that completes, follow the steps from the [src/README.md](src/README.md) file to get your Laravel project added in (or create a new blank one).
 
-composer install  // This is to download the required dependancies for laravel
+Bringing up the Docker Compose network with `site` instead of just using `up`, ensures that only our site's containers are brought up at the start, instead of all of the command containers as well. The following are built for our web server, with their exposed ports detailed:
 
-npm install       // This is to download the required dependancies for the front-end
-```
+- **nginx** - `:8080`
+- **mysql** - `:3306`
+- **php** - `:9000`
 
-Step 2:
+Three additional containers are included that handle Composer, NPM, and Artisan commands *without* having to have these platforms installed on your local computer. Use the following command examples from your project root, modifying them to fit your particular use case.
 
-If you don't know how to set up a database with laravel follow this step. If you do, then skip this.
+- `docker-compose run --rm composer update`
+- `docker-compose run --rm npm run dev`
+- `docker-compose run --rm artisan migrate` 
 
-go to the **database** folder and create a file called **database.sqlite** inside.
+## Persistent MySQL Storage
 
-Step 3:
+By default, whenever you bring down the Docker network, your MySQL data will be removed after the containers are destroyed. If you would like to have persistent data that remains after bringing containers down and back up, do the following:
 
-Copy the **.env.example** file into another file and call it **.env**
-
-Navigate to the DB section and remove the following...
-```
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=newsappserver
-DB_USERNAME=root
-DB_PASSWORD=
-```
-
-Then add the following code...
-```
-DB_CONNECTION=sqlite
-```
-
-Then run the following command to migrate your database
+1. Create a `mysql` folder in the project root, alongside the `nginx` and `src` folders.
+2. Under the mysql service in your `docker-compose.yml` file, add the following lines:
 
 ```
-php artisan migrate
+volumes:
+  - ./mysql:/var/lib/mysql
 ```
-
-Step 4:
-
-Generate your App Key
-
-```
-php artisan key:generate
-```
-
-Step 5:
-
-Next, you should run the passport:install command. This command will create the encryption keys needed to generate secure access tokens. In addition, the command will create "personal access" and "password grant" clients which will be used to generate access tokens:
-
-```
-php artisan passport:install
-```
-
-Add the **Client ID** and **Client secret** to the bottom of your **.env** file
-
-```
-PASSPORT_CLIENT_ID={YOUR CLIENT ID HERE}
-PASSPORT_CLIENT_SECRET={YOUR CLIENT SECRET HERE}
-```
-
-Make sure to secure your **Client ID** and **Client secret** somewhere safe where you can access.
-
-Step 6:
-
-In your **.env** file go to the mail section
-
-```
-MAIL_MAILER=smtp
-MAIL_HOST=smtp.mailtrap.io
-MAIL_PORT=2525
-MAIL_USERNAME=null
-MAIL_PASSWORD=null
-MAIL_ENCRYPTION=null
-MAIL_FROM_ADDRESS=null
-MAIL_FROM_NAME="${APP_NAME}"
-```
-
-and replace it with the following...
-
-```
-MAIL_MAILER=smtp
-MAIL_HOST=smtp.googlemail.com
-MAIL_PORT=465
-MAIL_USERNAME={Your User Name}
-MAIL_PASSWORD={Your Email Address' Password}
-MAIL_ENCRYPTION=ssl
-MAIL_FROM_ADDRESS={Your Email Address}
-MAIL_FROM_NAME="${APP_NAME}"
-```
-
-It is preferable to use a gmail account
-
-Final Step:
-
-Run the app locally
-```
-npm run watch
-
-php artisan serve
-```
-
-## Notes:
-Use localhost:8000 to access the app to avoid CORS errors

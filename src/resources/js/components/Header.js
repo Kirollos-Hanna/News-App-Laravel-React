@@ -48,7 +48,7 @@ class Header extends Component {
                                 href="#"
                                 onClick={() => {
                                     localStorage.removeItem(AUTH_TOKEN);
-                                    this.props.handleAuthTokenChange("");
+                                    this.props.handleAuthTokenChange("", 0);
                                     this.setState({
                                         toHomeScreen: true
                                     });

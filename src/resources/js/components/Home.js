@@ -70,6 +70,7 @@ class Home extends Component {
                             return (
                                 <Headline
                                     key={i}
+                                    userID={this.props.userID}
                                     urlToImage={headline.urlToImage}
                                     title={headline.title}
                                     publishedAt={headline.publishedAt}

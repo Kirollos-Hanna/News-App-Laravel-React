@@ -28,13 +28,14 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            authToken: localStorage.getItem(AUTH_TOKEN)
+            authToken: localStorage.getItem(AUTH_TOKEN),
+            userID: 0
         };
         this.handleAuthTokenChange = this.handleAuthTokenChange.bind(this);
     }
 
-    handleAuthTokenChange(token) {
-        this.setState({ authToken: token });
+    handleAuthTokenChange(token, id) {
+        this.setState({ authToken: token, userID: id });
     }
 
     render() {
@@ -65,8 +66,13 @@ class App extends Component {
                                 />
                             )}
                         />
-                        <Route path="/register" component={Register} />
-                        <Route path="/home" component={Home} />
+                        <Route path="/register" component={Register}/>
+                        <Route path="/home"
+                            render={() => (
+                                <Home
+                                    userID = {this.state.userID}
+                                />
+                            )}/>
                         <Route path="/favorites" component={Favorites} />
                         <Route
                             exact

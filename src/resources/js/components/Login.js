@@ -27,6 +27,9 @@ const LOGIN_MUTATION = gql`
     mutation LoginMutation($email: String!, $password: String!) {
         login(input: { username: $email, password: $password }) {
             access_token
+            user{
+                id
+            }
         }
     }
 `;
@@ -70,8 +73,11 @@ function Login(props) {
                         })
                             .then(data => {
                                 token = data.data.login.access_token;
+                                let userID = data.data.login.user.id;
+                                console.log("userID: ");
+                                console.log(userID);
                                 localStorage.setItem(AUTH_TOKEN, token);
-                                props.handleAuthTokenChange(token);
+                                props.handleAuthTokenChange(token, userID);
                                 history.push(`/home`);
                             })
                             .catch(err => console.log("Login Err: " + err));

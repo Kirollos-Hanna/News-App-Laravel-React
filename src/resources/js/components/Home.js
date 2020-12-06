@@ -44,7 +44,6 @@ class Home extends Component {
                 }
             )
             .then(res => {
-                console.log(res);
                 this.setState({ headlines: res.data.articles });
             })
             .catch(e => {
@@ -70,6 +69,7 @@ class Home extends Component {
                             return (
                                 <Headline
                                     key={i}
+                                    userID={this.props.userID}
                                     urlToImage={headline.urlToImage}
                                     title={headline.title}
                                     publishedAt={headline.publishedAt}

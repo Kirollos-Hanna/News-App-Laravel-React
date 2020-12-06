@@ -8,11 +8,13 @@ scalar DateTime
 type Query {
     users: [User!]! @paginate(defaultCount: 10)
     user(id: ID @eq): User @find
+    favorites: [Favorite!]! @paginate(defaultCount: 50)
+    favorite(title: String! @eq): Favorite @find
 }
 
 type Mutation {
-    addFavorite(user_id: Int!, title: String!, source: String!) : Favorite @create
-    removeFavorite(id: ID!) : Favorite @delete
+    addFavorite(user_id: Int!, title: String!, source: String!) : Favorite @create 
+    removeFavorite(id: Int!) : Favorite @delete
     login(input: LoginInput @spread): AuthPayload!
         @field(
             resolver: "Joselfonseca\\LighthouseGraphQLPassport\\GraphQL\\Mutations\\Login@resolve"
@@ -66,7 +68,7 @@ type User {
 
 type Favorite {
     id: ID!
-    title: String!
+    title: String! @rules(apply: ["unique:favorites,title"])
     source: String!
     user_id: Int!
 }

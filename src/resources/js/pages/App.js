@@ -8,7 +8,7 @@ import Favorites from "../components/Favorites";
 import Forgot from "../components/Forgot";
 import Reset from "../components/Reset";
 import { setContext } from "@apollo/client/link/context";
-import { AUTH_TOKEN } from "../constants";
+import { AUTH_TOKEN, USER_ID  } from "../constants";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
@@ -28,13 +28,14 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            authToken: localStorage.getItem(AUTH_TOKEN)
+            authToken: localStorage.getItem(AUTH_TOKEN),
+            userID: localStorage.getItem(USER_ID)
         };
         this.handleAuthTokenChange = this.handleAuthTokenChange.bind(this);
     }
 
-    handleAuthTokenChange(token) {
-        this.setState({ authToken: token });
+    handleAuthTokenChange(token, id) {
+        this.setState({ authToken: token, userID: id });
     }
 
     render() {
@@ -65,8 +66,13 @@ class App extends Component {
                                 />
                             )}
                         />
-                        <Route path="/register" component={Register} />
-                        <Route path="/home" component={Home} />
+                        <Route path="/register" component={Register}/>
+                        <Route path="/home"
+                            render={() => (
+                                <Home
+                                    userID = {this.state.userID}
+                                />
+                            )}/>
                         <Route path="/favorites" component={Favorites} />
                         <Route
                             exact

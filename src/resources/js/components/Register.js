@@ -59,6 +59,7 @@ const SIGNUP_MUTATION = gql`
 function Register(props) {
     const [signupMutation] = useMutation(SIGNUP_MUTATION);
     const history = useHistory();
+    const [error, setError] = useState(null);
 
     let name = "";
     let email = "";
@@ -66,6 +67,7 @@ function Register(props) {
 
     return (
         <div className="container mt-2">
+            <h3>{error}</h3>
             <Form>
                 <Form.Group controlId="formBasicName">
                     <Form.Label>Name</Form.Label>
@@ -104,7 +106,7 @@ function Register(props) {
                                     .then(data => history.push(`/login`))
                                     .catch(err => console.log("Axios Error: " + err));
                             })
-                            .catch(err => console.log("Sign up Error: " + err));
+                            .catch(err => setError("Something went wrong"));
                     }}
                 >
                     Register

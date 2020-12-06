@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { AUTH_TOKEN } from "../constants";
 import { Form, Button } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
@@ -59,6 +59,7 @@ const SIGNUP_MUTATION = gql`
 function Register(props) {
     const [signupMutation] = useMutation(SIGNUP_MUTATION);
     const history = useHistory();
+    const [error, setError] = useState(null);
 
     let name = "";
     let email = "";
@@ -104,7 +105,7 @@ function Register(props) {
                                     .then(data => history.push(`/login`))
                                     .catch(err => console.log("Axios Error: " + err));
                             })
-                            .catch(err => console.log("Sign up Error: " + err));
+                            .catch(err => err => setError("Something went wrong"));
                     }}
                 >
                     Register

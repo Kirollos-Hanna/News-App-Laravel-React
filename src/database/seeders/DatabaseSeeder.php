@@ -17,12 +17,6 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        DB::table('users')->insert([
-            'name' => 'admin',
-            'email' => 'admin@newsapp.com',
-            'password' => Hash::make('123456789'),
-        ]);
-
         $this->call([
             UserSeeder::class,
             BouncerSeeder::class,

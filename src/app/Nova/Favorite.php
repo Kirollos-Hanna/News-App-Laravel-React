@@ -2,10 +2,8 @@
 
 namespace App\Nova;
 
-use Validator;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\BelongsTo;
@@ -48,7 +46,8 @@ class Favorite extends Resource
 
             Text::make('Article Title', 'title')
                 ->sortable()
-                ->rules('required', 'max:254'),
+                ->rules('required', 'max:254')
+                ->creationRules('unique:favorites,title'),
 
             Text::make('Article Source', 'source')
                 ->sortable()
@@ -58,8 +57,8 @@ class Favorite extends Resource
                 ->sortable(),
 
             BelongsTo::make('User', 'user')
-                ->sortable()
-                ->rules('required'),
+            ->sortable()
+            ->rules('required'),
         ];
     }
 

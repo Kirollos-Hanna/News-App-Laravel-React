@@ -130,30 +130,17 @@ function Checkbox(props){
     const [addFavoriteMutation] = useMutation(ADD_FAVORITE_MUTATION);
     const [removeFavoriteMutation] = useMutation(REMOVE_FAVORITE_MUTATION);
 
-    // const [getFavorite, {loading, favoriteData}] = useLazyQuery(FAVORITE_QUERY);
-
-    // if (data){
-    //     console.log("This is getting called");
-    //     setChecked(true);
-    // }
-
-    // if (loading) return null;
-
     const onChange = event => {
         event.persist();
         setChecked(event.target.checked);
         if(!checked){
-            console.log("User id" + userId);
             addFavoriteMutation({
                 variables: { userId, title, source }
             }).then(data => {
-                console.log("Added Successfully");
                 favoriteId = data.data.addFavorite.id;
             })
             .catch(e => console.log("Adding to Favorites Error: " + e));
         } else{
-            console.log("Removing");
-            // console.log(data);
             removeFavoriteMutation({
                 variables: {id: props.favoriteId}
             }).then(data => {

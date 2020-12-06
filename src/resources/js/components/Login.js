@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import { AUTH_TOKEN, USER_ID } from "../constants";
 import { Form, Button } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
@@ -40,12 +40,10 @@ let password = "";
 function Login(props) {
     const [loginMutation] = useMutation(LOGIN_MUTATION);
     const history = useHistory();
-    const [error, setError] = useState(null);
 
     let token = "";
     return (
         <div className="container mt-2">
-            <h3 className="error"> { error } </h3> 
             <Form>
                 <Form.Group controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
@@ -81,7 +79,7 @@ function Login(props) {
                                 props.handleAuthTokenChange(token, userID);
                                 history.push(`/home`);
                             })
-                            .catch(err => setError("Something went wrong"));
+                            .catch(err => console.log("Login Err: " + err));
                     }}
                 >
                     Login

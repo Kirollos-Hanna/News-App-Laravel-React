@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use Validator;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -43,23 +44,22 @@ class Favorite extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make(__('ID'), 'id')->sortable(),
+            ID::make()->sortable(),
 
             Text::make('Article Title', 'title')
                 ->sortable()
-                ->rules('required', 'title', 'max:254')
-                ->creationRules('unique:favorites,title'),
+                ->rules('required', 'max:254'),
 
             Text::make('Article Source', 'source')
                 ->sortable()
-                ->rules('required', 'source'),
+                ->rules('required'),
 
             DateTime::make('Created At', 'created_at')
                 ->sortable(),
 
             BelongsTo::make('User', 'user')
-            ->sortable()
-            ->rules('required', 'user'),
+                ->sortable()
+                ->rules('required'),
         ];
     }
 

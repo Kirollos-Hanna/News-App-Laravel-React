@@ -10,37 +10,84 @@ class UserPolicy
     use HandlesAuthorization;
 
     /**
-     * Create a new policy instance.
+     * Determine whether the user can view any models.
      *
-     * @return void
+     * @param  \App\Models\User  $user
+     * @return mixed
      */
-    public function __construct()
+    public function viewAny(User $user)
     {
-        //
-    }
-
-    public function viewAny(User $user){
-        // return in_array('access-resources', $user->permissions);
         return $user->isAn('admin');
     }
 
-    public function view(User $user){
-        // return in_array('access-resources', $user->permissions);
+    /**
+     * Determine whether the user can view the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\User  $model
+     * @return mixed
+     */
+    public function view(User $user, User $model)
+    {
         return $user->isAn('admin');
     }
 
-    public function create(User $user){
-        // return in_array('access-resources', $user->permissions);
+    /**
+     * Determine whether the user can create models.
+     *
+     * @param  \App\Models\User  $user
+     * @return mixed
+     */
+    public function create(User $user)
+    {
         return $user->isAn('admin');
     }
 
-    public function update(User $user){
-        // return in_array('access-resources', $user->permissions);
+    /**
+     * Determine whether the user can update the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\User  $model
+     * @return mixed
+     */
+    public function update(User $user, User $model)
+    {
         return $user->isAn('admin');
     }
 
-    public function delete(User $user){
-        // return in_array('access-resources', $user->permissions);
+    /**
+     * Determine whether the user can delete the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\User  $model
+     * @return mixed
+     */
+    public function delete(User $user, User $model)
+    {
+        return $user->isAn('admin');
+    }
+
+    /**
+     * Determine whether the user can restore the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\User  $model
+     * @return mixed
+     */
+    public function restore(User $user, User $model)
+    {
+        return $user->isAn('admin');
+    }
+
+    /**
+     * Determine whether the user can permanently delete the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\User  $model
+     * @return mixed
+     */
+    public function forceDelete(User $user, User $model)
+    {
         return $user->isAn('admin');
     }
 }

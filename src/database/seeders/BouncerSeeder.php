@@ -18,9 +18,6 @@ class BouncerSeeder extends Seeder
     {
         $adminUser = User::findOrFail(1);
         $adminUser->assign('admin');
-        Bouncer::allow('admin')->to('*');
-        Bouncer::allow('admin')->toManage(\Silber\Bouncer\Database\Role::class);
-        Bouncer::allow('admin')->toManage(\Silber\Bouncer\Database\Ability::class);
         Bouncer::allow('admin')->everything();
     }
 }

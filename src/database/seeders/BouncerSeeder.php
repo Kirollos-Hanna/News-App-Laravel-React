@@ -16,9 +16,8 @@ class BouncerSeeder extends Seeder
      */
     public function run()
     {
-        // $adminUser = User::findOrFail(3);
-        // Log::info('User failed to login.', ['id' => $adminUser->name]);
-        // $adminUser->assign('admin');
-        Bouncer::allow('admin')->to('access-resources');
+        $adminUser = User::findOrFail(1);
+        $adminUser->assign('admin');
+        Bouncer::allow('admin')->to('*');
     }
 }

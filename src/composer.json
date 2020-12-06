@@ -22,7 +22,8 @@
         "mll-lab/laravel-graphql-playground": "^2.4",
         "nuwave/lighthouse": "^4.18",
         "silber/bouncer": "v1.0.0-rc.9",
-        "tymon/jwt-auth": "^1.0"
+        "tymon/jwt-auth": "^1.0",
+        "yadahan/nova-bouncer": "^0.6.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

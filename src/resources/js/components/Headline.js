@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import "../../css/Headline.css";
 import { setContext } from "@apollo/client/link/context";
 import {
@@ -7,7 +7,10 @@ import {
     InMemoryCache,
     createHttpLink,
     gql,
-    useMutation
+    useMutation,
+    useQuery,
+    useLazyQuery,
+    NetworkStatus
 } from "@apollo/client";
 
 const link = createHttpLink({
@@ -32,27 +35,6 @@ const client = new ApolloClient({
     link
 });
 
-const SIGNUP_MUTATION = gql`
-    mutation SignupMutation(
-        $email: String!
-        $password: String!
-        $name: String!
-    ) {
-        register(
-            input: {
-                name: $name
-                email: $email
-                password: $password
-                password_confirmation: $password
-            }
-        ) {
-            tokens {
-                access_token
-            }
-        }
-    }
-`;
-
 const ADD_FAVORITE_MUTATION = gql`
     mutation AddFavorite(
         $userId: Int!
@@ -60,6 +42,7 @@ const ADD_FAVORITE_MUTATION = gql`
         $source: String!
     ){
         addFavorite(user_id: $userId, title: $title, source: $source){
+            id
             title
         }
     }
@@ -88,11 +71,7 @@ const FAVORITE_QUERY = gql`
 class Headline extends Component {
     constructor(props){
         super(props);
-        this.state = {
-            isChecked: false
-        };
     }
-
     render(){
         return (
             <div className="headline-container container m-1 border border-secondary rounded">
@@ -122,16 +101,7 @@ class Headline extends Component {
                         "By Unknown"
                     )}
                 </div>
-                <div className="favorite">
-                    <input className="form-check-input" type="checkbox" value="" id="defaultCheck1" 
-                    onClick={e => {
-                        e.preventDefault();
-                        // TODO: setstate to !ischecked
-                        // TODO: addtofavorites if ischecked is true
-                        // TODO: removefromfavorites if ischecked is false
-                    }}/>
-                    <label className="form-check-label" for="defaultCheck1"> Favorite</label>
-                </div>
+                <Checkbox title={this.props.title} source={this.props.url} userID={this.props.userID}/>
                 <div className="date">
                     Date: {this.props.publishedAt.substring(0, 10)}
                 </div>
@@ -148,6 +118,61 @@ class Headline extends Component {
             </div>
         );
     }
+}
+
+let favoriteId;
+function Checkbox(props){
+    const userId = props.userID;
+    const source = props.source;
+    const title = props.title;
+    const {loading, error, data, refetch} = useQuery(FAVORITE_QUERY, {
+        variables: { title },
+      });
+    const [checked, setChecked] = useState(false);
+    const [addFavoriteMutation] = useMutation(ADD_FAVORITE_MUTATION);
+    const [removeFavoriteMutation] = useMutation(REMOVE_FAVORITE_MUTATION);
+    
+    // const [getFavorite, {loading, favoriteData}] = useLazyQuery(FAVORITE_QUERY);
+
+    if (loading) return null;
+
+    const onChange = event => {
+        event.persist();
+        setChecked(event.target.checked);
+        if(!checked){
+            console.log("User id" + userId);
+            addFavoriteMutation({
+                variables: { userId, title, source }
+            }).then(data => {
+                console.log("Added Successfully");
+                console.log(data.data.addFavorite.id);
+                favoriteId = data.data.addFavorite.id;
+            })
+            .catch(e => console.log("Adding to Favorites Error: " + e));
+        } else{
+            console.log(favoriteId);
+            refetch();
+            // while(NetworkStatus.refetch){
+            //     console.log("wait");
+            // }
+            console.log(data);
+            // console.log(data);
+            // removeFavoriteMutation({
+            //     variables: {id: favoriteId}
+            // }).then(data => {
+            //     console.log("Deleted Successfully");
+            // })
+            // .catch(e => console.log("Remove from Favorites Error: " + e));
+        }
+    };
+
+    return (
+        <div className="favorite">
+        <input className="form-check-input" type="checkbox" value="" id="defaultCheck1" checked={checked}
+        onChange={onChange}/>
+        <label className="form-check-label" for="defaultCheck1"> Favorite</label>
+    </div>
+    );
 }
 
 export default Headline;

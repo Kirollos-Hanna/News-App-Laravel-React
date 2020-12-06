@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { AUTH_TOKEN } from "../constants";
+import { AUTH_TOKEN, USER_ID } from "../constants";
 import { Form, Button } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import Header from "./Header";
@@ -74,9 +74,8 @@ function Login(props) {
                             .then(data => {
                                 token = data.data.login.access_token;
                                 let userID = data.data.login.user.id;
-                                console.log("userID: ");
-                                console.log(userID);
                                 localStorage.setItem(AUTH_TOKEN, token);
+                                localStorage.setItem(USER_ID, userID);
                                 props.handleAuthTokenChange(token, userID);
                                 history.push(`/home`);
                             })

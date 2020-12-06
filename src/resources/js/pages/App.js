@@ -8,7 +8,7 @@ import Favorites from "../components/Favorites";
 import Forgot from "../components/Forgot";
 import Reset from "../components/Reset";
 import { setContext } from "@apollo/client/link/context";
-import { AUTH_TOKEN } from "../constants";
+import { AUTH_TOKEN, USER_ID  } from "../constants";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
@@ -29,7 +29,7 @@ class App extends Component {
         super(props);
         this.state = {
             authToken: localStorage.getItem(AUTH_TOKEN),
-            userID: 0
+            userID: localStorage.getItem(USER_ID)
         };
         this.handleAuthTokenChange = this.handleAuthTokenChange.bind(this);
     }

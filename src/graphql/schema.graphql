@@ -14,7 +14,7 @@ type Query {
 
 type Mutation {
     addFavorite(user_id: Int!, title: String!, source: String!) : Favorite @create 
-    removeFavorite(id: ID!) : Favorite @delete
+    removeFavorite(id: Int!) : Favorite @delete
     login(input: LoginInput @spread): AuthPayload!
         @field(
             resolver: "Joselfonseca\\LighthouseGraphQLPassport\\GraphQL\\Mutations\\Login@resolve"

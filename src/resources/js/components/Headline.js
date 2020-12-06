@@ -8,9 +8,7 @@ import {
     createHttpLink,
     gql,
     useMutation,
-    useQuery,
-    useLazyQuery,
-    NetworkStatus
+    useQuery
 } from "@apollo/client";
 
 const link = createHttpLink({
@@ -68,56 +66,59 @@ const FAVORITE_QUERY = gql`
     }
 `;
 
-class Headline extends Component {
-    constructor(props){
-        super(props);
-    }
-    render(){
-        return (
-            <div className="headline-container container m-1 border border-secondary rounded">
+function Headline(props) {
+    const title = props.title;
+    const {loading, error, data, refetch} = useQuery(FAVORITE_QUERY, {
+        variables: { title },
+      });
+
+    if (loading) return null;
+    if(error) return `Error! ${error}`;
+
+    return (
+        <div className="headline-container container m-1 border border-secondary rounded">
                 <div className="image">
                     <img
                         className="img-fluid mw-100 mh-25"
-                        src={this.props.urlToImage}
+                        src={props.urlToImage}
                         alt="news image"
                     />
                 </div>
                 <div className="headline-title">
-                    {this.props.title}
-                    {this.props.author ? (
-                        this.props.author[0] === "<" ? (
+                    {props.title}
+                    {props.author ? (
+                        props.author[0] === "<" ? (
                             <p>
                                 <span>By </span>
                                 <span
                                     dangerouslySetInnerHTML={{
-                                        __html: this.props.author
+                                        __html: props.author
                                     }}
                                 ></span>
                             </p>
                         ) : (
-                            <div className="author">By {this.props.author}</div>
+                            <div className="author">By {props.author}</div>
                         )
                     ) : (
                         "By Unknown"
                     )}
                 </div>
-                <Checkbox title={this.props.title} source={this.props.url} userID={this.props.userID}/>
+                <Checkbox title={props.title} source={props.url} userID={props.userID} favoriteId={data.favorite? data.favorite.id : null} checked={data.favorite? true : false}/>
                 <div className="date">
-                    Date: {this.props.publishedAt.substring(0, 10)}
+                    Date: {props.publishedAt.substring(0, 10)}
                 </div>
                 <div className="time">
-                    Time: {this.props.publishedAt.substring(11, 19)}
+                    Time: {props.publishedAt.substring(11, 19)}
                 </div>
                 <div className="content">
-                    {this.props.description ? this.props.description.substring(0, 100) : " "}
+                    {props.description ? props.description.substring(0, 100) : " "}
                     ...
                 </div>
                 <div className="source">
-                    <a href={this.props.url}>Read More</a>
+                    <a href={props.url}>Read More</a>
                 </div>
             </div>
-        );
-    }
+    );
 }
 
 let favoriteId;
@@ -125,16 +126,18 @@ function Checkbox(props){
     const userId = props.userID;
     const source = props.source;
     const title = props.title;
-    const {loading, error, data, refetch} = useQuery(FAVORITE_QUERY, {
-        variables: { title },
-      });
-    const [checked, setChecked] = useState(false);
+    const [checked, setChecked] = useState(props.checked);
     const [addFavoriteMutation] = useMutation(ADD_FAVORITE_MUTATION);
     const [removeFavoriteMutation] = useMutation(REMOVE_FAVORITE_MUTATION);
-    
+
     // const [getFavorite, {loading, favoriteData}] = useLazyQuery(FAVORITE_QUERY);
 
-    if (loading) return null;
+    // if (data){
+    //     console.log("This is getting called");
+    //     setChecked(true);
+    // }
+
+    // if (loading) return null;
 
     const onChange = event => {
         event.persist();
@@ -145,33 +148,27 @@ function Checkbox(props){
                 variables: { userId, title, source }
             }).then(data => {
                 console.log("Added Successfully");
-                console.log(data.data.addFavorite.id);
                 favoriteId = data.data.addFavorite.id;
             })
             .catch(e => console.log("Adding to Favorites Error: " + e));
         } else{
-            console.log(favoriteId);
-            refetch();
-            // while(NetworkStatus.refetch){
-            //     console.log("wait");
-            // }
-            console.log(data);
+            console.log("Removing");
             // console.log(data);
-            // removeFavoriteMutation({
-            //     variables: {id: favoriteId}
-            // }).then(data => {
-            //     console.log("Deleted Successfully");
-            // })
-            // .catch(e => console.log("Remove from Favorites Error: " + e));
+            removeFavoriteMutation({
+                variables: {id: props.favoriteId}
+            }).then(data => {
+                console.log("Deleted Successfully");
+            })
+            .catch(e => console.log("Remove from Favorites Error: " + e));
         }
     };
 
     return (
         <div className="favorite">
-        <input className="form-check-input" type="checkbox" value="" id="defaultCheck1" checked={checked}
-        onChange={onChange}/>
-        <label className="form-check-label" for="defaultCheck1"> Favorite</label>
-    </div>
+            <input className="form-check-input" type="checkbox" value="" id="defaultCheck1" checked={checked}
+            onChange={onChange}/>
+            <label className="form-check-label" for="defaultCheck1"> Favorite</label>
+        </div>
     );
 }
 

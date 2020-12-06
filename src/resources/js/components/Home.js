@@ -44,7 +44,6 @@ class Home extends Component {
                 }
             )
             .then(res => {
-                console.log(res);
                 this.setState({ headlines: res.data.articles });
             })
             .catch(e => {

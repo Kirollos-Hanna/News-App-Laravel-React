@@ -11,15 +11,20 @@
         "build-create-favorites": "cd nova-components/CreateFavorites && npm run dev",
         "build-create-favorites-prod": "cd nova-components/CreateFavorites && npm run prod",
         "build-test": "cd nova-components/Test && npm run dev",
+<<<<<<< HEAD
         "build-test-prod": "cd nova-components/Test && npm run prod",
         "build-test2": "cd nova-components/Test2 && npm run dev",
         "build-test2-prod": "cd nova-components/Test2 && npm run prod"
+=======
+        "build-test-prod": "cd nova-components/Test && npm run prod"
+>>>>>>> 781cb21a8d741a2807e9b00702b6488fd7678c5f
     },
     "devDependencies": {
         "@babel/core": "^7.0.0",
         "@babel/plugin-proposal-class-properties": "^7.12.1",
         "@babel/preset-react": "^7.0.0",
         "axios": "^0.19",
+        "babel-core": "^7.0.0-bridge.0",
         "bootstrap": "^4.5.3",
         "cross-env": "^7.0",
         "jquery": "^3.2",

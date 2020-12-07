@@ -4,44 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f43561738c3902ee5723c5cb416d87ab",
+    "content-hash": "e8dd0d2882b69db4bbcd376ed7fe5678",
     "packages": [
-        {
-            "name": "acme/create-favorites",
-            "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "./nova-components/CreateFavorites",
-                "reference": "2f1177e9a4990c68cb3328eb29954f470a61a196"
-            },
-            "require": {
-                "php": ">=7.1.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Acme\\CreateFavorites\\ToolServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Acme\\CreateFavorites\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "description": "A Laravel Nova tool.",
-            "keywords": [
-                "laravel",
-                "nova"
-            ],
-            "transport-options": {
-                "relative": true
-            }
-        },
         {
             "name": "asm89/stack-cors",
             "version": "v2.0.2",
@@ -3377,6 +3341,39 @@
                 }
             ],
             "time": "2020-11-28T14:25:28+00:00"
+        },
+        {
+            "name": "newsapi/create-favorites",
+            "version": "dev-CreateFavoritesTool",
+            "dist": {
+                "type": "path",
+                "url": "./nova-components/CreateFavorites",
+                "reference": "1893236ef360a84e544477b99e117e851e215320"
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Newsapi\\CreateFavorites\\ToolServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Newsapi\\CreateFavorites\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova tool.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ]
         },
         {
             "name": "nikic/php-parser",
@@ -10260,5 +10257,5 @@
         "php": "^7.3|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "1.1.0"
 }

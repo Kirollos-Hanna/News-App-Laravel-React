@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\CreateFavorites;
+namespace Newsapi\CreateFavorites;
 
 use Laravel\Nova\Nova;
 use Laravel\Nova\Tool;

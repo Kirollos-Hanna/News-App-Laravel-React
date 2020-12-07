@@ -1,9 +1,9 @@
 <?php
 
-namespace Acme\CreateFavorites\Http\Middleware;
+namespace Newsapi\CreateFavorites\Http\Middleware;
 
 use Laravel\Nova\Nova;
-use Acme\CreateFavorites\CreateFavorites;
+use Newsapi\CreateFavorites\CreateFavorites;
 
 class Authorize
 {

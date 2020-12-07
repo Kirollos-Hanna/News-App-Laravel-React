@@ -10,7 +10,6 @@ RUN chown laravel:laravel /var/www/html
 
 # RUN yum -y install wget
 
-
 WORKDIR /var/www/html
 
 RUN docker-php-ext-install pdo pdo_mysql

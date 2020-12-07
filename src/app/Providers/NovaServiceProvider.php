@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Cards\Help;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
-use Acme\CreateFavorites\CreateFavorites;
+use Newsapi\CreateFavorites\CreateFavorites;
 use Illuminate\Support\Facades\Auth;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider

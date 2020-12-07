@@ -1,5 +1,5 @@
 {
-    "name": "acme/create-favorites",
+    "name": "newsapi/create-favorites",
     "description": "A Laravel Nova tool.",
     "keywords": [
         "laravel",
@@ -11,13 +11,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Acme\\CreateFavorites\\": "src/"
+            "Newsapi\\CreateFavorites\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Acme\\CreateFavorites\\ToolServiceProvider"
+                "Newsapi\\CreateFavorites\\ToolServiceProvider"
             ]
         }
     },

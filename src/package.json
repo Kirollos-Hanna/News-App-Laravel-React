@@ -10,14 +10,7 @@
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --config=node_modules/laravel-mix/setup/webpack.config.js",
         "build-create-favorites": "cd nova-components/CreateFavorites && npm run dev",
         "build-create-favorites-prod": "cd nova-components/CreateFavorites && npm run prod",
-        "build-test": "cd nova-components/Test && npm run dev",
-<<<<<<< HEAD
-        "build-test-prod": "cd nova-components/Test && npm run prod",
-        "build-test2": "cd nova-components/Test2 && npm run dev",
-        "build-test2-prod": "cd nova-components/Test2 && npm run prod"
-=======
-        "build-test-prod": "cd nova-components/Test && npm run prod"
->>>>>>> 781cb21a8d741a2807e9b00702b6488fd7678c5f
+        "build-test": "cd nova-components/Test && npm run dev"
     },
     "devDependencies": {
         "@babel/core": "^7.0.0",

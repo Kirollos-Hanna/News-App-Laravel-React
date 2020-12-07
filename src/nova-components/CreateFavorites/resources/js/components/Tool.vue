@@ -4,10 +4,6 @@
       data-v-8affbeb6=""
       class="progress"
       style="
-        width: 0%;
-        height: 3px;
-        opacity: 0;
-        background-color: var(--primary);
       "
     ></div>
     <div class="relative">
@@ -15,7 +11,6 @@
       <form autocomplete="off">
         <div class="mb-8">
           <h1 class="text-90 font-normal text-2xl mb-3">Create Favorite</h1>
-          <!---->
           <div class="card">
             <TextInput :label="title" :placeholder="title" />
             <TextInput :label="source" :placeholder="source" />
@@ -29,7 +24,6 @@
         </div>
       </form>
     </div>
-    <!---->
   </div>
 </template>
 
@@ -57,6 +51,12 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 /* Scoped Styles */
+div.progress{
+        width: 0%;
+        height: 3px;
+        opacity: 0;
+        background-color: var(--primary);
+}
 </style>

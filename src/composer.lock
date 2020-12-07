@@ -4,44 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "703a31e6a408b835fbcf2da58b13f428",
+    "content-hash": "f43561738c3902ee5723c5cb416d87ab",
     "packages": [
-        {
-            "name": "acme/create-favorite",
-            "version": "dev-master",
-            "dist": {
-                "type": "path",
-                "url": "./nova-components/CreateFavorite",
-                "reference": "e29ea28cddbd966e5f596d3f08ad6168827d57c9"
-            },
-            "require": {
-                "php": ">=7.1.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Acme\\CreateFavorite\\ToolServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Acme\\CreateFavorite\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "description": "A Laravel Nova tool.",
-            "keywords": [
-                "laravel",
-                "nova"
-            ],
-            "transport-options": {
-                "relative": true
-            }
-        },
         {
             "name": "acme/create-favorites",
             "version": "dev-master",

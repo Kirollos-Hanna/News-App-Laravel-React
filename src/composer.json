@@ -25,7 +25,8 @@
         "silber/bouncer": "v1.0.0-rc.9",
         "tymon/jwt-auth": "^1.0",
         "yadahan/nova-bouncer": "^0.6.0",
-        "acme/create-favorites": "*"
+        "acme/create-favorites": "*",
+        "acme/test": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -65,6 +66,10 @@
         {
             "type": "path",
             "url": "./nova-components/CreateFavorites"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/Test"
         }
     ],
     "minimum-stability": "dev",

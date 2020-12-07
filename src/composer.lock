@@ -4,15 +4,15 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f43561738c3902ee5723c5cb416d87ab",
+    "content-hash": "7f846d9115f624075cbc5e944e9be378",
     "packages": [
         {
             "name": "acme/create-favorites",
-            "version": "dev-master",
+            "version": "dev-CreateFavoritesTool",
             "dist": {
                 "type": "path",
                 "url": "./nova-components/CreateFavorites",
-                "reference": "2f1177e9a4990c68cb3328eb29954f470a61a196"
+                "reference": "ea743215c8b256485ed976b63eca0315402a9387"
             },
             "require": {
                 "php": ">=7.1.0"
@@ -28,6 +28,42 @@
             "autoload": {
                 "psr-4": {
                     "Acme\\CreateFavorites\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova tool.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
+            "name": "acme/test",
+            "version": "dev-CreateFavoritesTool",
+            "dist": {
+                "type": "path",
+                "url": "./nova-components/Test",
+                "reference": "91145fec158967a9a9cf7bdf82ae6ed1633d154b"
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Acme\\Test\\ToolServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Acme\\Test\\": "src/"
                 }
             },
             "license": [
@@ -2109,11 +2145,11 @@
         },
         {
             "name": "laravel/nova",
-            "version": "dev-master",
+            "version": "dev-CreateFavoritesTool",
             "dist": {
                 "type": "path",
                 "url": "./nova",
-                "reference": "2958a886b93007b956517a0cea01e2d287c5c3a5"
+                "reference": "c23edf54faa783cf661da6862ae80a7b76673825"
             },
             "require": {
                 "brick/money": "^0.5.0",

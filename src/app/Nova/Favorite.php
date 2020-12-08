@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\DateTime;
+use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\BelongsTo;
 
 class Favorite extends Resource
@@ -53,12 +54,21 @@ class Favorite extends Resource
                 ->sortable()
                 ->rules('required'),
 
+            Text::make('Author', 'author')
+                ->sortable(),
+
+            # When the strings are switched, an error occurs 'Date field must cast to 'date' in Eloquent model.'
+            Date::make('Posting Date', 'posting_date')
+                ->format('DD MMM')
+                ->sortable()
+                ->rules('required', 'max:254'),
+
             DateTime::make('Created At', 'created_at')
                 ->sortable(),
 
             BelongsTo::make('User', 'user')
-            ->sortable()
-            ->rules('required'),
+                ->sortable()
+                ->rules('required'),
         ];
     }
 

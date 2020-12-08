@@ -1,7 +1,5 @@
 <template>
-  <a href="/nova" class="btn btn-link dim cursor-pointer text-80 ml-auto mr-6">
-    Cancel
-  </a>
+  <a href="/nova" class="cancel"> Cancel </a>
 </template>
 
 <script>
@@ -10,4 +8,11 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.cancel {
+  text-decoration: none;
+  color: gray;
+  font-weight: bold;
+  margin-right: 20px;
+}
+</style>

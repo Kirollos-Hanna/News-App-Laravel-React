@@ -14,6 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/endpoint', function (Request $request) {
+// Route::get('/nova/dashboards/main', function (Request $request) {
 //     //
 // });

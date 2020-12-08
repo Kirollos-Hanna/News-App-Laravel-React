@@ -18,6 +18,8 @@ class Favorite extends Model
     protected $fillable = [
         'title',
         'source',
+        'posting_date',
+        'author',
         'user_id'
     ];
 
@@ -26,17 +28,19 @@ class Favorite extends Model
      *
      * @var array
      */
-    protected $hidden = [
-    ];
+    protected $hidden = [];
 
     /**
      * The attributes that should be cast to native types.
      *
      * @var array
      */
-    protected $casts = [];
+    protected $casts = [
+        'posting_date' => 'date'
+    ];
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo('App\Models\User');
     }
 }

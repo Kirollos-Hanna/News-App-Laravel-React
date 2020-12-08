@@ -9,8 +9,8 @@
 export default {
   name: "Label",
   props: {
-    label: String,
-    isRequired: Boolean,
+    label: "",
+    isRequired: false,
   },
 };
 </script>

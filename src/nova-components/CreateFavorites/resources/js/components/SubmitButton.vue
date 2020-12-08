@@ -1,8 +1,5 @@
 <template>
-  <button
-    type="button"
-    class="btn btn-default btn-primary inline-flex items-center relative"
-  >
+  <button type="button" class="submit-button">
     <span> Create Favorite </span>
   </button>
 </template>
@@ -13,4 +10,11 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.submit-button {
+  border: none;
+  background-color: #7e8ea1;
+  border-radius: 10px;
+  padding: 10px;
+}
+</style>

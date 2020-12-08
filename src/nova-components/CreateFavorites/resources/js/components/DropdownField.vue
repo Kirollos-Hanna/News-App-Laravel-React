@@ -8,8 +8,8 @@
         id="users-select"
         class="input-decoration arrow-decoration"
         :class="{ 'input-error': error }"
-        v-bind:value="input"
-        v-on:input="$emit('input', $event.target.value)"
+        v-model="input"
+        @change="$emit('changeInput', $data.input, label)"
       >
         <option value="" selected="selected" disabled="disabled">—</option>
         <option v-for="user in users" :value="user.id" :key="user.name">
@@ -29,7 +29,7 @@ export default {
   name: "DropdownField",
   beforeCreate: function () {
     Nova.request()
-      .get("http://localhost:8000/nova-api/users")
+      .get("/nova-api/users")
       .then((res) => {
         let resources = res.data.resources;
         resources.map((user) => {
@@ -41,12 +41,12 @@ export default {
   data() {
     return {
       users: [],
+      input: "",
     };
   },
   props: {
-    input: String,
-    label: String,
-    error: Boolean,
+    label: "",
+    error: false,
   },
   components: {
     Label,

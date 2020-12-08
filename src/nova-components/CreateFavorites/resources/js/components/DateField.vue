@@ -21,10 +21,10 @@ import Label from "./Label.vue";
 export default {
   name: "DateField",
   props: {
-    label: String,
-    placeholder: String,
-    input: String,
-    error: Boolean,
+    label: "",
+    placeholder: "",
+    input: "",
+    error: false,
   },
   components: {
     Label,

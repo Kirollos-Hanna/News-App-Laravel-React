@@ -509,19 +509,19 @@ Nova.booting(function (Vue, router, store) {
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(6)
+  __webpack_require__(115)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(9)
 /* template */
-var __vue_template__ = __webpack_require__(33)
+var __vue_template__ = __webpack_require__(117)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = "data-v-68ff5483"
+var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -554,46 +554,8 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(7);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("8f2c45c2", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-68ff5483\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Tool.vue", function() {
-     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-68ff5483\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Tool.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\nh1[data-v-68ff5483] {\n  font-weight: 400;\n  margin-bottom: 7px;\n  margin-left: 5px;\n}\n.input-container[data-v-68ff5483] {\n  margin: 20px;\n}\n.input-container-background[data-v-68ff5483] {\n  background-color: white;\n  border-radius: 10px;\n}\n.btn-container[data-v-68ff5483] {\n  margin-right: 22px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
+/* 6 */,
+/* 7 */,
 /* 8 */
 /***/ (function(module, exports) {
 
@@ -1128,97 +1090,7 @@ if (false) {
 }
 
 /***/ }),
-/* 33 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { attrs: { id: "content" } }, [
-    _c("div", { staticClass: "input-container" }, [
-      _c("h1", [_vm._v("Create Favorite")]),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "input-container-background" },
-        [
-          _c("TextField", {
-            attrs: {
-              label: _vm.title,
-              placeholder: _vm.title,
-              error: _vm.errorTitle
-            },
-            model: {
-              value: _vm.inputTitle,
-              callback: function($$v) {
-                _vm.inputTitle = $$v
-              },
-              expression: "inputTitle"
-            }
-          }),
-          _vm._v(" "),
-          _c("TextField", {
-            attrs: {
-              label: _vm.source,
-              placeholder: _vm.source,
-              error: _vm.errorSource
-            },
-            model: {
-              value: _vm.inputSource,
-              callback: function($$v) {
-                _vm.inputSource = $$v
-              },
-              expression: "inputSource"
-            }
-          }),
-          _vm._v(" "),
-          _c("DropdownField", {
-            attrs: { label: _vm.user, error: _vm.errorUser },
-            model: {
-              value: _vm.inputUser,
-              callback: function($$v) {
-                _vm.inputUser = $$v
-              },
-              expression: "inputUser"
-            }
-          }),
-          _vm._v(" "),
-          _c("DateInput", { attrs: { label: _vm.createdAt } })
-        ],
-        1
-      )
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "btn-container" },
-      [
-        _c("CancelButton"),
-        _vm._v(" "),
-        _c("SubmitButton", {
-          nativeOn: {
-            click: function($event) {
-              return _vm.submitForm($event)
-            }
-          }
-        })
-      ],
-      1
-    )
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-68ff5483", module.exports)
-  }
-}
-
-/***/ }),
+/* 33 */,
 /* 34 */
 /***/ (function(module, exports) {
 
@@ -1556,7 +1428,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.field-container[data-v-ecf2c91c] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  height: 75px;\n}\n.input-spacing[data-v-ecf2c91c] {\n  margin: 5px;\n  padding: 10px;\n  margin-right: 20%;\n  width: 75%;\n}\n.label-spacing[data-v-ecf2c91c] {\n  margin: 5px;\n  margin-left: 25px;\n  padding: 10px;\n  padding-top: 20px;\n  width: 25%;\n}\n.input-decoration[data-v-ecf2c91c] {\n  border: 1px solid #6d6b81;\n  width: 100%;\n  height: 100%;\n  padding: 10px 10px;\n  border-radius: 10px;\n}\n.input-decoration[data-v-ecf2c91c]:focus {\n  border: 3px solid #3c3b47;\n  border-radius: 10px;\n  outline: none;\n}\n.error[data-v-ecf2c91c] {\n  padding: 5px;\n  color: red;\n  font-style: italic;\n  font-size: 12px;\n}\n.input-error[data-v-ecf2c91c] {\n  border-color: red;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -1824,7 +1696,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.field-container {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  height: 75px;\n}\n.input-spacing {\n  margin: 5px;\n  padding: 10px;\n  margin-right: 20%;\n  width: 75%;\n}\n.label-spacing {\n  margin: 5px;\n  margin-left: 25px;\n  padding: 10px;\n  padding-top: 20px;\n  width: 25%;\n}\n.input-decoration {\n  border: 1px solid #6d6b81;\n  width: 100%;\n  height: 100%;\n  padding: 10px 10px;\n  border-radius: 10px;\n  background-color: white;\n}\n.arrow-decoration {\n  -moz-appearance: none;\n  -webkit-appearance: none;\n  appearance: none;\n  background-image: linear-gradient(45deg, transparent 50%, gray 50%),\n    linear-gradient(135deg, gray 50%, transparent 50%),\n    radial-gradient(#ddd 70%, transparent 72%);\n  background-position: calc(100% - 20px) calc(1em + 2px),\n    calc(100% - 15px) calc(1em + 2px), calc(100% - 0.5em) 0.5em;\n  background-size: 5px 5px, 5px 5px, 1.5em 1.5em;\n  background-repeat: no-repeat;\n}\n.input-decoration:focus {\n  border: 3px solid #3c3b47;\n  border-radius: 10px;\n  outline: none;\n}\n.error {\n  padding: 5px;\n  color: red;\n  font-style: italic;\n  font-size: 12px;\n}\n.input-error {\n  border-color: red;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -1864,7 +1736,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.field-container[data-v-0df7fe3e] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  height: 75px;\n}\n.input-spacing[data-v-0df7fe3e] {\n  margin: 5px;\n  padding: 10px;\n  margin-right: 20%;\n  width: 75%;\n}\n.label-spacing[data-v-0df7fe3e] {\n  margin: 5px;\n  margin-left: 25px;\n  padding: 10px;\n  padding-top: 20px;\n  width: 25%;\n}\n.input-decoration[data-v-0df7fe3e] {\n  border: 1px solid #6d6b81;\n  width: 100%;\n  height: 100%;\n  padding: 10px 10px;\n  border-radius: 10px;\n}\n.input-decoration[data-v-0df7fe3e]:focus {\n  border: 3px solid #3c3b47;\n  border-radius: 10px;\n  outline: none;\n}\n.error[data-v-0df7fe3e] {\n  padding: 5px;\n  color: red;\n  font-style: italic;\n  font-size: 12px;\n}\n.input-error[data-v-0df7fe3e] {\n  border-color: red;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -1905,6 +1777,137 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-0df7fe3e", module.exports)
+  }
+}
+
+/***/ }),
+/* 115 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(116);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("6e5db1d0", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-68ff5483\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Tool.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-68ff5483\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Tool.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 116 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\nh1 {\n  font-weight: 400;\n  margin-bottom: 7px;\n  margin-left: 5px;\n}\n.input-container {\n  margin: 20px;\n}\n.input-container-background {\n  background-color: white;\n  border-radius: 10px;\n}\n.btn-container {\n  margin-right: 22px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.field-container {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  height: 75px;\n}\n.input-spacing {\n  margin: 5px;\n  padding: 10px;\n  margin-right: 20%;\n  width: 75%;\n}\n.label-spacing {\n  margin: 5px;\n  margin-left: 25px;\n  padding: 10px;\n  padding-top: 20px;\n  width: 25%;\n}\n.input-decoration {\n  border: 1px solid #6d6b81;\n  width: 100%;\n  height: 100%;\n  padding: 10px 10px;\n  border-radius: 10px;\n  background-color: white;\n}\n.arrow-decoration {\n  -moz-appearance: none;\n  -webkit-appearance: none;\n  appearance: none;\n  background-image: linear-gradient(45deg, transparent 50%, gray 50%),\n    linear-gradient(135deg, gray 50%, transparent 50%),\n    radial-gradient(#ddd 70%, transparent 72%);\n  background-position: calc(100% - 20px) calc(1em + 2px),\n    calc(100% - 15px) calc(1em + 2px), calc(100% - 0.5em) 0.5em;\n  background-size: 5px 5px, 5px 5px, 1.5em 1.5em;\n  background-repeat: no-repeat;\n}\n.input-decoration:focus {\n  border: 3px solid #3c3b47;\n  border-radius: 10px;\n  outline: none;\n}\n.error {\n  padding: 5px;\n  color: red;\n  font-style: italic;\n  font-size: 12px;\n}\n.input-error {\n  border-color: red;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 117 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { attrs: { id: "content" } }, [
+    _c("div", { staticClass: "input-container" }, [
+      _c("h1", [_vm._v("Create Favorite")]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "input-container-background" },
+        [
+          _c("TextField", {
+            attrs: {
+              label: _vm.title,
+              placeholder: _vm.title,
+              error: _vm.errorTitle
+            },
+            model: {
+              value: _vm.inputTitle,
+              callback: function($$v) {
+                _vm.inputTitle = $$v
+              },
+              expression: "inputTitle"
+            }
+          }),
+          _vm._v(" "),
+          _c("TextField", {
+            attrs: {
+              label: _vm.source,
+              placeholder: _vm.source,
+              error: _vm.errorSource
+            },
+            model: {
+              value: _vm.inputSource,
+              callback: function($$v) {
+                _vm.inputSource = $$v
+              },
+              expression: "inputSource"
+            }
+          }),
+          _vm._v(" "),
+          _c("DropdownField", {
+            attrs: { label: _vm.user, error: _vm.errorUser },
+            model: {
+              value: _vm.inputUser,
+              callback: function($$v) {
+                _vm.inputUser = $$v
+              },
+              expression: "inputUser"
+            }
+          }),
+          _vm._v(" "),
+          _c("DateInput", { attrs: { label: _vm.createdAt } })
+        ],
+        1
+      )
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "btn-container" },
+      [
+        _c("CancelButton"),
+        _vm._v(" "),
+        _c("SubmitButton", {
+          nativeOn: {
+            click: function($event) {
+              return _vm.submitForm($event)
+            }
+          }
+        })
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-68ff5483", module.exports)
   }
 }
 

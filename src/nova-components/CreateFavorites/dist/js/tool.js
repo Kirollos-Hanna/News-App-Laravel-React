@@ -598,8 +598,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__TextField_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__TextField_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DropdownField_vue__ = __webpack_require__(97);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DropdownField_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__DropdownField_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__DateInput_vue__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__DateInput_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__DateInput_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__DateField_vue__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__DateField_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__DateField_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__SubmitButton_vue__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__SubmitButton_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__SubmitButton_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__CancelButton_vue__ = __webpack_require__(28);
@@ -643,7 +643,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   components: {
     TextField: __WEBPACK_IMPORTED_MODULE_0__TextField_vue___default.a,
     DropdownField: __WEBPACK_IMPORTED_MODULE_1__DropdownField_vue___default.a,
-    DateInput: __WEBPACK_IMPORTED_MODULE_2__DateInput_vue___default.a,
+    DateField: __WEBPACK_IMPORTED_MODULE_2__DateField_vue___default.a,
     SubmitButton: __WEBPACK_IMPORTED_MODULE_3__SubmitButton_vue___default.a,
     CancelButton: __WEBPACK_IMPORTED_MODULE_4__CancelButton_vue___default.a
   },
@@ -714,100 +714,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* 15 */,
 /* 16 */,
 /* 17 */,
-/* 18 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(112)
-}
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(21)
-/* template */
-var __vue_template__ = __webpack_require__(114)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = "data-v-0df7fe3e"
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/js/components/DateInput.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-0df7fe3e", Component.options)
-  } else {
-    hotAPI.reload("data-v-0df7fe3e", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
+/* 18 */,
 /* 19 */,
 /* 20 */,
-/* 21 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Label_vue__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Label_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Label_vue__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: "TextField",
-  props: {
-    label: String,
-    placeholder: String,
-    input: String,
-    error: Boolean
-  },
-  components: {
-    Label: __WEBPACK_IMPORTED_MODULE_0__Label_vue___default.a
-  }
-});
-
-/***/ }),
+/* 21 */,
 /* 22 */,
 /* 23 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -1702,85 +1612,9 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 
 /***/ }),
-/* 112 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(113);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("fcdcada2", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0df7fe3e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DateInput.vue", function() {
-     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0df7fe3e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DateInput.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 113 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 114 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "field-container" }, [
-    _c(
-      "div",
-      { staticClass: "label-spacing" },
-      [_c("Label", { attrs: { label: _vm.label, isRequired: false } })],
-      1
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "input-spacing" }, [
-      _c("input", {
-        staticClass: "input-decoration",
-        attrs: {
-          placeholder: new Date().toLocaleString(),
-          tabindex: "0",
-          type: "text",
-          disabled: ""
-        }
-      })
-    ])
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-0df7fe3e", module.exports)
-  }
-}
-
-/***/ }),
+/* 112 */,
+/* 113 */,
+/* 114 */,
 /* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1815,7 +1649,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\nh1 {\n  font-weight: 400;\n  margin-bottom: 7px;\n  margin-left: 5px;\n}\n.input-container {\n  margin: 20px;\n}\n.input-container-background {\n  background-color: white;\n  border-radius: 10px;\n}\n.btn-container {\n  margin-right: 22px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.field-container {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  height: 75px;\n}\n.input-spacing {\n  margin: 5px;\n  padding: 10px;\n  margin-right: 20%;\n  width: 75%;\n}\n.label-spacing {\n  margin: 5px;\n  margin-left: 25px;\n  padding: 10px;\n  padding-top: 20px;\n  width: 25%;\n}\n.input-decoration {\n  border: 1px solid #6d6b81;\n  width: 100%;\n  height: 100%;\n  padding: 10px 10px;\n  border-radius: 10px;\n  background-color: white;\n}\n.arrow-decoration {\n  -moz-appearance: none;\n  -webkit-appearance: none;\n  appearance: none;\n  background-image: linear-gradient(45deg, transparent 50%, gray 50%),\n    linear-gradient(135deg, gray 50%, transparent 50%),\n    radial-gradient(#ddd 70%, transparent 72%);\n  background-position: calc(100% - 20px) calc(1em + 2px),\n    calc(100% - 15px) calc(1em + 2px), calc(100% - 0.5em) 0.5em;\n  background-size: 5px 5px, 5px 5px, 1.5em 1.5em;\n  background-repeat: no-repeat;\n}\n.input-decoration:focus {\n  border: 3px solid #3c3b47;\n  border-radius: 10px;\n  outline: none;\n}\n.error {\n  padding: 5px;\n  color: red;\n  font-style: italic;\n  font-size: 12px;\n}\n.input-error {\n  border-color: red;\n}\n", ""]);
+exports.push([module.i, "\nh1 {\n  font-weight: 400;\n  margin-bottom: 7px;\n  margin-left: 5px;\n}\n.input-container {\n  margin: 20px;\n}\n.input-container-background {\n  background-color: white;\n  border-radius: 10px;\n}\n.btn-container {\n  margin-right: 22px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.field-container {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  height: 75px;\n}\n.input-spacing {\n  margin: 5px;\n  padding: 10px;\n  margin-right: 20%;\n  width: 75%;\n}\n.label-spacing {\n  margin: 5px;\n  margin-left: 25px;\n  padding: 10px;\n  padding-top: 20px;\n  width: 25%;\n}\n.input-decoration {\n  border: 1px solid #6d6b81;\n  width: 100%;\n  height: 100%;\n  padding: 10px 10px;\n  border-radius: 10px;\n  background-color: white;\n}\n.arrow-decoration {\n  -moz-appearance: none;\n  -webkit-appearance: none;\n  appearance: none;\n  background-image: linear-gradient(45deg, transparent 50%, gray 50%),\n    linear-gradient(135deg, gray 50%, transparent 50%),\n    radial-gradient(#ddd 70%, transparent 72%);\n  background-position: calc(100% - 20px) calc(1em + 2px),\n    calc(100% - 15px) calc(1em + 2px), calc(100% - 0.5em) 0.5em;\n  background-size: 5px 5px, 5px 5px, 1.5em 1.5em;\n  background-repeat: no-repeat;\n}\n.input-decoration:focus {\n  border: 3px solid #3c3b47;\n  border-radius: 10px;\n  outline: none;\n}\n.error {\n  padding: 5px;\n  color: red;\n  font-style: italic;\n  font-size: 12px;\n}\n.input-error {\n  border-color: red;\n}\n.disabled-input {\n  background-color: #eee;\n}\n", ""]);
 
 // exports
 
@@ -1877,7 +1711,7 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("DateInput", { attrs: { label: _vm.createdAt } })
+          _c("DateField", { attrs: { label: _vm.createdAt } })
         ],
         1
       )
@@ -1908,6 +1742,177 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-68ff5483", module.exports)
+  }
+}
+
+/***/ }),
+/* 118 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(119)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(121)
+/* template */
+var __vue_template__ = __webpack_require__(122)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-42a19bde"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/DateField.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-42a19bde", Component.options)
+  } else {
+    hotAPI.reload("data-v-42a19bde", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 119 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(120);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("2748b7a6", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-42a19bde\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DateField.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-42a19bde\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DateField.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 120 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 121 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Label_vue__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Label_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Label_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "DateField",
+  props: {
+    label: String,
+    placeholder: String,
+    input: String,
+    error: Boolean
+  },
+  components: {
+    Label: __WEBPACK_IMPORTED_MODULE_0__Label_vue___default.a
+  }
+});
+
+/***/ }),
+/* 122 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "field-container" }, [
+    _c(
+      "div",
+      { staticClass: "label-spacing" },
+      [_c("Label", { attrs: { label: _vm.label, isRequired: false } })],
+      1
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "input-spacing" }, [
+      _c("input", {
+        staticClass: "input-decoration disabled-input",
+        attrs: {
+          placeholder: new Date().toLocaleString(),
+          tabindex: "0",
+          type: "text",
+          disabled: ""
+        }
+      })
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-42a19bde", module.exports)
   }
 }
 

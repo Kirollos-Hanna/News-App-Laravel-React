@@ -5,7 +5,7 @@
     </div>
     <div class="input-spacing">
       <input
-        class="input-decoration"
+        class="input-decoration disabled-input"
         :placeholder="new Date().toLocaleString()"
         tabindex="0"
         type="text"
@@ -19,7 +19,7 @@
 import Label from "./Label.vue";
 
 export default {
-  name: "TextField",
+  name: "DateField",
   props: {
     label: String,
     placeholder: String,

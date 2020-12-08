@@ -16,7 +16,7 @@
           v-model="inputSource"
         />
         <DropdownField :label="user" :error="errorUser" v-model="inputUser" />
-        <DateInput :label="createdAt" />
+        <DateField :label="createdAt" />
       </div>
     </div>
     <div class="btn-container">
@@ -29,7 +29,7 @@
 <script>
 import TextField from "./TextField.vue";
 import DropdownField from "./DropdownField.vue";
-import DateInput from "./DateInput.vue";
+import DateField from "./DateField.vue";
 import SubmitButton from "./SubmitButton.vue";
 import CancelButton from "./CancelButton.vue";
 
@@ -37,7 +37,7 @@ export default {
   components: {
     TextField,
     DropdownField,
-    DateInput,
+    DateField,
     SubmitButton,
     CancelButton,
   },
@@ -180,5 +180,9 @@ h1 {
 
 .input-error {
   border-color: red;
+}
+
+.disabled-input {
+  background-color: #eee;
 }
 </style>

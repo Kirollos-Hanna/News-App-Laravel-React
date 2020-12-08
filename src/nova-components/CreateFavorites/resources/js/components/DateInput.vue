@@ -18,9 +18,10 @@
           name="Created At"
         /><input
           class="w-full form-control form-input form-input-bordered form-control input"
-          placeholder="2020-12-07 15:25:21"
+          :placeholder="new Date().toLocaleString()"
           tabindex="0"
           type="text"
+          disabled
         />
         <!---->
         <span class="text-80 text-sm ml-2">(Africa/Cairo)</span>

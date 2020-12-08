@@ -588,7 +588,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\ndiv.progress[data-v-68ff5483]{\n        width: 0%;\n        height: 3px;\n        opacity: 0;\n        background-color: var(--primary);\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\ndiv.progress[data-v-68ff5483] {\n  width: 0%;\n  height: 3px;\n  opacity: 0;\n  background-color: var(--primary);\n}\n", ""]);
 
 // exports
 
@@ -671,6 +671,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -689,8 +696,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       title: "Article Title",
-      source: "Article Source"
+      source: "Article Source",
+      inputTitle: "",
+      inputSource: "",
+      inputUser: ""
     };
+  },
+
+  methods: {
+    submitForm: function submitForm(event) {
+      // TODO: validate inputs
+
+      var formData = new FormData();
+      formData.append("title", this.inputTitle);
+      formData.append("source", this.inputSource);
+      formData.append("created_at", new Date().toLocaleString());
+      formData.append("user", this.inputUser);
+      formData.append("user_trashed", false);
+      formData.append("viaResource", "");
+      formData.append("viaResourceId", "");
+      formData.append("viaRelationship", "");
+
+      Nova.request().post("/nova-api/favorites?editing=true&editMode=create", formData).then(function (res) {
+        return console.log(res);
+      }).catch(function (e) {
+        return console.log(e);
+      });
+    }
   }
 });
 
@@ -780,7 +812,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -813,12 +845,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "TextInput",
   props: {
     label: "",
-    placeholder: ""
+    placeholder: "",
+    input: ""
   }
 });
 
@@ -854,6 +889,12 @@ var render = function() {
             list: "title-list",
             type: "text",
             placeholder: _vm.placeholder
+          },
+          domProps: { value: _vm.input },
+          on: {
+            input: function($event) {
+              return _vm.$emit("input", $event.target.value)
+            }
           }
         })
       ])
@@ -952,19 +993,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "DropdownInput",
-  ready: function ready() {
-    this.fetchUsers();
-  },
-  methods: {
-    fetchUsers: function fetchUsers() {
-      this.$http.get("/users", function (users) {
-        alert(users);
-        this.$set("users", users);
+  beforeCreate: function beforeCreate() {
+    var _this = this;
+
+    Nova.request().get("http://localhost:8000/nova-api/users").then(function (res) {
+      var resources = res.data.resources;
+      resources.map(function (user) {
+        _this.users.push({ name: user.title, id: user.id.value });
       });
-    }
+    }).catch(function (e) {
+      return console.log(e);
+    });
+  },
+  data: function data() {
+    return {
+      users: [],
+      input: ""
+    };
   }
 });
 
@@ -976,67 +1026,78 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    { staticClass: "flex border-b border-40 remove-bottom-border" },
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "py-6 px-8 w-1/2" }, [
+        _c("div", { staticClass: "flex items-center" }, [
+          _c(
+            "select",
+            {
+              staticClass: "form-control form-select w-full",
+              attrs: { "data-testid": "users-select", dusk: "user" },
+              domProps: { value: _vm.input },
+              on: {
+                input: function($event) {
+                  return _vm.$emit("input", $event.target.value)
+                }
+              }
+            },
+            [
+              _c(
+                "option",
+                {
+                  attrs: {
+                    value: "",
+                    selected: "selected",
+                    disabled: "disabled"
+                  }
+                },
+                [_vm._v("—")]
+              ),
+              _vm._v(" "),
+              _vm._l(_vm.users, function(user) {
+                return _c(
+                  "option",
+                  { key: user.name, domProps: { value: user.id } },
+                  [_vm._v("\n          " + _vm._s(user.name) + "\n        ")]
+                )
+              })
+            ],
+            2
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", {
+          staticClass: "v-portal",
+          staticStyle: { display: "none" },
+          attrs: { transition: "fade-transition" }
+        })
+      ])
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "flex border-b border-40 remove-bottom-border" },
-      [
-        _c("div", { staticClass: "w-1/5 px-8 py-6" }, [
-          _c(
-            "label",
-            {
-              staticClass: "inline-block text-80 pt-2 leading-tight",
-              attrs: { for: "user" }
-            },
-            [
-              _vm._v("\n      User\n      "),
-              _c("span", { staticClass: "text-danger text-sm" }, [_vm._v("*")])
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "py-6 px-8 w-1/2" }, [
-          _c("div", { staticClass: "flex items-center" }, [
-            _c(
-              "select",
-              {
-                staticClass: "form-control form-select w-full",
-                attrs: { "data-testid": "users-select", dusk: "user" }
-              },
-              [
-                _c(
-                  "option",
-                  {
-                    attrs: {
-                      value: "",
-                      selected: "selected",
-                      disabled: "disabled"
-                    }
-                  },
-                  [_vm._v("—")]
-                ),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "6" } }, [_vm._v("admin")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "3" } }, [_vm._v("kiro")])
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", {
-            staticClass: "v-portal",
-            staticStyle: { display: "none" },
-            attrs: { transition: "fade-transition" }
-          })
-        ])
-      ]
-    )
+    return _c("div", { staticClass: "w-1/5 px-8 py-6" }, [
+      _c(
+        "label",
+        {
+          staticClass: "inline-block text-80 pt-2 leading-tight",
+          attrs: { for: "user" }
+        },
+        [
+          _vm._v("\n      User "),
+          _c("span", { staticClass: "text-danger text-sm" }, [_vm._v("*")])
+        ]
+      )
+    ])
   }
 ]
 render._withStripped = true
@@ -1134,7 +1195,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -1145,6 +1206,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -1191,53 +1253,54 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "flex border-b border-40" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "py-6 px-8 w-1/2" }, [
+      _c("div", { staticClass: "flex items-center" }, [
+        _c("input", {
+          staticClass:
+            "w-full form-control form-input form-input-bordered flatpickr-input",
+          attrs: {
+            "data-v-7cad3195": "",
+            type: "hidden",
+            placeholder: "2020-12-07 15:25:21",
+            dusk: "created_at",
+            name: "Created At"
+          }
+        }),
+        _c("input", {
+          staticClass:
+            "w-full form-control form-input form-input-bordered form-control input",
+          attrs: {
+            placeholder: new Date().toLocaleString(),
+            tabindex: "0",
+            type: "text",
+            disabled: ""
+          }
+        }),
+        _vm._v(" "),
+        _c("span", { staticClass: "text-80 text-sm ml-2" }, [
+          _vm._v("(Africa/Cairo)")
+        ])
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "flex border-b border-40" }, [
-      _c("div", { staticClass: "w-1/5 px-8 py-6" }, [
-        _c(
-          "label",
-          {
-            staticClass: "inline-block text-80 pt-2 leading-tight",
-            attrs: { for: "created_at" }
-          },
-          [_vm._v("\n      Created At\n\n      ")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "py-6 px-8 w-1/2" }, [
-        _c("div", { staticClass: "flex items-center" }, [
-          _c("input", {
-            staticClass:
-              "w-full form-control form-input form-input-bordered flatpickr-input",
-            attrs: {
-              "data-v-7cad3195": "",
-              type: "hidden",
-              placeholder: "2020-12-07 15:25:21",
-              dusk: "created_at",
-              name: "Created At"
-            }
-          }),
-          _c("input", {
-            staticClass:
-              "w-full form-control form-input form-input-bordered form-control input",
-            attrs: {
-              placeholder: "2020-12-07 15:25:21",
-              tabindex: "0",
-              type: "text"
-            }
-          }),
-          _vm._v(" "),
-          _c("span", { staticClass: "text-80 text-sm ml-2" }, [
-            _vm._v("(Africa/Cairo)")
-          ])
-        ])
-      ])
+    return _c("div", { staticClass: "w-1/5 px-8 py-6" }, [
+      _c(
+        "label",
+        {
+          staticClass: "inline-block text-80 pt-2 leading-tight",
+          attrs: { for: "created_at" }
+        },
+        [_vm._v("\n      Created At\n\n      ")]
+      )
     ])
   }
 ]
@@ -1336,7 +1399,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -1360,8 +1423,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "SubmitButton"
+  name: "SubmitButton",
+  methods: {
+    createFavorite: function createFavorite(event) {
+      Nova.request().post("/nova-api/favorites?editing=true&editMode=create", {
+        title: "asdfbalahasdfasdf",
+        source: "asdfasdfdgc",
+        user_id: 1
+      }).then(function (res) {
+        return console.log(res);
+      }).catch(function (e) {
+        return console.log(e);
+      });
+    }
+  }
 });
+
+// API endpoint to create a new favorite item
+// /nova-api/favorites?editing=true&editMode=create
 
 /***/ }),
 /* 27 */
@@ -1383,7 +1462,7 @@ var staticRenderFns = [
       {
         staticClass:
           "btn btn-default btn-primary inline-flex items-center relative",
-        attrs: { type: "submit", dusk: "create-button" }
+        attrs: { type: "button", dusk: "create-button" }
       },
       [_c("span", {}, [_vm._v(" Create Favorite ")])]
     )
@@ -1484,7 +1563,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -1495,6 +1574,10 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
 //
 //
 //
@@ -1518,7 +1601,7 @@ var render = function() {
     "a",
     {
       staticClass: "btn btn-link dim cursor-pointer text-80 ml-auto mr-6",
-      attrs: { tabindex: "0" }
+      attrs: { href: "/nova", tabindex: "0" }
     },
     [_vm._v("\n  Cancel\n")]
   )
@@ -1543,53 +1626,88 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {
-      staticClass: "px-view py-view mx-auto",
-      attrs: { "data-testid": "content" }
-    },
+    { staticClass: "px-view py-view mx-auto", attrs: { id: "content" } },
     [
-      _c("div", {
-        staticClass: "progress",
-        staticStyle: {},
-        attrs: { "data-v-8affbeb6": "" }
-      }),
+      _c("div", { staticClass: "progress", attrs: { "data-v-8affbeb6": "" } }),
       _vm._v(" "),
       _c("div", { staticClass: "relative" }, [
         _c("div", { staticClass: "mb-3" }),
         _vm._v(" "),
-        _c("form", { attrs: { autocomplete: "off" } }, [
-          _c("div", { staticClass: "mb-8" }, [
-            _c("h1", { staticClass: "text-90 font-normal text-2xl mb-3" }, [
-              _vm._v("Create Favorite")
+        _c(
+          "form",
+          {
+            attrs: {
+              autocomplete: "off",
+              action: "/nova-api/favorites?editing=true&editMode=create",
+              method: "post"
+            }
+          },
+          [
+            _c("div", { staticClass: "mb-8" }, [
+              _c("h1", { staticClass: "text-90 font-normal text-2xl mb-3" }, [
+                _vm._v("Create Favorite")
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "card" },
+                [
+                  _c("TextInput", {
+                    attrs: { label: _vm.title, placeholder: _vm.title },
+                    model: {
+                      value: _vm.inputTitle,
+                      callback: function($$v) {
+                        _vm.inputTitle = $$v
+                      },
+                      expression: "inputTitle"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("TextInput", {
+                    attrs: { label: _vm.source, placeholder: _vm.source },
+                    model: {
+                      value: _vm.inputSource,
+                      callback: function($$v) {
+                        _vm.inputSource = $$v
+                      },
+                      expression: "inputSource"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("DropdownInput", {
+                    model: {
+                      value: _vm.inputUser,
+                      callback: function($$v) {
+                        _vm.inputUser = $$v
+                      },
+                      expression: "inputUser"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("DateInput")
+                ],
+                1
+              )
             ]),
             _vm._v(" "),
             _c(
               "div",
-              { staticClass: "card" },
+              { staticClass: "flex items-center" },
               [
-                _c("TextInput", {
-                  attrs: { label: _vm.title, placeholder: _vm.title }
-                }),
+                _c("CancelButton"),
                 _vm._v(" "),
-                _c("TextInput", {
-                  attrs: { label: _vm.source, placeholder: _vm.source }
-                }),
-                _vm._v(" "),
-                _c("DropdownInput"),
-                _vm._v(" "),
-                _c("DateInput")
+                _c("SubmitButton", {
+                  nativeOn: {
+                    click: function($event) {
+                      return _vm.submitForm($event)
+                    }
+                  }
+                })
               ],
               1
             )
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "flex items-center" },
-            [_c("CancelButton"), _vm._v(" "), _c("SubmitButton")],
-            1
-          )
-        ])
+          ]
+        )
       ])
     ]
   )

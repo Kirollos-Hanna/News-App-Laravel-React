@@ -2,8 +2,7 @@
   <div class="flex border-b border-40 remove-bottom-border">
     <div class="w-1/5 px-8 py-6">
       <label for="user" class="inline-block text-80 pt-2 leading-tight">
-        User
-        <span class="text-danger text-sm">*</span></label
+        User <span class="text-danger text-sm">*</span></label
       >
     </div>
     <div class="py-6 px-8 w-1/2">
@@ -12,10 +11,13 @@
           data-testid="users-select"
           dusk="user"
           class="form-control form-select w-full"
+          v-bind:value="input"
+          v-on:input="$emit('input', $event.target.value)"
         >
           <option value="" selected="selected" disabled="disabled">—</option>
-          <option value="6">admin</option>
-          <option value="3">kiro</option>
+          <option v-for="user in users" :value="user.id" :key="user.name">
+            {{ user.name }}
+          </option>
         </select>
       </div>
       <div
@@ -30,16 +32,22 @@
 <script>
 export default {
   name: "DropdownInput",
-  ready: function () {
-    this.fetchUsers();
+  beforeCreate: function () {
+    Nova.request()
+      .get("http://localhost:8000/nova-api/users")
+      .then((res) => {
+        let resources = res.data.resources;
+        resources.map((user) => {
+          this.users.push({ name: user.title, id: user.id.value });
+        });
+      })
+      .catch((e) => console.log(e));
   },
-  methods: {
-    fetchUsers: function () {
-      this.$http.get("/users", function (users) {
-        alert(users);
-        this.$set("users", users);
-      });
-    },
+  data() {
+    return {
+      users: [],
+      input: "",
+    };
   },
 };
 </script>

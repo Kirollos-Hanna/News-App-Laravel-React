@@ -14,6 +14,8 @@
           type="text"
           :placeholder="placeholder"
           class="w-full form-control form-input form-input-bordered"
+          v-bind:value="input"
+          v-on:input="$emit('input', $event.target.value)"
         />
       </div>
     </div>
@@ -26,6 +28,7 @@ export default {
   props: {
     label: "",
     placeholder: "",
+    input: "",
   },
 };
 </script>

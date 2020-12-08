@@ -712,6 +712,8 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
 
   methods: {
     submitForm: function submitForm(event) {
+      var _this = this;
+
       this.validateEmptyInputs();
 
       if (!this.validateUrl(this.inputSource)) {
@@ -723,10 +725,6 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
       if (this.errorTitle || this.errorSource || this.errorUser) {
         return;
       }
-
-      // REMOVE THIS WHEN IT REDIRECTS CORRECTLY
-      // this.$router.push("/nova");
-      // return;
 
       var formData = new FormData();
       formData.append("title", this.inputTitle);
@@ -741,8 +739,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
       formData.append("viaRelationship", "");
 
       Nova.request().post("/nova-api/favorites?editing=true&editMode=create", formData).then(function (res) {
-        // this.$router.push("/nova");
-        window.location.href = "/nova";
+        _this.$router.push("/dashboards/main");
       }).catch(function (e) {
         return console.log(e);
       });
@@ -1295,7 +1292,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "CancelButton"
+  name: "CancelButton",
+  methods: {
+    redirect: function redirect() {
+      this.$router.push("/dashboards/main");
+    }
+  }
 });
 
 /***/ }),
@@ -1306,9 +1308,15 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("a", { staticClass: "cancel", attrs: { href: "/nova" } }, [
-    _vm._v(" Cancel ")
-  ])
+  return _c(
+    "a",
+    {
+      staticClass: "cancel",
+      attrs: { href: "#" },
+      on: { click: _vm.redirect }
+    },
+    [_vm._v(" Cancel ")]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -1661,8 +1669,9 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Label_vue__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Label_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Label_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_js__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Label_vue__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Label_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Label_vue__);
 //
 //
 //
@@ -1687,6 +1696,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 
 
@@ -1696,10 +1706,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     var _this = this;
 
     Nova.request().get("/nova-api/users").then(function (res) {
-      var resources = res.data.resources;
-      resources.map(function (user) {
-        _this.users.push({ name: user.title, id: user.id.value });
-      });
+      _this.users = Object(__WEBPACK_IMPORTED_MODULE_0__helpers_js__["a" /* parseUserResponse */])(res);
     }).catch(function (e) {
       return console.log(e);
     });
@@ -1716,7 +1723,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     error: false
   },
   components: {
-    Label: __WEBPACK_IMPORTED_MODULE_0__Label_vue___default.a
+    Label: __WEBPACK_IMPORTED_MODULE_1__Label_vue___default.a
   }
 });
 
@@ -2214,7 +2221,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -17728,6 +17735,22 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(80), __webpack_require__(64)))
+
+/***/ }),
+/* 133 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = parseUserResponse;
+function parseUserResponse(response) {
+    var resources = response.data.resources;
+    var users = [];
+
+    resources.map(function (user) {
+        users.push({ name: user.title, id: user.id.value });
+    });
+    return users;
+}
 
 /***/ })
 /******/ ]);

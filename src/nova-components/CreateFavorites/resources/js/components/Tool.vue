@@ -114,10 +114,6 @@ export default {
         return;
       }
 
-      // REMOVE THIS WHEN IT REDIRECTS CORRECTLY
-      // this.$router.push("/nova");
-      // return;
-
       let formData = new FormData();
       formData.append("title", this.inputTitle);
       formData.append("source", this.inputSource);
@@ -133,8 +129,7 @@ export default {
       Nova.request()
         .post("/nova-api/favorites?editing=true&editMode=create", formData)
         .then((res) => {
-          // this.$router.push("/nova");
-          window.location.href = "/nova";
+          this.$router.push("/dashboards/main");
         })
         .catch((e) => console.log(e));
     },

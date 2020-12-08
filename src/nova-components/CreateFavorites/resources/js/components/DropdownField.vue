@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import { parseUserResponse } from "../helpers.js";
 import Label from "./Label.vue";
 
 export default {
@@ -31,10 +32,7 @@ export default {
     Nova.request()
       .get("/nova-api/users")
       .then((res) => {
-        let resources = res.data.resources;
-        resources.map((user) => {
-          this.users.push({ name: user.title, id: user.id.value });
-        });
+        this.users = parseUserResponse(res);
       })
       .catch((e) => console.log(e));
   },

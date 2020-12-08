@@ -14,9 +14,13 @@
           type="text"
           :placeholder="placeholder"
           class="w-full form-control form-input form-input-bordered"
+          :class="{ 'border-danger': error }"
           v-bind:value="input"
           v-on:input="$emit('input', $event.target.value)"
         />
+        <div v-if="error" class="help-text error-text mt-2 text-danger">
+          The {{ label }} field is required.
+        </div>
       </div>
     </div>
   </div>
@@ -26,9 +30,10 @@
 export default {
   name: "TextInput",
   props: {
-    label: "",
-    placeholder: "",
-    input: "",
+    label: String,
+    placeholder: String,
+    input: String,
+    error: Boolean,
   },
 };
 </script>

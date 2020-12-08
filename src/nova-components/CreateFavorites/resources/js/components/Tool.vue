@@ -1,6 +1,6 @@
 <template>
   <div id="content" class="px-view py-view mx-auto">
-    <div data-v-8affbeb6="" class="progress" style=""></div>
+    <div class="progress" style=""></div>
     <div class="relative">
       <div class="mb-3"></div>
       <form
@@ -14,14 +14,16 @@
             <TextInput
               :label="title"
               :placeholder="title"
+              :error="errorTitle"
               v-model="inputTitle"
             />
             <TextInput
               :label="source"
               :placeholder="source"
+              :error="errorSource"
               v-model="inputSource"
             />
-            <DropdownInput v-model="inputUser" />
+            <DropdownInput :error="errorUser" v-model="inputUser" />
             <DateInput />
           </div>
         </div>
@@ -56,11 +58,34 @@ export default {
       inputTitle: "",
       inputSource: "",
       inputUser: "",
+      errorTitle: false,
+      errorSource: false,
+      errorUser: false,
     };
   },
   methods: {
     submitForm: function (event) {
-      // TODO: validate inputs
+      // validate inputs
+      if (this.inputTitle === "") {
+        this.errorTitle = true;
+      } else {
+        this.errorTitle = false;
+      }
+      if (this.inputSource === "") {
+        this.errorSource = true;
+      } else {
+        this.errorSource = false;
+      }
+      if (this.inputUser === "") {
+        this.errorUser = true;
+      } else {
+        this.errorUser = false;
+      }
+
+      // SHOW ERROR
+      if (this.errorTitle || this.errorSource || this.errorUser) {
+        return;
+      }
 
       let formData = new FormData();
       formData.append("title", this.inputTitle);
@@ -74,7 +99,9 @@ export default {
 
       Nova.request()
         .post("/nova-api/favorites?editing=true&editMode=create", formData)
-        .then((res) => console.log(res))
+        .then((res) => {
+          window.location.href = "/nova";
+        })
         .catch((e) => console.log(e));
     },
   },

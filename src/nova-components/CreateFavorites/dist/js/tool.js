@@ -588,7 +588,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\ndiv.progress[data-v-68ff5483] {\n  width: 0%;\n  height: 3px;\n  opacity: 0;\n  background-color: var(--primary);\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\ndiv.progress[data-v-68ff5483] {\n  width: 0%;\n  height: 3px;\n  opacity: 0;\n  background-color: var(--primary);\n}\n", ""]);
 
 // exports
 
@@ -678,6 +678,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -699,13 +701,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       source: "Article Source",
       inputTitle: "",
       inputSource: "",
-      inputUser: ""
+      inputUser: "",
+      errorTitle: false,
+      errorSource: false,
+      errorUser: false
     };
   },
 
   methods: {
     submitForm: function submitForm(event) {
-      // TODO: validate inputs
+      // validate inputs
+      if (this.inputTitle === "") {
+        this.errorTitle = true;
+      } else {
+        this.errorTitle = false;
+      }
+      if (this.inputSource === "") {
+        this.errorSource = true;
+      } else {
+        this.errorSource = false;
+      }
+      if (this.inputUser === "") {
+        this.errorUser = true;
+      } else {
+        this.errorUser = false;
+      }
+
+      // SHOW ERROR
+      if (this.errorTitle || this.errorSource || this.errorUser) {
+        return;
+      }
 
       var formData = new FormData();
       formData.append("title", this.inputTitle);
@@ -718,7 +743,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       formData.append("viaRelationship", "");
 
       Nova.request().post("/nova-api/favorites?editing=true&editMode=create", formData).then(function (res) {
-        return console.log(res);
+        window.location.href = "/nova";
       }).catch(function (e) {
         return console.log(e);
       });
@@ -812,7 +837,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -847,13 +872,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "TextInput",
   props: {
-    label: "",
-    placeholder: "",
-    input: ""
+    label: String,
+    placeholder: String,
+    input: String,
+    error: Boolean
   }
 });
 
@@ -884,6 +914,7 @@ var render = function() {
       _c("div", { staticClass: "py-6 px-8 w-1/2" }, [
         _c("input", {
           staticClass: "w-full form-control form-input form-input-bordered",
+          class: { "border-danger": _vm.error },
           attrs: {
             dusk: "title",
             list: "title-list",
@@ -896,7 +927,21 @@ var render = function() {
               return _vm.$emit("input", $event.target.value)
             }
           }
-        })
+        }),
+        _vm._v(" "),
+        _vm.error
+          ? _c(
+              "div",
+              { staticClass: "help-text error-text mt-2 text-danger" },
+              [
+                _vm._v(
+                  "\n        The " +
+                    _vm._s(_vm.label) +
+                    " field is required.\n      "
+                )
+              ]
+            )
+          : _vm._e()
       ])
     ])
   ])
@@ -995,6 +1040,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "DropdownInput",
@@ -1012,9 +1062,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   data: function data() {
     return {
-      users: [],
-      input: ""
+      users: []
     };
+  },
+
+  props: {
+    input: String,
+    error: Boolean
   }
 });
 
@@ -1038,6 +1092,7 @@ var render = function() {
             "select",
             {
               staticClass: "form-control form-select w-full",
+              class: { "border-danger": _vm.error },
               attrs: { "data-testid": "users-select", dusk: "user" },
               domProps: { value: _vm.input },
               on: {
@@ -1075,7 +1130,15 @@ var render = function() {
           staticClass: "v-portal",
           staticStyle: { display: "none" },
           attrs: { transition: "fade-transition" }
-        })
+        }),
+        _vm._v(" "),
+        _vm.error
+          ? _c(
+              "div",
+              { staticClass: "help-text error-text mt-2 text-danger" },
+              [_vm._v("\n      The User field is required.\n    ")]
+            )
+          : _vm._e()
       ])
     ]
   )
@@ -1628,7 +1691,7 @@ var render = function() {
     "div",
     { staticClass: "px-view py-view mx-auto", attrs: { id: "content" } },
     [
-      _c("div", { staticClass: "progress", attrs: { "data-v-8affbeb6": "" } }),
+      _c("div", { staticClass: "progress" }),
       _vm._v(" "),
       _c("div", { staticClass: "relative" }, [
         _c("div", { staticClass: "mb-3" }),
@@ -1653,7 +1716,11 @@ var render = function() {
                 { staticClass: "card" },
                 [
                   _c("TextInput", {
-                    attrs: { label: _vm.title, placeholder: _vm.title },
+                    attrs: {
+                      label: _vm.title,
+                      placeholder: _vm.title,
+                      error: _vm.errorTitle
+                    },
                     model: {
                       value: _vm.inputTitle,
                       callback: function($$v) {
@@ -1664,7 +1731,11 @@ var render = function() {
                   }),
                   _vm._v(" "),
                   _c("TextInput", {
-                    attrs: { label: _vm.source, placeholder: _vm.source },
+                    attrs: {
+                      label: _vm.source,
+                      placeholder: _vm.source,
+                      error: _vm.errorSource
+                    },
                     model: {
                       value: _vm.inputSource,
                       callback: function($$v) {
@@ -1675,6 +1746,7 @@ var render = function() {
                   }),
                   _vm._v(" "),
                   _c("DropdownInput", {
+                    attrs: { error: _vm.errorUser },
                     model: {
                       value: _vm.inputUser,
                       callback: function($$v) {

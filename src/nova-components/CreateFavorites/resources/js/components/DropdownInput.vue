@@ -11,6 +11,7 @@
           data-testid="users-select"
           dusk="user"
           class="form-control form-select w-full"
+          :class="{ 'border-danger': error }"
           v-bind:value="input"
           v-on:input="$emit('input', $event.target.value)"
         >
@@ -25,6 +26,10 @@
         transition="fade-transition"
         style="display: none"
       ></div>
+
+      <div v-if="error" class="help-text error-text mt-2 text-danger">
+        The User field is required.
+      </div>
     </div>
   </div>
 </template>
@@ -46,8 +51,11 @@ export default {
   data() {
     return {
       users: [],
-      input: "",
     };
+  },
+  props: {
+    input: String,
+    error: Boolean,
   },
 };
 </script>

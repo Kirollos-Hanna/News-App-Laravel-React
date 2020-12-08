@@ -588,7 +588,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\ndiv.progress[data-v-68ff5483] {\n  width: 0%;\n  height: 3px;\n  opacity: 0;\n  background-color: var(--primary);\n}\n", ""]);
+exports.push([module.i, "\nh1[data-v-68ff5483] {\n  font-weight: 400;\n  margin-bottom: 7px;\n  margin-left: 5px;\n}\n.input-container[data-v-68ff5483] {\n  margin: 20px;\n}\n.input-container-background[data-v-68ff5483] {\n  background-color: white;\n  border-radius: 10px;\n}\n.btn-container[data-v-68ff5483] {\n  margin-right: 22px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n", ""]);
 
 // exports
 
@@ -632,26 +632,16 @@ module.exports = function listToStyles (parentId, list) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__TextInput_vue__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__TextInput_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__TextInput_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DropdownInput_vue__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DropdownInput_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__DropdownInput_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__TextField_vue__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__TextField_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__TextField_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DropdownField_vue__ = __webpack_require__(97);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DropdownField_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__DropdownField_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__DateInput_vue__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__DateInput_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__DateInput_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__SubmitButton_vue__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__SubmitButton_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__SubmitButton_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__CancelButton_vue__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__CancelButton_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__CancelButton_vue__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -689,8 +679,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    TextInput: __WEBPACK_IMPORTED_MODULE_0__TextInput_vue___default.a,
-    DropdownInput: __WEBPACK_IMPORTED_MODULE_1__DropdownInput_vue___default.a,
+    TextField: __WEBPACK_IMPORTED_MODULE_0__TextField_vue___default.a,
+    DropdownField: __WEBPACK_IMPORTED_MODULE_1__DropdownField_vue___default.a,
     DateInput: __WEBPACK_IMPORTED_MODULE_2__DateInput_vue___default.a,
     SubmitButton: __WEBPACK_IMPORTED_MODULE_3__SubmitButton_vue___default.a,
     CancelButton: __WEBPACK_IMPORTED_MODULE_4__CancelButton_vue___default.a
@@ -699,6 +689,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       title: "Article Title",
       source: "Article Source",
+      user: "User",
+      createdAt: "Created At",
       inputTitle: "",
       inputSource: "",
       inputUser: "",
@@ -752,446 +744,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(11)
-}
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(13)
-/* template */
-var __vue_template__ = __webpack_require__(14)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = "data-v-b8492b7c"
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/js/components/TextInput.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-b8492b7c", Component.options)
-  } else {
-    hotAPI.reload("data-v-b8492b7c", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(12);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("2165add0", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-b8492b7c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TextInput.vue", function() {
-     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-b8492b7c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TextInput.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 13 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: "TextInput",
-  props: {
-    label: String,
-    placeholder: String,
-    input: String,
-    error: Boolean
-  }
-});
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "card" }, [
-    _c("div", { staticClass: "flex border-b border-40" }, [
-      _c("div", { staticClass: "w-1/5 px-8 py-6" }, [
-        _c(
-          "label",
-          {
-            staticClass: "inline-block text-80 pt-2 leading-tight",
-            attrs: { for: "title" }
-          },
-          [
-            _vm._v("\n        " + _vm._s(_vm.label) + "\n        "),
-            _c("span", { staticClass: "text-danger text-sm" }, [_vm._v("*")])
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "py-6 px-8 w-1/2" }, [
-        _c("input", {
-          staticClass: "w-full form-control form-input form-input-bordered",
-          class: { "border-danger": _vm.error },
-          attrs: {
-            dusk: "title",
-            list: "title-list",
-            type: "text",
-            placeholder: _vm.placeholder
-          },
-          domProps: { value: _vm.input },
-          on: {
-            input: function($event) {
-              return _vm.$emit("input", $event.target.value)
-            }
-          }
-        }),
-        _vm._v(" "),
-        _vm.error
-          ? _c(
-              "div",
-              { staticClass: "help-text error-text mt-2 text-danger" },
-              [
-                _vm._v(
-                  "\n        The " +
-                    _vm._s(_vm.label) +
-                    " field is required.\n      "
-                )
-              ]
-            )
-          : _vm._e()
-      ])
-    ])
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-b8492b7c", module.exports)
-  }
-}
-
-/***/ }),
-/* 15 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(16)
-/* template */
-var __vue_template__ = __webpack_require__(17)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/js/components/DropdownInput.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-39685d5e", Component.options)
-  } else {
-    hotAPI.reload("data-v-39685d5e", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 16 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: "DropdownInput",
-  beforeCreate: function beforeCreate() {
-    var _this = this;
-
-    Nova.request().get("http://localhost:8000/nova-api/users").then(function (res) {
-      var resources = res.data.resources;
-      resources.map(function (user) {
-        _this.users.push({ name: user.title, id: user.id.value });
-      });
-    }).catch(function (e) {
-      return console.log(e);
-    });
-  },
-  data: function data() {
-    return {
-      users: []
-    };
-  },
-
-  props: {
-    input: String,
-    error: Boolean
-  }
-});
-
-/***/ }),
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "flex border-b border-40 remove-bottom-border" },
-    [
-      _vm._m(0),
-      _vm._v(" "),
-      _c("div", { staticClass: "py-6 px-8 w-1/2" }, [
-        _c("div", { staticClass: "flex items-center" }, [
-          _c(
-            "select",
-            {
-              staticClass: "form-control form-select w-full",
-              class: { "border-danger": _vm.error },
-              attrs: { "data-testid": "users-select", dusk: "user" },
-              domProps: { value: _vm.input },
-              on: {
-                input: function($event) {
-                  return _vm.$emit("input", $event.target.value)
-                }
-              }
-            },
-            [
-              _c(
-                "option",
-                {
-                  attrs: {
-                    value: "",
-                    selected: "selected",
-                    disabled: "disabled"
-                  }
-                },
-                [_vm._v("—")]
-              ),
-              _vm._v(" "),
-              _vm._l(_vm.users, function(user) {
-                return _c(
-                  "option",
-                  { key: user.name, domProps: { value: user.id } },
-                  [_vm._v("\n          " + _vm._s(user.name) + "\n        ")]
-                )
-              })
-            ],
-            2
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", {
-          staticClass: "v-portal",
-          staticStyle: { display: "none" },
-          attrs: { transition: "fade-transition" }
-        }),
-        _vm._v(" "),
-        _vm.error
-          ? _c(
-              "div",
-              { staticClass: "help-text error-text mt-2 text-danger" },
-              [_vm._v("\n      The User field is required.\n    ")]
-            )
-          : _vm._e()
-      ])
-    ]
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "w-1/5 px-8 py-6" }, [
-      _c(
-        "label",
-        {
-          staticClass: "inline-block text-80 pt-2 leading-tight",
-          attrs: { for: "user" }
-        },
-        [
-          _vm._v("\n      User "),
-          _c("span", { staticClass: "text-danger text-sm" }, [_vm._v("*")])
-        ]
-      )
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-39685d5e", module.exports)
-  }
-}
-
-/***/ }),
+/* 10 */,
+/* 11 */,
+/* 12 */,
+/* 13 */,
+/* 14 */,
+/* 15 */,
+/* 16 */,
+/* 17 */,
 /* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(19)
+  __webpack_require__(112)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(21)
 /* template */
-var __vue_template__ = __webpack_require__(22)
+var __vue_template__ = __webpack_require__(114)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = null
+var __vue_scopeId__ = "data-v-0df7fe3e"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -1224,68 +803,15 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 19 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(20);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("26c48bc8", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0df7fe3e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DateInput.vue", function() {
-     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0df7fe3e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DateInput.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 20 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
-
-// exports
-
-
-/***/ }),
+/* 19 */,
+/* 20 */,
 /* 21 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Label_vue__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Label_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Label_vue__);
 //
 //
 //
@@ -1304,79 +830,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "DateInput"
+  name: "TextField",
+  props: {
+    label: String,
+    placeholder: String,
+    input: String,
+    error: Boolean
+  },
+  components: {
+    Label: __WEBPACK_IMPORTED_MODULE_0__Label_vue___default.a
+  }
 });
 
 /***/ }),
-/* 22 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "flex border-b border-40" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("div", { staticClass: "py-6 px-8 w-1/2" }, [
-      _c("div", { staticClass: "flex items-center" }, [
-        _c("input", {
-          staticClass:
-            "w-full form-control form-input form-input-bordered flatpickr-input",
-          attrs: {
-            "data-v-7cad3195": "",
-            type: "hidden",
-            placeholder: "2020-12-07 15:25:21",
-            dusk: "created_at",
-            name: "Created At"
-          }
-        }),
-        _c("input", {
-          staticClass:
-            "w-full form-control form-input form-input-bordered form-control input",
-          attrs: {
-            placeholder: new Date().toLocaleString(),
-            tabindex: "0",
-            type: "text",
-            disabled: ""
-          }
-        }),
-        _vm._v(" "),
-        _c("span", { staticClass: "text-80 text-sm ml-2" }, [
-          _vm._v("(Africa/Cairo)")
-        ])
-      ])
-    ])
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "w-1/5 px-8 py-6" }, [
-      _c(
-        "label",
-        {
-          staticClass: "inline-block text-80 pt-2 leading-tight",
-          attrs: { for: "created_at" }
-        },
-        [_vm._v("\n      Created At\n\n      ")]
-      )
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-0df7fe3e", module.exports)
-  }
-}
-
-/***/ }),
+/* 22 */,
 /* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1462,7 +932,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -1482,28 +952,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "SubmitButton",
-  methods: {
-    createFavorite: function createFavorite(event) {
-      Nova.request().post("/nova-api/favorites?editing=true&editMode=create", {
-        title: "asdfbalahasdfasdf",
-        source: "asdfasdfdgc",
-        user_id: 1
-      }).then(function (res) {
-        return console.log(res);
-      }).catch(function (e) {
-        return console.log(e);
-      });
-    }
-  }
+  name: "SubmitButton"
 });
-
-// API endpoint to create a new favorite item
-// /nova-api/favorites?editing=true&editMode=create
 
 /***/ }),
 /* 27 */
@@ -1525,9 +977,9 @@ var staticRenderFns = [
       {
         staticClass:
           "btn btn-default btn-primary inline-flex items-center relative",
-        attrs: { type: "button", dusk: "create-button" }
+        attrs: { type: "button" }
       },
-      [_c("span", {}, [_vm._v(" Create Favorite ")])]
+      [_c("span", [_vm._v(" Create Favorite ")])]
     )
   }
 ]
@@ -1626,7 +1078,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -1637,10 +1089,6 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
 //
 //
 //
@@ -1664,7 +1112,7 @@ var render = function() {
     "a",
     {
       staticClass: "btn btn-link dim cursor-pointer text-80 ml-auto mr-6",
-      attrs: { href: "/nova", tabindex: "0" }
+      attrs: { href: "/nova" }
     },
     [_vm._v("\n  Cancel\n")]
   )
@@ -1687,102 +1135,78 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "px-view py-view mx-auto", attrs: { id: "content" } },
-    [
-      _c("div", { staticClass: "progress" }),
+  return _c("div", { attrs: { id: "content" } }, [
+    _c("div", { staticClass: "input-container" }, [
+      _c("h1", [_vm._v("Create Favorite")]),
       _vm._v(" "),
-      _c("div", { staticClass: "relative" }, [
-        _c("div", { staticClass: "mb-3" }),
-        _vm._v(" "),
-        _c(
-          "form",
-          {
+      _c(
+        "div",
+        { staticClass: "input-container-background" },
+        [
+          _c("TextField", {
             attrs: {
-              autocomplete: "off",
-              action: "/nova-api/favorites?editing=true&editMode=create",
-              method: "post"
+              label: _vm.title,
+              placeholder: _vm.title,
+              error: _vm.errorTitle
+            },
+            model: {
+              value: _vm.inputTitle,
+              callback: function($$v) {
+                _vm.inputTitle = $$v
+              },
+              expression: "inputTitle"
             }
-          },
-          [
-            _c("div", { staticClass: "mb-8" }, [
-              _c("h1", { staticClass: "text-90 font-normal text-2xl mb-3" }, [
-                _vm._v("Create Favorite")
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "card" },
-                [
-                  _c("TextInput", {
-                    attrs: {
-                      label: _vm.title,
-                      placeholder: _vm.title,
-                      error: _vm.errorTitle
-                    },
-                    model: {
-                      value: _vm.inputTitle,
-                      callback: function($$v) {
-                        _vm.inputTitle = $$v
-                      },
-                      expression: "inputTitle"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("TextInput", {
-                    attrs: {
-                      label: _vm.source,
-                      placeholder: _vm.source,
-                      error: _vm.errorSource
-                    },
-                    model: {
-                      value: _vm.inputSource,
-                      callback: function($$v) {
-                        _vm.inputSource = $$v
-                      },
-                      expression: "inputSource"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("DropdownInput", {
-                    attrs: { error: _vm.errorUser },
-                    model: {
-                      value: _vm.inputUser,
-                      callback: function($$v) {
-                        _vm.inputUser = $$v
-                      },
-                      expression: "inputUser"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("DateInput")
-                ],
-                1
-              )
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "flex items-center" },
-              [
-                _c("CancelButton"),
-                _vm._v(" "),
-                _c("SubmitButton", {
-                  nativeOn: {
-                    click: function($event) {
-                      return _vm.submitForm($event)
-                    }
-                  }
-                })
-              ],
-              1
-            )
-          ]
-        )
-      ])
-    ]
-  )
+          }),
+          _vm._v(" "),
+          _c("TextField", {
+            attrs: {
+              label: _vm.source,
+              placeholder: _vm.source,
+              error: _vm.errorSource
+            },
+            model: {
+              value: _vm.inputSource,
+              callback: function($$v) {
+                _vm.inputSource = $$v
+              },
+              expression: "inputSource"
+            }
+          }),
+          _vm._v(" "),
+          _c("DropdownField", {
+            attrs: { label: _vm.user, error: _vm.errorUser },
+            model: {
+              value: _vm.inputUser,
+              callback: function($$v) {
+                _vm.inputUser = $$v
+              },
+              expression: "inputUser"
+            }
+          }),
+          _vm._v(" "),
+          _c("DateInput", { attrs: { label: _vm.createdAt } })
+        ],
+        1
+      )
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "btn-container" },
+      [
+        _c("CancelButton"),
+        _vm._v(" "),
+        _c("SubmitButton", {
+          nativeOn: {
+            click: function($event) {
+              return _vm.submitForm($event)
+            }
+          }
+        })
+      ],
+      1
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -1799,6 +1223,690 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 35 */,
+/* 36 */,
+/* 37 */,
+/* 38 */,
+/* 39 */,
+/* 40 */,
+/* 41 */,
+/* 42 */,
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */,
+/* 65 */,
+/* 66 */,
+/* 67 */,
+/* 68 */,
+/* 69 */,
+/* 70 */,
+/* 71 */,
+/* 72 */,
+/* 73 */,
+/* 74 */,
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */,
+/* 82 */,
+/* 83 */,
+/* 84 */,
+/* 85 */,
+/* 86 */,
+/* 87 */,
+/* 88 */,
+/* 89 */,
+/* 90 */,
+/* 91 */,
+/* 92 */,
+/* 93 */,
+/* 94 */,
+/* 95 */,
+/* 96 */,
+/* 97 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(110)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(98)
+/* template */
+var __vue_template__ = __webpack_require__(99)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/DropdownField.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1f138e8e", Component.options)
+  } else {
+    hotAPI.reload("data-v-1f138e8e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 98 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Label_vue__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Label_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Label_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "DropdownField",
+  beforeCreate: function beforeCreate() {
+    var _this = this;
+
+    Nova.request().get("http://localhost:8000/nova-api/users").then(function (res) {
+      var resources = res.data.resources;
+      resources.map(function (user) {
+        _this.users.push({ name: user.title, id: user.id.value });
+      });
+    }).catch(function (e) {
+      return console.log(e);
+    });
+  },
+  data: function data() {
+    return {
+      users: []
+    };
+  },
+
+  props: {
+    input: String,
+    label: String,
+    error: Boolean
+  },
+  components: {
+    Label: __WEBPACK_IMPORTED_MODULE_0__Label_vue___default.a
+  }
+});
+
+/***/ }),
+/* 99 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "field-container" }, [
+    _c(
+      "div",
+      { staticClass: "label-spacing" },
+      [_c("Label", { attrs: { label: _vm.label, isRequired: true } })],
+      1
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "input-spacing" }, [
+      _c(
+        "select",
+        {
+          staticClass: "input-decoration arrow-decoration",
+          class: { "input-error": _vm.error },
+          attrs: { id: "users-select" },
+          domProps: { value: _vm.input },
+          on: {
+            input: function($event) {
+              return _vm.$emit("input", $event.target.value)
+            }
+          }
+        },
+        [
+          _c(
+            "option",
+            {
+              attrs: { value: "", selected: "selected", disabled: "disabled" }
+            },
+            [_vm._v("—")]
+          ),
+          _vm._v(" "),
+          _vm._l(_vm.users, function(user) {
+            return _c(
+              "option",
+              { key: user.name, domProps: { value: user.id } },
+              [_vm._v("\n        " + _vm._s(user.name) + "\n      ")]
+            )
+          })
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _vm.error
+        ? _c("div", { staticClass: "error" }, [
+            _vm._v("The " + _vm._s(_vm.label) + " field is required.")
+          ])
+        : _vm._e()
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1f138e8e", module.exports)
+  }
+}
+
+/***/ }),
+/* 100 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(101)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(103)
+/* template */
+var __vue_template__ = __webpack_require__(104)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-ecf2c91c"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/TextField.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-ecf2c91c", Component.options)
+  } else {
+    hotAPI.reload("data-v-ecf2c91c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 101 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(102);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("b07cb116", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-ecf2c91c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TextField.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-ecf2c91c\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./TextField.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 102 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.field-container[data-v-ecf2c91c] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  height: 75px;\n}\n.input-spacing[data-v-ecf2c91c] {\n  margin: 5px;\n  padding: 10px;\n  margin-right: 20%;\n  width: 75%;\n}\n.label-spacing[data-v-ecf2c91c] {\n  margin: 5px;\n  margin-left: 25px;\n  padding: 10px;\n  padding-top: 20px;\n  width: 25%;\n}\n.input-decoration[data-v-ecf2c91c] {\n  border: 1px solid #6d6b81;\n  width: 100%;\n  height: 100%;\n  padding: 10px 10px;\n  border-radius: 10px;\n}\n.input-decoration[data-v-ecf2c91c]:focus {\n  border: 3px solid #3c3b47;\n  border-radius: 10px;\n  outline: none;\n}\n.error[data-v-ecf2c91c] {\n  padding: 5px;\n  color: red;\n  font-style: italic;\n  font-size: 12px;\n}\n.input-error[data-v-ecf2c91c] {\n  border-color: red;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 103 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Label_vue__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Label_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Label_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "TextField",
+  props: {
+    label: String,
+    placeholder: String,
+    input: String,
+    error: Boolean
+  },
+  components: {
+    Label: __WEBPACK_IMPORTED_MODULE_0__Label_vue___default.a
+  }
+});
+
+/***/ }),
+/* 104 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "field-container" }, [
+    _c(
+      "div",
+      { staticClass: "label-spacing" },
+      [_c("Label", { attrs: { label: _vm.label, isRequired: true } })],
+      1
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "input-spacing" }, [
+      _c("input", {
+        staticClass: "input-decoration",
+        class: { "input-error": _vm.error },
+        attrs: { type: "text", placeholder: _vm.placeholder },
+        domProps: { value: _vm.input },
+        on: {
+          input: function($event) {
+            return _vm.$emit("input", $event.target.value)
+          }
+        }
+      }),
+      _vm._v(" "),
+      _vm.error
+        ? _c("p", { staticClass: "error" }, [
+            _vm._v("The " + _vm._s(_vm.label) + " field is required.")
+          ])
+        : _vm._e()
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-ecf2c91c", module.exports)
+  }
+}
+
+/***/ }),
+/* 105 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(106)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(108)
+/* template */
+var __vue_template__ = __webpack_require__(109)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-a3c544ce"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/Label.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-a3c544ce", Component.options)
+  } else {
+    hotAPI.reload("data-v-a3c544ce", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 106 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(107);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("de984b22", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-a3c544ce\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Label.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-a3c544ce\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Label.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 107 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 108 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "Label",
+  props: {
+    label: String,
+    isRequired: Boolean
+  }
+});
+
+/***/ }),
+/* 109 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("label", { attrs: { for: _vm.label } }, [
+    _vm._v("\n  " + _vm._s(_vm.label) + "\n  "),
+    _vm.isRequired
+      ? _c("span", { staticClass: "text-danger text-sm" }, [_vm._v("*")])
+      : _vm._e()
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-a3c544ce", module.exports)
+  }
+}
+
+/***/ }),
+/* 110 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(111);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("6f568e9e", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1f138e8e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DropdownField.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1f138e8e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DropdownField.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 111 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.field-container {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  height: 75px;\n}\n.input-spacing {\n  margin: 5px;\n  padding: 10px;\n  margin-right: 20%;\n  width: 75%;\n}\n.label-spacing {\n  margin: 5px;\n  margin-left: 25px;\n  padding: 10px;\n  padding-top: 20px;\n  width: 25%;\n}\n.input-decoration {\n  border: 1px solid #6d6b81;\n  width: 100%;\n  height: 100%;\n  padding: 10px 10px;\n  border-radius: 10px;\n  background-color: white;\n}\n.arrow-decoration {\n  -moz-appearance: none;\n  -webkit-appearance: none;\n  appearance: none;\n  background-image: linear-gradient(45deg, transparent 50%, gray 50%),\n    linear-gradient(135deg, gray 50%, transparent 50%),\n    radial-gradient(#ddd 70%, transparent 72%);\n  background-position: calc(100% - 20px) calc(1em + 2px),\n    calc(100% - 15px) calc(1em + 2px), calc(100% - 0.5em) 0.5em;\n  background-size: 5px 5px, 5px 5px, 1.5em 1.5em;\n  background-repeat: no-repeat;\n}\n.input-decoration:focus {\n  border: 3px solid #3c3b47;\n  border-radius: 10px;\n  outline: none;\n}\n.error {\n  padding: 5px;\n  color: red;\n  font-style: italic;\n  font-size: 12px;\n}\n.input-error {\n  border-color: red;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 112 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(113);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("fcdcada2", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0df7fe3e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DateInput.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0df7fe3e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DateInput.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 113 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.field-container[data-v-0df7fe3e] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  height: 75px;\n}\n.input-spacing[data-v-0df7fe3e] {\n  margin: 5px;\n  padding: 10px;\n  margin-right: 20%;\n  width: 75%;\n}\n.label-spacing[data-v-0df7fe3e] {\n  margin: 5px;\n  margin-left: 25px;\n  padding: 10px;\n  padding-top: 20px;\n  width: 25%;\n}\n.input-decoration[data-v-0df7fe3e] {\n  border: 1px solid #6d6b81;\n  width: 100%;\n  height: 100%;\n  padding: 10px 10px;\n  border-radius: 10px;\n}\n.input-decoration[data-v-0df7fe3e]:focus {\n  border: 3px solid #3c3b47;\n  border-radius: 10px;\n  outline: none;\n}\n.error[data-v-0df7fe3e] {\n  padding: 5px;\n  color: red;\n  font-style: italic;\n  font-size: 12px;\n}\n.input-error[data-v-0df7fe3e] {\n  border-color: red;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 114 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "field-container" }, [
+    _c(
+      "div",
+      { staticClass: "label-spacing" },
+      [_c("Label", { attrs: { label: _vm.label, isRequired: false } })],
+      1
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "input-spacing" }, [
+      _c("input", {
+        staticClass: "input-decoration",
+        attrs: {
+          placeholder: new Date().toLocaleString(),
+          tabindex: "0",
+          type: "text",
+          disabled: ""
+        }
+      })
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0df7fe3e", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

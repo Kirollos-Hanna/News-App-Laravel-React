@@ -1,52 +1,42 @@
 <template>
-  <div id="content" class="px-view py-view mx-auto">
-    <div class="progress" style=""></div>
-    <div class="relative">
-      <div class="mb-3"></div>
-      <form
-        autocomplete="off"
-        action="/nova-api/favorites?editing=true&editMode=create"
-        method="post"
-      >
-        <div class="mb-8">
-          <h1 class="text-90 font-normal text-2xl mb-3">Create Favorite</h1>
-          <div class="card">
-            <TextInput
-              :label="title"
-              :placeholder="title"
-              :error="errorTitle"
-              v-model="inputTitle"
-            />
-            <TextInput
-              :label="source"
-              :placeholder="source"
-              :error="errorSource"
-              v-model="inputSource"
-            />
-            <DropdownInput :error="errorUser" v-model="inputUser" />
-            <DateInput />
-          </div>
-        </div>
-        <div class="flex items-center">
-          <CancelButton />
-          <SubmitButton @click.native="submitForm" />
-        </div>
-      </form>
+  <div id="content">
+    <div class="input-container">
+      <h1>Create Favorite</h1>
+      <div class="input-container-background">
+        <TextField
+          :label="title"
+          :placeholder="title"
+          :error="errorTitle"
+          v-model="inputTitle"
+        />
+        <TextField
+          :label="source"
+          :placeholder="source"
+          :error="errorSource"
+          v-model="inputSource"
+        />
+        <DropdownField :label="user" :error="errorUser" v-model="inputUser" />
+        <DateInput :label="createdAt" />
+      </div>
+    </div>
+    <div class="btn-container">
+      <CancelButton />
+      <SubmitButton @click.native="submitForm" />
     </div>
   </div>
 </template>
 
 <script>
-import TextInput from "./TextInput.vue";
-import DropdownInput from "./DropdownInput.vue";
+import TextField from "./TextField.vue";
+import DropdownField from "./DropdownField.vue";
 import DateInput from "./DateInput.vue";
 import SubmitButton from "./SubmitButton.vue";
 import CancelButton from "./CancelButton.vue";
 
 export default {
   components: {
-    TextInput,
-    DropdownInput,
+    TextField,
+    DropdownField,
     DateInput,
     SubmitButton,
     CancelButton,
@@ -55,6 +45,8 @@ export default {
     return {
       title: "Article Title",
       source: "Article Source",
+      user: "User",
+      createdAt: "Created At",
       inputTitle: "",
       inputSource: "",
       inputUser: "",
@@ -109,11 +101,25 @@ export default {
 </script>
 
 <style scoped>
-/* Scoped Styles */
-div.progress {
-  width: 0%;
-  height: 3px;
-  opacity: 0;
-  background-color: var(--primary);
+h1 {
+  font-weight: 400;
+  margin-bottom: 7px;
+  margin-left: 5px;
+}
+
+.input-container {
+  margin: 20px;
+}
+
+.input-container-background {
+  background-color: white;
+  border-radius: 10px;
+}
+
+.btn-container {
+  margin-right: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>

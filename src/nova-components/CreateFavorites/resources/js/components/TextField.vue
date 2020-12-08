@@ -1,16 +1,18 @@
 <template>
   <div class="field-container">
     <div class="label-spacing">
-      <Label :label="label" :isRequired="false" />
+      <Label :label="label" :isRequired="true" />
     </div>
     <div class="input-spacing">
       <input
-        class="input-decoration"
-        :placeholder="new Date().toLocaleString()"
-        tabindex="0"
         type="text"
-        disabled
+        class="input-decoration"
+        :class="{ 'input-error': error }"
+        :placeholder="placeholder"
+        v-bind:value="input"
+        v-on:input="$emit('input', $event.target.value)"
       />
+      <p v-if="error" class="error">The {{ label }} field is required.</p>
     </div>
   </div>
 </template>
@@ -78,5 +80,3 @@ export default {
   border-color: red;
 }
 </style>
-
-

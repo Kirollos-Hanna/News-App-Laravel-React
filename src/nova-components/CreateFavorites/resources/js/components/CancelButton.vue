@@ -1,9 +1,5 @@
 <template>
-  <a
-    href="/nova"
-    tabindex="0"
-    class="btn btn-link dim cursor-pointer text-80 ml-auto mr-6"
-  >
+  <a href="/nova" class="btn btn-link dim cursor-pointer text-80 ml-auto mr-6">
     Cancel
   </a>
 </template>

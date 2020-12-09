@@ -26,6 +26,6 @@ class UpdateFavoritesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('favorites');
     }
 }

@@ -11,7 +11,7 @@
           'arrow-decoration': true,
         }"
         v-model="input"
-        @change="$emit('changeInput', $data.input, label)"
+        @change="changeInput($data.input, label)"
       >
         <option value="" selected="selected" disabled="disabled">—</option>
         <option v-for="user in users" :value="user.id" :key="user.name">
@@ -56,6 +56,12 @@ export default {
     error: {
       default: false,
       type: Boolean,
+    },
+    changeInput: {
+      default: () => {
+        return;
+      },
+      type: Function,
     },
   },
   components: {

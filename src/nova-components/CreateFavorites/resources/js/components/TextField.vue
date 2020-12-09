@@ -10,7 +10,7 @@
         :validationError="validationError"
         :sameError="sameError"
         :placeholder="placeholder"
-        @changeInputField="(...args) => this.changeInputField(...args)"
+        :changeInput="changeInput"
         ref="input"
       />
       <p v-if="error && validationError" class="error">
@@ -61,6 +61,12 @@ export default {
     isRequired: {
       default: false,
       type: Boolean,
+    },
+    changeInput: {
+      default: () => {
+        return;
+      },
+      type: Function,
     },
   },
   components: {

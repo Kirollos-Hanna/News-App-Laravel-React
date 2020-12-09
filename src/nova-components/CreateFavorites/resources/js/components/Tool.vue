@@ -10,7 +10,7 @@
           :placeholder="title"
           :error="errorTitle"
           :sameError="errorSameTitle"
-          @changeInput="(...args) => this.changeInput(...args)"
+          :changeInput="changeInput"
           ref="titleField"
         />
         <TextField
@@ -18,7 +18,7 @@
           :type="textInput"
           :label="author"
           :placeholder="author"
-          @changeInput="(...args) => this.changeInput(...args)"
+          :changeInput="changeInput"
           ref="authorField"
         />
         <TextField
@@ -28,7 +28,7 @@
           :placeholder="source"
           :error="errorSource"
           :validationError="validationErrorSource"
-          @changeInput="(...args) => this.changeInput(...args)"
+          :changeInput="changeInput"
           ref="sourceField"
         />
         <TextField
@@ -37,13 +37,13 @@
           :label="postDate"
           :placeholder="postDate"
           :error="errorPostDate"
-          @changeInput="(...args) => this.changeInput(...args)"
+          :changeInput="changeInput"
           ref="postDateField"
         />
         <DropdownField
           :label="user"
           :error="errorUser"
-          @changeInput="(...args) => this.changeInput(...args)"
+          :changeInput="changeInput"
           ref="userField"
         />
       </div>

@@ -7,7 +7,7 @@
     }"
     :placeholder="placeholder"
     v-model="input"
-    @input="$emit('changeInputField', $data.input)"
+    @input="changeInput($data.input, placeholder)"
     :required="isRequired"
   />
 </template>
@@ -46,6 +46,12 @@ export default {
     sameError: {
       default: false,
       type: Boolean,
+    },
+    changeInput: {
+      default: () => {
+        return;
+      },
+      type: Function,
     },
   },
   components: {

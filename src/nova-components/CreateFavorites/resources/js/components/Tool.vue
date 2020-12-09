@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div>
     <div class="input-container">
       <h1>Create Favorite</h1>
       <div class="input-container-background">
@@ -11,7 +11,7 @@
           :error="errorTitle"
           :sameError="errorSameTitle"
           :changeInput="changeInput"
-          ref="titleField"
+          :input="inputTitle"
         />
         <TextField
           :isRequired="false"
@@ -19,7 +19,7 @@
           :label="author"
           :placeholder="author"
           :changeInput="changeInput"
-          ref="authorField"
+          :input="inputAuthor"
         />
         <TextField
           :isRequired="true"
@@ -29,7 +29,7 @@
           :error="errorSource"
           :validationError="validationErrorSource"
           :changeInput="changeInput"
-          ref="sourceField"
+          :input="inputSource"
         />
         <TextField
           :isRequired="true"
@@ -38,13 +38,13 @@
           :placeholder="postDate"
           :error="errorPostDate"
           :changeInput="changeInput"
-          ref="postDateField"
+          :input="inputPostDate"
         />
         <DropdownField
           :label="user"
           :error="errorUser"
           :changeInput="changeInput"
-          ref="userField"
+          :input="inputUser"
         />
       </div>
     </div>
@@ -166,19 +166,11 @@ export default {
       }
     },
     clearInputs: function () {
-      this.removeInputValues();
       this.inputTitle = "";
       this.inputSource = "";
       this.inputUser = "";
       this.inputPostDate = "";
       this.inputAuthor = "";
-    },
-    removeInputValues: function () {
-      this.$refs.userField.setInput("");
-      this.$refs.titleField.setInput("");
-      this.$refs.sourceField.setInput("");
-      this.$refs.postDateField.setInput("");
-      this.$refs.authorField.setInput("");
     },
   },
 };

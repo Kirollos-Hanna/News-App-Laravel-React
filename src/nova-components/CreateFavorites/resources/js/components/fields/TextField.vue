@@ -4,14 +4,15 @@
       <Label :label="label" :isRequired="isRequired" />
     </div>
     <div class="input-spacing">
-      <TextInput
+      <input
         :type="type"
-        :error="error"
-        :validationError="validationError"
-        :sameError="sameError"
+        :class="{
+          'input-error': error || validationError || sameError,
+          'input-decoration': true,
+        }"
         :placeholder="placeholder"
-        :changeInput="changeInput"
-        ref="input"
+        v-model="computedInput"
+        @input="changeInput(input, placeholder)"
       />
       <p v-if="error && validationError" class="error">
         The {{ label }} field is required and must be a Url.
@@ -29,7 +30,6 @@
 
 <script>
 import { Label } from "../labels";
-import { TextInput } from "../inputs";
 
 export default {
   name: "text-field",
@@ -68,15 +68,16 @@ export default {
       },
       type: Function,
     },
+    input: {
+      default: "",
+      type: String,
+    },
   },
   components: {
     Label,
-    TextInput,
   },
   data: function () {
-    return {
-      input: "",
-    };
+    return {};
   },
   methods: {
     changeInputField: function (...args) {
@@ -84,8 +85,15 @@ export default {
       this.input = input;
       this.$emit("changeInput", input, this.$props.label);
     },
-    setInput: function () {
-      this.$refs.input.setInput("");
+  },
+  computed: {
+    computedInput: {
+      get: function () {
+        return this.input;
+      },
+      set: function (newInput) {
+        this.input = newInput;
+      },
     },
   },
 };

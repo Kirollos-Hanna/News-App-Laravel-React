@@ -10,8 +10,8 @@
           'input-decoration': true,
           'arrow-decoration': true,
         }"
-        v-model="input"
-        @change="changeInput($data.input, label)"
+        v-model="computedInput"
+        @change="changeInput(input, label)"
       >
         <option value="" selected="selected" disabled="disabled">—</option>
         <option v-for="user in users" :value="user.id" :key="user.name">
@@ -45,7 +45,6 @@ export default {
   data() {
     return {
       users: [],
-      input: "",
     };
   },
   props: {
@@ -63,14 +62,23 @@ export default {
       },
       type: Function,
     },
+    input: {
+      default: "",
+      type: String,
+    },
+  },
+  computed: {
+    computedInput: {
+      get: function () {
+        return this.input;
+      },
+      set: function (newInput) {
+        this.input = newInput;
+      },
+    },
   },
   components: {
     Label,
-  },
-  methods: {
-    setInput: function (input) {
-      this.input = input;
-    },
   },
 };
 </script>

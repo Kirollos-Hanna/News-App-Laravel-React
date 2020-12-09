@@ -25,8 +25,8 @@
 </template>
 
 <script>
-import { parseResponse } from "../helpers.js";
-import Label from "./Label.vue";
+import { parseResponse } from "../../helpers.js";
+import { Label } from "../labels";
 
 export default {
   name: "dropdown-field",
@@ -76,4 +76,5 @@ export default {
 </script>
 
 <style>
+@import "./dropdownField.css";
 </style>

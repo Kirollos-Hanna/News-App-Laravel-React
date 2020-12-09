@@ -9,4 +9,5 @@ export default {
 </script>
 
 <style>
+@import "./cancelButton.css";
 </style>

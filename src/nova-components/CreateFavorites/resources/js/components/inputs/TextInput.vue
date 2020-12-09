@@ -13,8 +13,6 @@
 </template>
 
 <script>
-import Label from "./Label.vue";
-
 export default {
   name: "text-input",
   data: function () {
@@ -54,9 +52,6 @@ export default {
       type: Function,
     },
   },
-  components: {
-    Label,
-  },
   methods: {
     setInput: function (input) {
       this.input = input;
@@ -66,4 +61,5 @@ export default {
 </script>
 
 <style scoped>
+@import "textInput.css";
 </style>

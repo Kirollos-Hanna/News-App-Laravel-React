@@ -28,8 +28,8 @@
 </template>
 
 <script>
-import Label from "./Label.vue";
-import TextInput from "./TextInput.vue";
+import { Label } from "../labels";
+import { TextInput } from "../inputs";
 
 export default {
   name: "text-field",
@@ -92,4 +92,5 @@ export default {
 </script>
 
 <style scoped>
+@import "./textField.css";
 </style>

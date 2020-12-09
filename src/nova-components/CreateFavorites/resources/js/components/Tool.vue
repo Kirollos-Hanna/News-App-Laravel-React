@@ -56,10 +56,8 @@
 </template>
 
 <script>
-import TextField from "./TextField.vue";
-import DropdownField from "./DropdownField.vue";
-import SubmitButton from "./SubmitButton.vue";
-import CancelButton from "./CancelButton.vue";
+import { DropdownField, TextField } from "./fields";
+import { CancelButton, SubmitButton } from "./buttons";
 import { validateUrl, validateEmptyInput } from "../helpers.js";
 
 export default {
@@ -133,7 +131,6 @@ export default {
       Nova.request()
         .post("/nova-api/favorites?editing=true&editMode=create", formData)
         .then((res) => {
-          console.log(res);
           this.clearInputs();
           this.$toasted.show("Favorite created successfully!", {
             type: "success",
@@ -188,4 +185,5 @@ export default {
 </script>
 
 <style>
+@import "./tool.css";
 </style>

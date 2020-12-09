@@ -5,9 +5,11 @@
     </div>
     <div class="input-spacing">
       <select
-        id="users-select"
-        class="input-decoration arrow-decoration"
-        :class="{ 'input-error': error }"
+        :class="{
+          'input-error': error,
+          'input-decoration': true,
+          'arrow-decoration': true,
+        }"
         v-model="input"
         @change="$emit('changeInput', $data.input, label)"
       >

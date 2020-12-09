@@ -1,13 +1,13 @@
 <template>
-  <button class="cancel" @click="redirect">Cancel</button>
+  <button class="cancel" @click="clear">Cancel</button>
 </template>
 
 <script>
 export default {
   name: "CancelButton",
   methods: {
-    redirect: function () {
-      this.$router.push("/dashboards/main");
+    clear: function () {
+      // this.$router.push("/dashboards/main");
     },
   },
 };

@@ -133,7 +133,7 @@ export default {
         })
         .catch((e) => console.log(e));
     },
-    changeInput(...args) {
+    changeInput: function (...args) {
       const [input, type] = args;
       if (type === this.title) {
         this.inputTitle = input;
@@ -152,7 +152,7 @@ export default {
         this.inputAuthor = input;
       }
     },
-    validateUrl(urlString) {
+    validateUrl: function (urlString) {
       var pattern = new RegExp(
         "^(https?:\\/\\/)?" + // protocol
           "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
@@ -164,7 +164,7 @@ export default {
       ); // fragment locator
       return !!pattern.test(urlString);
     },
-    validateEmptyInputs() {
+    validateEmptyInputs: function () {
       // validate inputs
       this.errorTitle = this.inputTitle === "" ? true : false;
       this.errorSource = this.inputSource === "" ? true : false;

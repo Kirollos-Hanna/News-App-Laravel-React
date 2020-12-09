@@ -1,8 +1,7 @@
 <template>
   <input
     :type="type"
-    class="input-decoration"
-    :class="{ 'input-error': error }"
+    :class="{ 'input-error': error, 'input-decoration': true }"
     :placeholder="placeholder"
     v-model="input"
     @input="$emit('changeInputField', $data.input)"

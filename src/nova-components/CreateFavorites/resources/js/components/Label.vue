@@ -9,8 +9,20 @@
 export default {
   name: "Label",
   props: {
-    label: "",
-    isRequired: false,
+    label: {
+      default: {
+        default: "",
+        type: String,
+      },
+      type: {
+        default: false,
+        type: Boolean,
+      },
+    },
+    isRequired: {
+      default: false,
+      type: Boolean,
+    },
   },
 };
 </script>

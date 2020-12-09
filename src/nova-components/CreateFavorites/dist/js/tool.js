@@ -16495,7 +16495,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -16540,12 +16540,30 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "TextField",
   props: {
-    label: "",
-    placeholder: "",
-    type: "",
-    error: false,
-    validationError: false,
-    isRequired: false
+    label: {
+      default: "",
+      type: String
+    },
+    placeholder: {
+      default: "",
+      type: String
+    },
+    type: {
+      default: "",
+      type: String
+    },
+    error: {
+      default: false,
+      type: Boolean
+    },
+    validationError: {
+      default: false,
+      type: Boolean
+    },
+    isRequired: {
+      default: false,
+      type: Boolean
+    }
   },
   components: {
     Label: __WEBPACK_IMPORTED_MODULE_0__Label_vue___default.a,
@@ -16606,7 +16624,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -16628,8 +16646,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Label",
   props: {
-    label: "",
-    isRequired: false
+    label: {
+      default: {
+        default: "",
+        type: String
+      },
+      type: {
+        default: false,
+        type: Boolean
+      }
+    },
+    isRequired: {
+      default: false,
+      type: Boolean
+    }
   }
 });
 
@@ -16744,7 +16774,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -16780,9 +16810,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     };
   },
   props: {
-    placeholder: "",
-    type: "",
-    isRequired: false
+    placeholder: {
+      default: "",
+      type: String
+    },
+    type: {
+      default: "",
+      type: String
+    },
+    isRequired: {
+      default: false,
+      type: Boolean
+    }
   },
   components: {
     Label: __WEBPACK_IMPORTED_MODULE_0__Label_vue___default.a
@@ -17066,7 +17105,7 @@ exports = module.exports = __webpack_require__(0)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -17127,8 +17166,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   props: {
-    label: "",
-    error: false
+    label: {
+      default: "",
+      type: String
+    },
+    error: {
+      default: false,
+      type: Boolean
+    }
   },
   components: {
     Label: __WEBPACK_IMPORTED_MODULE_1__Label_vue___default.a

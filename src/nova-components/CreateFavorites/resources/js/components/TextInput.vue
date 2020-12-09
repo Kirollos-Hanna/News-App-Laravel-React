@@ -21,9 +21,18 @@ export default {
     };
   },
   props: {
-    placeholder: "",
-    type: "",
-    isRequired: false,
+    placeholder: {
+      default: "",
+      type: String,
+    },
+    type: {
+      default: "",
+      type: String,
+    },
+    isRequired: {
+      default: false,
+      type: Boolean,
+    },
   },
   components: {
     Label,

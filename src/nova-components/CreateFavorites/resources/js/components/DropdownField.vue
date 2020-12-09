@@ -43,8 +43,14 @@ export default {
     };
   },
   props: {
-    label: "",
-    error: false,
+    label: {
+      default: "",
+      type: String,
+    },
+    error: {
+      default: false,
+      type: Boolean,
+    },
   },
   components: {
     Label,

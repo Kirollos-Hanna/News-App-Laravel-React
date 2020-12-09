@@ -26,12 +26,30 @@ import TextInput from "./TextInput.vue";
 export default {
   name: "TextField",
   props: {
-    label: "",
-    placeholder: "",
-    type: "",
-    error: false,
-    validationError: false,
-    isRequired: false,
+    label: {
+      default: "",
+      type: String,
+    },
+    placeholder: {
+      default: "",
+      type: String,
+    },
+    type: {
+      default: "",
+      type: String,
+    },
+    error: {
+      default: false,
+      type: Boolean,
+    },
+    validationError: {
+      default: false,
+      type: Boolean,
+    },
+    isRequired: {
+      default: false,
+      type: Boolean,
+    },
   },
   components: {
     Label,

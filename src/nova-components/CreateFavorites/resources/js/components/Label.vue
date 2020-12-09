@@ -1,7 +1,7 @@
 <template>
   <label :for="label">
     {{ label }}
-    <span v-if="isRequired" class="text-danger text-sm">*</span></label
+    <span v-if="isRequired" class="required">*</span></label
   >
 </template>
 

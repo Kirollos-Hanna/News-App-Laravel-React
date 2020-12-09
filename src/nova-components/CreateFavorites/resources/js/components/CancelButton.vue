@@ -1,5 +1,5 @@
 <template>
-  <a href="#" class="cancel" @click="redirect"> Cancel </a>
+  <button class="cancel" @click="redirect">Cancel</button>
 </template>
 
 <script>
@@ -14,10 +14,4 @@ export default {
 </script>
 
 <style>
-.cancel {
-  text-decoration: none;
-  color: gray;
-  font-weight: bold;
-  margin-right: 20px;
-}
 </style>

@@ -66,10 +66,6 @@
         {
             "type": "path",
             "url": "./nova-components/CreateFavorites"
-        },
-        {
-            "type": "path",
-            "url": "./nova-components/Test"
         }
     ],
     "minimum-stability": "dev",

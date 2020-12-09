@@ -56,15 +56,11 @@
 </template>
 
 <script>
-// import Vue from "vue";
-// import VueRouter from "vue-router";
 import TextField from "./TextField.vue";
 import DropdownField from "./DropdownField.vue";
 import SubmitButton from "./SubmitButton.vue";
 import CancelButton from "./CancelButton.vue";
 import { validateUrl, validateEmptyInput } from "../helpers.js";
-
-// Vue.use(VueRouter);
 
 export default {
   components: {

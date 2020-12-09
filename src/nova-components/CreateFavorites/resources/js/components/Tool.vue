@@ -3,19 +3,15 @@
     <div class="input-container">
       <h1>Create Favorite</h1>
       <div class="input-container-background">
-        <!-- <FormField
-          :type="text"
-          :placeholder="title"
-          :error="errorTitle"
-          @changeInput="(...args) => this.changeInput(...args)"
-        /> -->
         <TextField
           :isRequired="true"
           :type="textInput"
           :label="title"
           :placeholder="title"
           :error="errorTitle"
+          :sameError="errorSameTitle"
           @changeInput="(...args) => this.changeInput(...args)"
+          ref="titleField"
         />
         <TextField
           :isRequired="false"
@@ -23,6 +19,7 @@
           :label="author"
           :placeholder="author"
           @changeInput="(...args) => this.changeInput(...args)"
+          ref="authorField"
         />
         <TextField
           :isRequired="true"
@@ -32,6 +29,7 @@
           :error="errorSource"
           :validationError="validationErrorSource"
           @changeInput="(...args) => this.changeInput(...args)"
+          ref="sourceField"
         />
         <TextField
           :isRequired="true"
@@ -40,30 +38,33 @@
           :placeholder="postDate"
           :error="errorPostDate"
           @changeInput="(...args) => this.changeInput(...args)"
+          ref="postDateField"
         />
         <DropdownField
           :label="user"
           :error="errorUser"
           @changeInput="(...args) => this.changeInput(...args)"
+          ref="userField"
         />
       </div>
     </div>
     <div class="btn-container">
-      <CancelButton />
+      <CancelButton @click.native="clearInputs" />
       <SubmitButton @click.native="submitForm" />
     </div>
   </div>
 </template>
 
 <script>
-import Vue from "vue";
-import VueRouter from "vue-router";
+// import Vue from "vue";
+// import VueRouter from "vue-router";
 import TextField from "./TextField.vue";
 import DropdownField from "./DropdownField.vue";
 import SubmitButton from "./SubmitButton.vue";
 import CancelButton from "./CancelButton.vue";
+import { validateUrl, validateEmptyInput } from "../helpers.js";
 
-Vue.use(VueRouter);
+// Vue.use(VueRouter);
 
 export default {
   components: {
@@ -85,6 +86,9 @@ export default {
       user: "User",
       createdAt: "Created At",
 
+      // Values
+      // valUser: "",
+
       // Input values
       inputTitle: "",
       inputSource: "",
@@ -98,13 +102,17 @@ export default {
       errorUser: false,
       errorPostDate: false,
       validationErrorSource: false,
+      errorSameTitle: false,
     };
   },
   methods: {
     submitForm: function (event) {
-      this.validateEmptyInputs();
+      this.errorTitle = validateEmptyInput(this.inputTitle);
+      this.errorSource = validateEmptyInput(this.inputSource);
+      this.errorUser = validateEmptyInput(this.inputUser);
+      this.errorPostDate = validateEmptyInput(this.inputPostDate);
 
-      if (!this.validateUrl(this.inputSource)) {
+      if (!validateUrl(this.inputSource)) {
         this.validationErrorSource = true;
         return;
       }
@@ -129,15 +137,27 @@ export default {
       Nova.request()
         .post("/nova-api/favorites?editing=true&editMode=create", formData)
         .then((res) => {
-          this.$router.push("/dashboards/main");
+          console.log(res);
+          this.clearInputs();
+          this.$toasted.show("Favorite created successfully!", {
+            type: "success",
+          });
         })
-        .catch((e) => console.log(e));
+        .catch((e) => {
+          if (
+            e.response.data.errors.title[0] ===
+            "The Article Title has already been taken."
+          ) {
+            this.errorSameTitle = true;
+          }
+        });
     },
     changeInput: function (...args) {
       const [input, type] = args;
       if (type === this.title) {
         this.inputTitle = input;
         this.errorTitle = false;
+        this.errorSameTitle = false;
       } else if (type === this.source) {
         this.inputSource = input;
         this.errorSource = false;
@@ -152,24 +172,20 @@ export default {
         this.inputAuthor = input;
       }
     },
-    validateUrl: function (urlString) {
-      var pattern = new RegExp(
-        "^(https?:\\/\\/)?" + // protocol
-          "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
-          "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
-          "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
-          "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
-          "(\\#[-a-z\\d_]*)?$",
-        "i"
-      ); // fragment locator
-      return !!pattern.test(urlString);
+    clearInputs: function () {
+      this.removeInputValues();
+      this.inputTitle = "";
+      this.inputSource = "";
+      this.inputUser = "";
+      this.inputPostDate = "";
+      this.inputAuthor = "";
     },
-    validateEmptyInputs: function () {
-      // validate inputs
-      this.errorTitle = this.inputTitle === "" ? true : false;
-      this.errorSource = this.inputSource === "" ? true : false;
-      this.errorUser = this.inputUser === "" ? true : false;
-      this.errorPostDate = this.inputPostDate === "" ? true : false;
+    removeInputValues: function () {
+      this.$refs.userField.setInput("");
+      this.$refs.titleField.setInput("");
+      this.$refs.sourceField.setInput("");
+      this.$refs.postDateField.setInput("");
+      this.$refs.authorField.setInput("");
     },
   },
 };

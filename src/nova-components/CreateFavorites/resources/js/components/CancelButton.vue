@@ -1,5 +1,5 @@
 <template>
-  <button class="cancel" @click="clear">Cancel</button>
+  <button class="cancel">Cancel</button>
 </template>
 
 <script>
@@ -8,6 +8,7 @@ export default {
   methods: {
     clear: function () {
       // this.$router.push("/dashboards/main");
+      // this.$emit("clearInputs");
     },
   },
 };

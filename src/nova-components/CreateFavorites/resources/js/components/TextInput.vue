@@ -1,7 +1,10 @@
 <template>
   <input
     :type="type"
-    :class="{ 'input-error': error, 'input-decoration': true }"
+    :class="{
+      'input-error': error || validationError || sameError,
+      'input-decoration': true,
+    }"
     :placeholder="placeholder"
     v-model="input"
     @input="$emit('changeInputField', $data.input)"
@@ -32,9 +35,26 @@ export default {
       default: false,
       type: Boolean,
     },
+    error: {
+      default: false,
+      type: Boolean,
+    },
+    validationError: {
+      default: false,
+      type: Boolean,
+    },
+    sameError: {
+      default: false,
+      type: Boolean,
+    },
   },
   components: {
     Label,
+  },
+  methods: {
+    setInput: function (input) {
+      this.input = input;
+    },
   },
 };
 </script>

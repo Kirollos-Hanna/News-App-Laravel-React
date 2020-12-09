@@ -5,15 +5,23 @@
     </div>
     <div class="input-spacing">
       <TextInput
-        class="input-decoration"
         :type="type"
-        :class="{ 'input-error': error || validationError }"
+        :error="error"
+        :validationError="validationError"
+        :sameError="sameError"
         :placeholder="placeholder"
         @changeInputField="(...args) => this.changeInputField(...args)"
+        ref="input"
       />
-      <p v-if="error" class="error">The {{ label }} field is required.</p>
-      <p v-if="validationError" class="error">
+      <p v-if="error && validationError" class="error">
+        The {{ label }} field is required and must be a Url.
+      </p>
+      <p v-else-if="error" class="error">The {{ label }} field is required.</p>
+      <p v-else-if="validationError" class="error">
         The {{ label }} field must be a Url.
+      </p>
+      <p v-else-if="sameError" class="error">
+        This {{ label }} is already used.
       </p>
     </div>
   </div>
@@ -46,6 +54,10 @@ export default {
       default: false,
       type: Boolean,
     },
+    sameError: {
+      default: false,
+      type: Boolean,
+    },
     isRequired: {
       default: false,
       type: Boolean,
@@ -61,10 +73,13 @@ export default {
     };
   },
   methods: {
-    changeInputField(...args) {
+    changeInputField: function (...args) {
       const [input] = args;
       this.input = input;
       this.$emit("changeInput", input, this.$props.label);
+    },
+    setInput: function () {
+      this.$refs.input.setInput("");
     },
   },
 };

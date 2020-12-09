@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { parseUserResponse } from "../helpers.js";
+import { parseResponse } from "../helpers.js";
 import Label from "./Label.vue";
 
 export default {
@@ -34,7 +34,11 @@ export default {
     Nova.request()
       .get("/nova-api/users")
       .then((res) => {
-        this.users = parseUserResponse(res);
+        const resources = parseResponse(res);
+
+        resources.map((user) => {
+          this.users.push({ name: user.title, id: user.id.value });
+        });
       })
       .catch((e) => console.log(e));
   },
@@ -56,6 +60,11 @@ export default {
   },
   components: {
     Label,
+  },
+  methods: {
+    setInput: function (input) {
+      this.input = input;
+    },
   },
 };
 </script>

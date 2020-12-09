@@ -1,0 +1,24 @@
+
+.input-decoration {
+    border: 1px solid #6d6b81;
+    width: 100%;
+    height: 100%;
+    padding: 10px 10px;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.input-decoration:focus {
+    border: 3px solid #3c3b47;
+    border-radius: 10px;
+    outline: none;
+}
+
+
+.input-error {
+    border-color: red;
+}
+  
+.disabled-input {
+    background-color: #eee;
+}

@@ -7,17 +7,11 @@
 
 <script>
 export default {
-  name: "label",
+  name: "label-text",
   props: {
     label: {
-      default: {
-        default: "",
-        type: String,
-      },
-      type: {
-        default: false,
-        type: Boolean,
-      },
+      default: "",
+      type: String,
     },
     isRequired: {
       default: false,

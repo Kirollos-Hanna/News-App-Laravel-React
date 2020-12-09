@@ -1,7 +1,7 @@
 <template>
   <div class="field-container">
     <div class="label-spacing">
-      <Label :label="label" :isRequired="true" />
+      <label-text :label="label" :isRequired="true" />
     </div>
     <div class="input-spacing">
       <select
@@ -19,14 +19,14 @@
         </option>
       </select>
 
-      <div v-if="error" class="error">The {{ label }} field is required.</div>
+      <error-label v-if="error" :text="errorText" />
     </div>
   </div>
 </template>
 
 <script>
 import { parseResponse } from "../../helpers.js";
-import { Label } from "../labels";
+import { LabelText, ErrorLabel } from "../labels";
 
 export default {
   name: "dropdown-field",
@@ -76,9 +76,13 @@ export default {
         this.input = newInput;
       },
     },
+    errorText: function () {
+      return "The " + this.label + " field is required.";
+    },
   },
   components: {
-    Label,
+    LabelText,
+    ErrorLabel,
   },
 };
 </script>

@@ -1,4 +1,5 @@
-import Label from "./Label.vue";
+import LabelText from "./LabelText.vue";
+import ErrorLabel from "./ErrorLabel.vue";
 
 
-export {Label};
+export {LabelText, ErrorLabel};

@@ -16,5 +16,5 @@ export function validateUrl (urlString) {
 }
 
 export function validateEmptyInput (input) {
-    return input === "" ? true : false;
+    return input === "";
 }

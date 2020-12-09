@@ -3,7 +3,7 @@
     <div class="input-container">
       <h1>Create Favorite</h1>
       <div class="input-container-background">
-        <TextField
+        <text-field
           :isRequired="true"
           :type="textInput"
           :label="title"
@@ -13,7 +13,7 @@
           :changeInput="changeInput"
           :input="inputTitle"
         />
-        <TextField
+        <text-field
           :isRequired="false"
           :type="textInput"
           :label="author"
@@ -21,7 +21,7 @@
           :changeInput="changeInput"
           :input="inputAuthor"
         />
-        <TextField
+        <text-field
           :isRequired="true"
           :type="urlInput"
           :label="source"
@@ -31,7 +31,7 @@
           :changeInput="changeInput"
           :input="inputSource"
         />
-        <TextField
+        <text-field
           :isRequired="true"
           :type="dateInput"
           :label="postDate"
@@ -40,7 +40,7 @@
           :changeInput="changeInput"
           :input="inputPostDate"
         />
-        <DropdownField
+        <dropdown-field
           :label="user"
           :error="errorUser"
           :changeInput="changeInput"
@@ -49,8 +49,8 @@
       </div>
     </div>
     <div class="btn-container">
-      <CancelButton @click.native="clearInputs" />
-      <SubmitButton @click.native="submitForm" />
+      <cancel-button @click.native="clearInputs" />
+      <submit-button @click.native="submitForm" />
     </div>
   </div>
 </template>

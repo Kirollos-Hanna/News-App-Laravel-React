@@ -16,7 +16,7 @@
 import Label from "./Label.vue";
 
 export default {
-  name: "TextInput",
+  name: "text-input",
   data: function () {
     return {
       input: "",

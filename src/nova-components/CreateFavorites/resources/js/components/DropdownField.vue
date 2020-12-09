@@ -29,7 +29,7 @@ import { parseResponse } from "../helpers.js";
 import Label from "./Label.vue";
 
 export default {
-  name: "DropdownField",
+  name: "dropdown-field",
   beforeCreate: function () {
     Nova.request()
       .get("/nova-api/users")

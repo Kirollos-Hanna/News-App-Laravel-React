@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: "Label",
+  name: "label",
   props: {
     label: {
       default: {

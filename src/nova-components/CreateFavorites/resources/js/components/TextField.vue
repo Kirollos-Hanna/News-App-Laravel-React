@@ -32,7 +32,7 @@ import Label from "./Label.vue";
 import TextInput from "./TextInput.vue";
 
 export default {
-  name: "TextField",
+  name: "text-field",
   props: {
     label: {
       default: "",

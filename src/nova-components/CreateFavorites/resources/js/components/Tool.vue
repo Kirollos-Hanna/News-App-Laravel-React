@@ -1,5 +1,5 @@
 <template>
-  <div id="content">
+  <div class="content">
     <div class="input-container">
       <h1>Create Favorite</h1>
       <div class="input-container-background">

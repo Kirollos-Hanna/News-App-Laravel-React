@@ -36,11 +36,10 @@ export default {
       .then((res) => {
         const resources = parseResponse(res);
 
-        resources.map((user) => {
+        resources.forEach((user) => {
           this.users.push({ name: user.title, id: user.id.value });
         });
-      })
-      .catch((e) => console.log(e));
+      });
   },
   data() {
     return {

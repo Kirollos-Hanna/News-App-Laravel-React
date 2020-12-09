@@ -14,6 +14,6 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 @import "./errorLabel.css";
 </style>

@@ -78,13 +78,6 @@ export default {
   data: function () {
     return {};
   },
-  methods: {
-    changeInputField: function (...args) {
-      const [input] = args;
-      this.input = input;
-      this.$emit("changeInput", input, this.$props.label);
-    },
-  },
   computed: {
     computedInput: {
       get: function () {
@@ -110,6 +103,6 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 @import "./textField.css";
 </style>

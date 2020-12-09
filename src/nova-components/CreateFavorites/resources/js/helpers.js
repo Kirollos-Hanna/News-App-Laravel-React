@@ -1,5 +1,5 @@
 export function parseResponse(response) {
-    return response.data.resources;
+    return response || response.data || response.resources ? response.data.resources : null;
 }
 
 export function validateUrl (urlString) {

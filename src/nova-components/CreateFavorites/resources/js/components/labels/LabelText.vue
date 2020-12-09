@@ -21,6 +21,6 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 @import "./label.css";
 </style>

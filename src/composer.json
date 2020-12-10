@@ -25,8 +25,8 @@
         "silber/bouncer": "v1.0.0-rc.9",
         "tymon/jwt-auth": "^1.0",
         "yadahan/nova-bouncer": "^0.6.0",
-        "newsapi/create-favorites": "*"
-
+        "newsapi/create-favorites": "*",
+        "newsapi/test-tool": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -66,6 +66,10 @@
         {
             "type": "path",
             "url": "./nova-components/CreateFavorites"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/TestTool"
         }
     ],
     "minimum-stability": "dev",

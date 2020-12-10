@@ -59,7 +59,7 @@ class Favorite extends Resource
 
             # When the strings are switched, an error occurs 'Date field must cast to 'date' in Eloquent model.'
             Date::make('Posting Date', 'posting_date')
-                ->format('DD MMM')
+                ->format('DD MMM YYYY')
                 ->sortable()
                 ->rules('required', 'max:254'),
 

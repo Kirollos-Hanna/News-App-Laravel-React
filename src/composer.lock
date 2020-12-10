@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "46d8541bf674fb805010a59309a80056",
+    "content-hash": "da0ca70a6b350396389914f1d8c23e33",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2069,11 +2069,11 @@
         },
         {
             "name": "laravel/nova",
-            "version": "dev-CreateFavoritesTool",
+            "version": "dev-master",
             "dist": {
                 "type": "path",
                 "url": "./nova",
-                "reference": "c23edf54faa783cf661da6862ae80a7b76673825"
+                "reference": "2958a886b93007b956517a0cea01e2d287c5c3a5"
             },
             "require": {
                 "brick/money": "^0.5.0",
@@ -3364,12 +3364,21 @@
             ]
         },
         {
+<<<<<<< HEAD
             "name": "newsapi/test-tool",
             "version": "dev-TestTool",
             "dist": {
                 "type": "path",
                 "url": "./nova-components/TestTool",
                 "reference": "6c1a3212680a804cbf79fce4dcbd870b50632dac"
+=======
+            "name": "newsapi/favorites-grid",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "./nova-components/FavoritesGrid",
+                "reference": "273f0c19e48f5abfacdbe66798ed935d4b1c4379"
+>>>>>>> Create Favorites Grid component in branch
             },
             "require": {
                 "php": ">=7.1.0"
@@ -3378,13 +3387,21 @@
             "extra": {
                 "laravel": {
                     "providers": [
+<<<<<<< HEAD
                         "Newsapi\\TestTool\\ToolServiceProvider"
+=======
+                        "Newsapi\\FavoritesGrid\\ToolServiceProvider"
+>>>>>>> Create Favorites Grid component in branch
                     ]
                 }
             },
             "autoload": {
                 "psr-4": {
+<<<<<<< HEAD
                     "Newsapi\\TestTool\\": "src/"
+=======
+                    "Newsapi\\FavoritesGrid\\": "src/"
+>>>>>>> Create Favorites Grid component in branch
                 }
             },
             "license": [

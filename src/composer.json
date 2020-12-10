@@ -27,7 +27,8 @@
         "yadahan/nova-bouncer": "^0.6.0",
         "newsapi/create-favorites": "*",
         "venturecraft/revisionable": "1.*",
-        "newsapi/test-tool": "*"
+        "newsapi/test-tool": "*",
+        "newsapi/favorites-grid": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -70,7 +71,11 @@
         },
         {
             "type": "path",
+<<<<<<< HEAD
             "url": "./nova-components/TestTool"
+=======
+            "url": "./nova-components/FavoritesGrid"
+>>>>>>> Create Favorites Grid component in branch
         }
     ],
     "minimum-stability": "dev",

@@ -25,7 +25,6 @@
 </template>
 
 <script>
-import { LabelText, ErrorLabel } from "../labels";
 import { parseResponse } from "../../helpers.js";
 
 export default {
@@ -78,10 +77,6 @@ export default {
     errorText: function () {
       return "The " + this.label + " field is required.";
     },
-  },
-  components: {
-    LabelText,
-    ErrorLabel,
   },
 };
 </script>

@@ -56,17 +56,9 @@
 </template>
 
 <script>
-import { TextField, DropdownField } from "./fields";
-import { SubmitButton, CancelButton } from "./buttons";
 import { validateUrl, validateEmptyInput } from "../helpers.js";
 
 export default {
-  components: {
-    TextField,
-    DropdownField,
-    SubmitButton,
-    CancelButton,
-  },
   data() {
     return {
       // Input types

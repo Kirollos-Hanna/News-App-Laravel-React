@@ -34,10 +34,10 @@ export default {
     Nova.request()
       .get("/nova-api/users")
       .then((res) => {
-        const resources = parseResponse(res);
+        const arrayOfFields = parseResponse(res);
 
-        resources.forEach((user) => {
-          this.users.push({ name: user.title, id: user.id.value });
+        arrayOfFields.forEach((fields) => {
+          this.users.push({ name: fields.name, id: fields.id });
         });
       });
   },

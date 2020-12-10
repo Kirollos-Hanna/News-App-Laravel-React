@@ -1,5 +1,22 @@
 export function parseResponse(response) {
-    return response || response.data || response.resources ? response.data.resources : null;
+    if(!(response || response.data || response.data.resources)){
+      return ;
+    } 
+
+    const resources = response.data.resources;
+
+    let arrayOfFields=[];
+    resources.forEach((resource) => {
+      let fields = {};
+      resource.fields.forEach((field) => {
+        if (field.value) {
+          fields[field.attribute] = field.value;
+        }
+      });
+      arrayOfFields.push(fields);
+    });
+    
+    return arrayOfFields;
 }
 
 export function validateUrl (urlString) {

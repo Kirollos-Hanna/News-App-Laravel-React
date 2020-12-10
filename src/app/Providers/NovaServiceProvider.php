@@ -8,7 +8,6 @@ use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
 use Newsapi\CreateFavorites\CreateFavorites;
 use Illuminate\Support\Facades\Auth;
-use Newsapi\FavoritesGrid\FavoritesGrid;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -30,9 +29,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function routes()
     {
         Nova::routes()
-            ->withAuthenticationRoutes()
-            ->withPasswordResetRoutes()
-            ->register();
+                ->withAuthenticationRoutes()
+                ->withPasswordResetRoutes()
+                ->register();
     }
 
     /**
@@ -82,8 +81,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         return [
             new \Yadahan\BouncerTool\BouncerTool(),
-            new CreateFavorites,
-            new FavoritesGrid
+            (new CreateFavorites)->canSee(function ($request) {
+                return Auth::user()->isAn('admin');
+            }),
         ];
     }
 

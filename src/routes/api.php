@@ -21,14 +21,3 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
     Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 });
-
-// Route::get('/', function () {`enter code here`
-// })->middleware('cors');
-
-// Route::get('/demo-url',  function (Request $request) {
-//     return response()->json(['Laravel 7 CORS Demo']);
-// });
-
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });

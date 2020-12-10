@@ -52,7 +52,7 @@ class User extends Resource
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            Text::make('E-mail', 'email')
+            Text::make('Email', 'email')
                 ->sortable()
                 ->rules('required', 'email', 'max:254')
                 ->creationRules('unique:users,email')
@@ -64,7 +64,7 @@ class User extends Resource
                 ->updateRules('nullable', 'string', 'min:8'),
 
             HasMany::make('Favorites', 'favorites')
-            ->sortable(),
+                ->sortable(),
 
             MorphToMany::make('Roles', 'roles', 'Yadahan\BouncerTool\Nova\Role')
                 ->fields(function () {
@@ -74,17 +74,17 @@ class User extends Resource
                             ->rules('nullable', 'integer'),
                     ];
                 }),
-    
+
             MorphToMany::make('Abilities', 'abilities', 'Yadahan\BouncerTool\Nova\Ability')
                 ->fields(new \Yadahan\BouncerTool\Nova\PermissionsFields),
         ];
     }
 
     /**
- * The relationships that should be eager loaded on index queries.
-    *
-    * @var array
-    */
+     * The relationships that should be eager loaded on index queries.
+     *
+     * @var array
+     */
     public static $with = ['favorites'];
 
     /**

@@ -26,7 +26,6 @@
 
 <script>
 import { parseResponse } from "../../helpers.js";
-import { LabelText, ErrorLabel } from "../labels";
 
 export default {
   name: "dropdown-field",

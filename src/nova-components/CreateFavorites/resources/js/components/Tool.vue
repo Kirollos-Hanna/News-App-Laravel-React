@@ -56,8 +56,6 @@
 </template>
 
 <script>
-import { DropdownField, TextField } from "./fields";
-import { CancelButton, SubmitButton } from "./buttons";
 import { validateUrl, validateEmptyInput } from "../helpers.js";
 
 export default {

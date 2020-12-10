@@ -18,7 +18,7 @@ class FavoritePolicy
      */
     public function viewAny(User $user)
     {
-        return $user->isAn('admin');
+        return true;
     }
 
     /**
@@ -30,7 +30,7 @@ class FavoritePolicy
      */
     public function view(User $user, Favorite $favorite)
     {
-        return $user->isAn('admin');
+        return $user->id == $favorite->user_id;
     }
 
     /**
@@ -41,7 +41,7 @@ class FavoritePolicy
      */
     public function create(User $user)
     {
-        return $user->isAn('admin');
+        return true;
     }
 
     /**
@@ -53,7 +53,7 @@ class FavoritePolicy
      */
     public function update(User $user, Favorite $favorite)
     {
-        return $user->isAn('admin');
+        return $user->id == $favorite->user_id;
     }
 
     /**
@@ -65,7 +65,7 @@ class FavoritePolicy
      */
     public function delete(User $user, Favorite $favorite)
     {
-        return $user->isAn('admin');
+        return $user->id == $favorite->user_id;
     }
 
     /**

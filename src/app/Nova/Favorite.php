@@ -8,6 +8,7 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Favorite extends Resource
 {
@@ -57,7 +58,6 @@ class Favorite extends Resource
             Text::make('Author', 'author')
                 ->sortable(),
 
-            # When the strings are switched, an error occurs 'Date field must cast to 'date' in Eloquent model.'
             Date::make('Posting Date', 'posting_date')
                 ->format('DD MMM YYYY')
                 ->sortable()
@@ -125,5 +125,20 @@ class Favorite extends Resource
     public function actions(Request $request)
     {
         return [];
+    }
+
+    /**
+     * Build an "index" query for the given resource.
+     *
+     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        if ($request->user()->isAn('admin')) {
+            return $query;
+        }
+        return $query->where('user_id', $request->user()->id);
     }
 }

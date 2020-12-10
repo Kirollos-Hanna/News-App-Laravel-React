@@ -26,7 +26,8 @@
         "tymon/jwt-auth": "^1.0",
         "yadahan/nova-bouncer": "^0.6.0",
         "newsapi/create-favorites": "*",
-        "newsapi/test-tool": "*"
+        "newsapi/test-tool": "*",
+        "newsapi/favorites-grid": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -70,6 +71,10 @@
         {
             "type": "path",
             "url": "./nova-components/TestTool"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/FavoritesGrid"
         }
     ],
     "minimum-stability": "dev",

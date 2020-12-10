@@ -56,6 +56,8 @@
 </template>
 
 <script>
+import { TextField, DropdownField } from "./fields";
+import { SubmitButton, CancelButton } from "./buttons";
 import { validateUrl, validateEmptyInput } from "../helpers.js";
 
 export default {
@@ -169,6 +171,12 @@ export default {
       this.inputUser = "";
       this.inputPostDate = "";
       this.inputAuthor = "";
+      this.errorSameTitle = false;
+      this.validationErrorSource = false;
+      this.errorTitle = false;
+      this.errorSource = false;
+      this.errorUser = false;
+      this.errorPostDate = false;
     },
   },
 };

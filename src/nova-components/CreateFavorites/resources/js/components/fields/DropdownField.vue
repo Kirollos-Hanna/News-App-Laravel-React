@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import { LabelText, ErrorLabel } from "../labels";
 import { parseResponse } from "../../helpers.js";
 
 export default {

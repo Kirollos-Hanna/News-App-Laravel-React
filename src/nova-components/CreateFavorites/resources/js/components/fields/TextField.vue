@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import { LabelText, ErrorLabel } from "../labels";
 export default {
   name: "text-field",
   props: {

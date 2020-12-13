@@ -17,14 +17,9 @@
               :input="inputTitle"
             />
             <error-label
-              v-if="errorTitle"
               :label="title"
-              :errorType="emptyError"
-            />
-            <error-label
-              v-else-if="errorSameTitle"
-              :label="title"
-              :errorType="sameError"
+              :emptyError="errorTitle"
+              :sameError="errorSameTitle"
             />
           </div>
         </div>
@@ -57,19 +52,10 @@
               :input="inputSource"
             />
             <error-label
-              v-if="errorSource && validationErrorSource"
               :label="source"
               :errorType="emptyAndInvalidError"
-            />
-            <error-label
-              v-else-if="errorSource"
-              :label="source"
-              :errorType="emptyError"
-            />
-            <error-label
-              v-else-if="validationErrorSource"
-              :label="source"
-              :errorType="validationError"
+              :emptyError="errorSource"
+              :validationError="validationErrorSource"
             />
           </div>
         </div>
@@ -86,11 +72,7 @@
               :changeInput="changeInput"
               :input="inputPostDate"
             />
-            <error-label
-              v-if="errorPostDate"
-              :label="postDate"
-              :errorType="emptyError"
-            />
+            <error-label :label="postDate" :emptyError="errorPostDate" />
           </div>
         </div>
 
@@ -107,11 +89,7 @@
               :error="errorUser"
             />
 
-            <error-label
-              v-if="errorUser"
-              :label="user"
-              :errorType="emptyError"
-            />
+            <error-label :label="user" :emptyError="errorUser" />
           </div>
         </div>
       </div>
@@ -162,12 +140,6 @@ export default {
       errorPostDate: false,
       validationErrorSource: false,
       errorSameTitle: false,
-
-      // Error Types
-      emptyError: "empty",
-      sameError: "same",
-      validationError: "invalid",
-      emptyAndInvalidError: "emptyAndInvalid",
     };
   },
   methods: {

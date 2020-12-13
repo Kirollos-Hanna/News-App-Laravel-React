@@ -1,12 +1,5 @@
 <template>
-  <p v-if="errorType === 'same'" class="error">{{ sameErrorText }}</p>
-  <p v-else-if="errorType === 'emptyAndInvalid'" class="error">
-    {{ emptyAndInvalidErrorText }}
-  </p>
-  <p v-else-if="errorType === 'empty'" class="error">{{ emptyErrorText }}</p>
-  <p v-else-if="errorType === 'invalid'" class="error">
-    {{ invalidErrorText }}
-  </p>
+  <p class="error">{{ errorText }}</p>
 </template>
 
 <script>
@@ -21,19 +14,30 @@ export default {
       default: "",
       type: String,
     },
+    emptyError: {
+      default: false,
+      type: Boolean,
+    },
+    validationError: {
+      default: false,
+      type: Boolean,
+    },
+    sameError: {
+      default: false,
+      type: Boolean,
+    },
   },
   computed: {
-    emptyErrorText: function () {
-      return "The " + this.label + " field is required.";
-    },
-    invalidErrorText: function () {
-      return "The " + this.label + " field must be a Url.";
-    },
-    emptyAndInvalidErrorText: function () {
-      return "The " + this.label + " field is required and must be a Url.";
-    },
-    sameErrorText: function () {
-      return "This " + this.label + " is already used.";
+    errorText: function () {
+      if (this.sameError) {
+        return "This " + this.label + " is already used.";
+      } else if (this.emptyError && this.validationError) {
+        return "The " + this.label + " field is required and must be a Url.";
+      } else if (this.emptyError) {
+        return "The " + this.label + " field is required.";
+      } else if (this.validationError) {
+        return "The " + this.label + " field must be a Url.";
+      }
     },
   },
 };

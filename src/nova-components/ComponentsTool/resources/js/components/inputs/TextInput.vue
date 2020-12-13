@@ -6,7 +6,7 @@
       'input-decoration': true,
     }"
     :placeholder="placeholder"
-    v-model="computedInput"
+    v-model="input"
     @input="changeInput(input, placeholder)"
   />
 </template>
@@ -48,16 +48,6 @@ export default {
     input: {
       default: "",
       type: String,
-    },
-  },
-  computed: {
-    computedInput: {
-      get: function () {
-        return this.input;
-      },
-      set: function (newInput) {
-        this.input = newInput;
-      },
     },
   },
 };

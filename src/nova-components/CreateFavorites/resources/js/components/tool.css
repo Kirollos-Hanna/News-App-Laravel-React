@@ -1,23 +1,42 @@
 
 h1 {
-    font-weight: bold;
-    margin-bottom: 7px;
-    margin-left: 5px;
-  }
+  font-weight: bold;
+  margin-bottom: 7px;
+  margin-left: 5px;
+}
   
-  .input-container {
-    margin: 20px;
-  }
+.input-container {
+  margin: 20px;
+}
   
-  .input-container-background {
-    background-color: white;
-    border-radius: 10px;
-  }
+.input-container-background {
+  background-color: white;
+  border-radius: 10px;
+}
   
-  .btn-container {
-    margin-right: 22px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
+.btn-container {
+  margin-right: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.field-container {
+  display: flex;
+  height: 75px;
+}
+
+.input-spacing {
+  margin: 5px;
+  padding: 10px;
+  margin-right: 20%;
+  width: 75%;
+}
+
+.label-spacing {
+  margin: 5px;
+  margin-left: 25px;
+  padding: 10px;
+  padding-top: 20px;
+  width: 25%;
+}

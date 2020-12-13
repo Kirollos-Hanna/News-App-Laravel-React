@@ -3,49 +3,117 @@
     <div class="input-container">
       <h1>Create Favorite</h1>
       <div class="input-container-background">
-        <text-field
-          :isRequired="true"
-          :type="textInput"
-          :label="title"
-          :placeholder="title"
-          :error="errorTitle"
-          :sameError="errorSameTitle"
-          :changeInput="changeInput"
-          :input="inputTitle"
-        />
-        <text-field
-          :isRequired="false"
-          :type="textInput"
-          :label="author"
-          :placeholder="author"
-          :changeInput="changeInput"
-          :input="inputAuthor"
-        />
-        <text-field
-          :isRequired="true"
-          :type="urlInput"
-          :label="source"
-          :placeholder="source"
-          :error="errorSource"
-          :validationError="validationErrorSource"
-          :changeInput="changeInput"
-          :input="inputSource"
-        />
-        <text-field
-          :isRequired="true"
-          :type="dateInput"
-          :label="postDate"
-          :placeholder="postDate"
-          :error="errorPostDate"
-          :changeInput="changeInput"
-          :input="inputPostDate"
-        />
-        <dropdown-field
-          :label="user"
-          :error="errorUser"
-          :changeInput="changeInput"
-          :input="inputUser"
-        />
+        <div class="field-container">
+          <div class="label-spacing">
+            <label-text :label="title" :isRequired="true" />
+          </div>
+          <div class="input-spacing">
+            <text-input
+              :type="textInput"
+              :error="errorTitle"
+              :sameError="errorSameTitle"
+              :placeholder="title"
+              :changeInput="changeInput"
+              :input="inputTitle"
+            />
+            <error-label
+              v-if="errorTitle"
+              :label="title"
+              :errorType="emptyError"
+            />
+            <error-label
+              v-else-if="errorSameTitle"
+              :label="title"
+              :errorType="sameError"
+            />
+          </div>
+        </div>
+
+        <div class="field-container">
+          <div class="label-spacing">
+            <label-text :label="author" :isRequired="false" />
+          </div>
+          <div class="input-spacing">
+            <text-input
+              :type="textInput"
+              :placeholder="author"
+              :changeInput="changeInput"
+              :input="inputAuthor"
+            />
+          </div>
+        </div>
+
+        <div class="field-container">
+          <div class="label-spacing">
+            <label-text :label="source" :isRequired="true" />
+          </div>
+          <div class="input-spacing">
+            <text-input
+              :type="urlInput"
+              :error="errorSource"
+              :validationError="validationErrorSource"
+              :placeholder="source"
+              :changeInput="changeInput"
+              :input="inputSource"
+            />
+            <error-label
+              v-if="errorSource && validationErrorSource"
+              :label="source"
+              :errorType="emptyAndInvalidError"
+            />
+            <error-label
+              v-else-if="errorSource"
+              :label="source"
+              :errorType="emptyError"
+            />
+            <error-label
+              v-else-if="validationErrorSource"
+              :label="source"
+              :errorType="validationError"
+            />
+          </div>
+        </div>
+
+        <div class="field-container">
+          <div class="label-spacing">
+            <label-text :label="source" :isRequired="true" />
+          </div>
+          <div class="input-spacing">
+            <text-input
+              :type="dateInput"
+              :error="errorPostDate"
+              :placeholder="postDate"
+              :changeInput="changeInput"
+              :input="inputPostDate"
+            />
+            <error-label
+              v-if="errorPostDate"
+              :label="postDate"
+              :errorType="emptyError"
+            />
+          </div>
+        </div>
+
+        <div class="field-container">
+          <div class="label-spacing">
+            <label-text :label="user" :isRequired="true" />
+          </div>
+          <div class="input-spacing">
+            <dropdown-input
+              :label="user"
+              :input="inputUser"
+              :changeInput="changeInput"
+              :getOptions="getUsers"
+              :error="errorUser"
+            />
+
+            <error-label
+              v-if="errorUser"
+              :label="user"
+              :errorType="emptyError"
+            />
+          </div>
+        </div>
       </div>
     </div>
     <div class="btn-container">
@@ -59,6 +127,7 @@
 import {
   validateUrl,
   validateEmptyInput,
+  parseResponse,
 } from "../../../../ComponentsTool/resources/js/helpers.js";
 
 export default {
@@ -77,6 +146,7 @@ export default {
 
       // Values
       // valUser: "",
+      users: [],
 
       // Input values
       inputTitle: "",
@@ -92,6 +162,12 @@ export default {
       errorPostDate: false,
       validationErrorSource: false,
       errorSameTitle: false,
+
+      // Error Types
+      emptyError: "empty",
+      sameError: "same",
+      validationError: "invalid",
+      emptyAndInvalidError: "emptyAndInvalid",
     };
   },
   methods: {
@@ -172,6 +248,19 @@ export default {
       this.errorSource = false;
       this.errorUser = false;
       this.errorPostDate = false;
+    },
+    getUsers: async function () {
+      return Nova.request()
+        .get("/nova-api/users")
+        .then((res) => {
+          const arrayOfFields = parseResponse(res);
+          let users = [];
+
+          arrayOfFields.forEach((fields) => {
+            users.push({ name: fields.name, id: fields.id });
+          });
+          return users;
+        });
     },
   },
 };

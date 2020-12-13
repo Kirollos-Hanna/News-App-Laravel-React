@@ -5,7 +5,7 @@
       'input-decoration': true,
       'arrow-decoration': true,
     }"
-    v-model="computedInput"
+    v-model="input"
     @change="changeInput(input, label)"
   >
     <option value="" selected="selected" disabled="disabled">—</option>
@@ -52,16 +52,6 @@ export default {
         return;
       },
       type: Function,
-    },
-  },
-  computed: {
-    computedInput: {
-      get: function () {
-        return this.input;
-      },
-      set: function (newInput) {
-        this.input = newInput;
-      },
     },
   },
 };

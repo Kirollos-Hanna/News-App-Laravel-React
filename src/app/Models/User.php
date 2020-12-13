@@ -9,10 +9,11 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use Silber\Bouncer\Database\HasRolesAndAbilities;
 use \Venturecraft\Revisionable\RevisionableTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
-    use RevisionableTrait, HasRolesAndAbilities, HasApiTokens, HasFactory, Notifiable;
+    use SoftDeletes, RevisionableTrait, HasRolesAndAbilities, HasApiTokens, HasFactory, Notifiable;
 
     protected $revisionEnabled = true;
     protected $revisionCleanup = true;

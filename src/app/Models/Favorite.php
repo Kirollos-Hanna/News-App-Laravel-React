@@ -4,11 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use \Venturecraft\Revisionable\RevisionableTrait;
 
 class Favorite extends Model
 {
-    use HasFactory;
+    use RevisionableTrait, HasFactory;
 
+    protected $revisionEnabled = true;
+    protected $revisionCleanup = true;
+    protected $historyLimit = 50;
 
     /**
      * The attributes that are mass assignable.

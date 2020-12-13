@@ -26,6 +26,7 @@
         "tymon/jwt-auth": "^1.0",
         "yadahan/nova-bouncer": "^0.6.0",
         "newsapi/create-favorites": "*",
+        "venturecraft/revisionable": "1.*",
         "newsapi/test-tool": "*"
     },
     "require-dev": {

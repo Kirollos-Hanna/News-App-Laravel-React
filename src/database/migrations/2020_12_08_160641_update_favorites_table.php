@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Carbon\Carbon;
 
 class UpdateFavoritesTable extends Migration
 {
@@ -15,7 +16,7 @@ class UpdateFavoritesTable extends Migration
     {
         Schema::table('favorites', function (Blueprint $table) {
             $table->string('author')->nullable();
-            $table->date('posting_date');
+            $table->date('posting_date')->default(Carbon::now()->toDateTimeString());
         });
     }
 

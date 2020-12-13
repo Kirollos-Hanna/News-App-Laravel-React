@@ -56,7 +56,10 @@
 </template>
 
 <script>
-import { validateUrl, validateEmptyInput } from "../helpers.js";
+import {
+  validateUrl,
+  validateEmptyInput,
+} from "../../../../ComponentsTool/resources/js/helpers.js";
 
 export default {
   data() {

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "46d8541bf674fb805010a59309a80056",
+    "content-hash": "76cce11651fea5544a8722805cca6972",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3329,6 +3329,39 @@
                 }
             ],
             "time": "2020-11-28T14:25:28+00:00"
+        },
+        {
+            "name": "newsapi/components-tool",
+            "version": "dev-resourceTool",
+            "dist": {
+                "type": "path",
+                "url": "./nova-components/ComponentsTool",
+                "reference": "5478bc872f6fa9c5a9b041865ee0fbe9bced1154"
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Newsapi\\ComponentsTool\\ToolServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Newsapi\\ComponentsTool\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova resource tool.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ]
         },
         {
             "name": "newsapi/create-favorites",

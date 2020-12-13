@@ -8,10 +8,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use Silber\Bouncer\Database\HasRolesAndAbilities;
+use \Venturecraft\Revisionable\RevisionableTrait;
 
 class User extends Authenticatable
 {
-    use HasRolesAndAbilities, HasApiTokens, HasFactory, Notifiable;
+    use RevisionableTrait, HasRolesAndAbilities, HasApiTokens, HasFactory, Notifiable;
 
 
     /**
@@ -32,7 +33,8 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token'];
+        'remember_token'
+    ];
 
     /**
      * The attributes that should be cast to native types.
@@ -41,7 +43,8 @@ class User extends Authenticatable
      */
     protected $casts = [];
 
-    public function favorites(){
+    public function favorites()
+    {
         return $this->hasMany('App\Models\Favorite');
     }
 }

@@ -10,6 +10,9 @@ class Favorite extends Model
 {
     use RevisionableTrait, HasFactory;
 
+    protected $revisionEnabled = true;
+    protected $revisionCleanup = true;
+    protected $historyLimit = 50;
 
     /**
      * The attributes that are mass assignable.

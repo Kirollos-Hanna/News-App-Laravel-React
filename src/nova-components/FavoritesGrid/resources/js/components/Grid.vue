@@ -79,7 +79,7 @@ export default {
   methods: {
     getEmail: function (name) {
       let elm = this.emails.find((elm) => elm.name === name);
-      return elm.email;
+      return elm ? elm.email : null;
     },
   },
 };

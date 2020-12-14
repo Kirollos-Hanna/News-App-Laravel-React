@@ -38,10 +38,10 @@
 </template>
 
 <script>
-import { parseResponse } from "../helpers.js";
+import { parseResponse } from "../../helpers.js";
 
 export default {
-  name: "grid",
+  name: "favorites-grid",
   data() {
     return {
       favorites: [],
@@ -86,5 +86,5 @@ export default {
 </script>
 
 <style>
-@import "./grid.css";
+@import "./favoritesGrid.css";
 </style>

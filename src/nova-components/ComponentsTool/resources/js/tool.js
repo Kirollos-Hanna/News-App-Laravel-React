@@ -1,6 +1,7 @@
 import {CancelButton, SubmitButton} from "./components/buttons";
 import {ErrorLabel, LabelText} from "./components/labels";
 import {TextInput, DropdownInput} from "./components/inputs";
+import {FavoritesGrid} from "./components/grids";
 
 Nova.booting((Vue, router, store) => {
 
@@ -10,6 +11,7 @@ Nova.booting((Vue, router, store) => {
   Vue.component('label-text', LabelText);
   Vue.component('text-input', TextInput);
   Vue.component('dropdown-input', DropdownInput);
+  Vue.component('favorites-grid', FavoritesGrid);
 
   Vue.component('components-tool', require('./components/Tool'))
 })

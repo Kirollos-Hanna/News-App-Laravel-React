@@ -1,12 +1,10 @@
 <template>
   <div>
     <heading>Favorites Grid</heading>
-    <div>
-      <button class="create-favorites-button" @click="redirect">
-        Create Favorites
-      </button>
+    <div class="button-container">
+      <submit-button @click.native="redirect" />
     </div>
-    <grid />
+    <favorites-grid />
   </div>
 </template>
 

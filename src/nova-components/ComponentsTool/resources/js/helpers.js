@@ -1,23 +1,25 @@
 export function parseResponse(response) {
-    if(!(response || response.data || response.data.resources)){
-      return ;
-    } 
+  if(!(response || response.data || response.data.resources)){
+    return ;
+  } 
 
-    const resources = response.data.resources;
+  const resources = response.data.resources;
 
-    let arrayOfFields=[];
-    resources.forEach((resource) => {
-      let fields = {};
-      resource.fields.forEach((field) => {
-        if (field.value) {
-          fields[field.attribute] = field.value;
-        }
-      });
-      arrayOfFields.push(fields);
+  let arrayOfFields=[];
+  resources.forEach((resource) => {
+    let fields = {};
+    fields["softDeleted"] = resource.softDeleted;
+    resource.fields.forEach((field) => {
+      if (field.value) {
+        fields[field.attribute] = field.value;
+      }
     });
-    
-    return arrayOfFields;
+    arrayOfFields.push(fields);
+  });
+  
+  return arrayOfFields;
 }
+
 
 export function validateUrl (urlString) {
     var pattern = new RegExp(

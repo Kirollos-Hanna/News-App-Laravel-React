@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "46d8541bf674fb805010a59309a80056",
+    "content-hash": "eb50cc22b282107387dc8a4c45047ad3",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2069,11 +2069,11 @@
         },
         {
             "name": "laravel/nova",
-            "version": "dev-CreateFavoritesTool",
+            "version": "dev-master",
             "dist": {
                 "type": "path",
                 "url": "./nova",
-                "reference": "c23edf54faa783cf661da6862ae80a7b76673825"
+                "reference": "2958a886b93007b956517a0cea01e2d287c5c3a5"
             },
             "require": {
                 "brick/money": "^0.5.0",
@@ -3364,12 +3364,12 @@
             ]
         },
         {
-            "name": "newsapi/test-tool",
-            "version": "dev-TestTool",
+            "name": "newsapi/favorites-grid",
+            "version": "dev-FavoritesGrid",
             "dist": {
                 "type": "path",
-                "url": "./nova-components/TestTool",
-                "reference": "6c1a3212680a804cbf79fce4dcbd870b50632dac"
+                "url": "./nova-components/FavoritesGrid",
+                "reference": "273f0c19e48f5abfacdbe66798ed935d4b1c4379"
             },
             "require": {
                 "php": ">=7.1.0"
@@ -3378,13 +3378,46 @@
             "extra": {
                 "laravel": {
                     "providers": [
-                        "Newsapi\\TestTool\\ToolServiceProvider"
+                        "Newsapi\\FavoritesGrid\\ToolServiceProvider"
                     ]
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "Newsapi\\TestTool\\": "src/"
+                    "Newsapi\\FavoritesGrid\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova tool.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ]
+        },
+        {
+            "name": "newsapi/test-tool",
+            "version": "dev-TestTool",
+            "dist": {
+                "type": "path",
+                "url": "./nova-components/FavoritesGrid",
+                "reference": "273f0c19e48f5abfacdbe66798ed935d4b1c4379"
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Newsapi\\FavoritesGrid\\ToolServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Newsapi\\FavoritesGrid\\": "src/"
                 }
             },
             "license": [
@@ -8614,16 +8647,16 @@
         },
         {
             "name": "phar-io/version",
-            "version": "3.0.3",
+            "version": "3.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phar-io/version.git",
-                "reference": "726c026815142e4f8677b7cb7f2249c9ffb7ecae"
+                "reference": "e4782611070e50613683d2b9a57730e9a3ba5451"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phar-io/version/zipball/726c026815142e4f8677b7cb7f2249c9ffb7ecae",
-                "reference": "726c026815142e4f8677b7cb7f2249c9ffb7ecae",
+                "url": "https://api.github.com/repos/phar-io/version/zipball/e4782611070e50613683d2b9a57730e9a3ba5451",
+                "reference": "e4782611070e50613683d2b9a57730e9a3ba5451",
                 "shasum": ""
             },
             "require": {
@@ -8657,11 +8690,7 @@
                 }
             ],
             "description": "Library for handling version information and constraints",
-            "support": {
-                "issues": "https://github.com/phar-io/version/issues",
-                "source": "https://github.com/phar-io/version/tree/3.0.3"
-            },
-            "time": "2020-11-30T09:21:21+00:00"
+            "time": "2020-12-13T23:18:30+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",

@@ -4,11 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use \Venturecraft\Revisionable\RevisionableTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Favorite extends Model
 {
-    use HasFactory;
+    use SoftDeletes, RevisionableTrait, HasFactory;
 
+    protected $revisionEnabled = true;
+    protected $revisionCleanup = true;
+    protected $historyLimit = 50;
 
     /**
      * The attributes that are mass assignable.

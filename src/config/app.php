@@ -167,6 +167,7 @@ return [
          */
         NewsAPI\NewsAPIServiceProvider::class,
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+        Venturecraft\Revisionable\RevisionableServiceProvider::class,
         /*
          * Application Service Providers...
          */

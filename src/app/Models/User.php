@@ -8,11 +8,16 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use Silber\Bouncer\Database\HasRolesAndAbilities;
+use \Venturecraft\Revisionable\RevisionableTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
-    use HasRolesAndAbilities, HasApiTokens, HasFactory, Notifiable;
+    use SoftDeletes, RevisionableTrait, HasRolesAndAbilities, HasApiTokens, HasFactory, Notifiable;
 
+    protected $revisionEnabled = true;
+    protected $revisionCleanup = true;
+    protected $historyLimit = 50;
 
     /**
      * The attributes that are mass assignable.
@@ -32,7 +37,8 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token'];
+        'remember_token'
+    ];
 
     /**
      * The attributes that should be cast to native types.
@@ -41,7 +47,8 @@ class User extends Authenticatable
      */
     protected $casts = [];
 
-    public function favorites(){
+    public function favorites()
+    {
         return $this->hasMany('App\Models\Favorite');
     }
 }

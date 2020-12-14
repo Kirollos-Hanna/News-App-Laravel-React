@@ -54,3 +54,7 @@ td:last-child, .grid-body tr:last-child{
 .no-val-error{
     color: red;
 }
+
+.soft-deleted{
+    background-color: #808080 !important;
+}

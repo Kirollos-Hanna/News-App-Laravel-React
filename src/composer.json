@@ -71,11 +71,11 @@
         },
         {
             "type": "path",
-<<<<<<< HEAD
             "url": "./nova-components/TestTool"
-=======
+        },
+        {
+            "type": "path",
             "url": "./nova-components/FavoritesGrid"
->>>>>>> Create Favorites Grid component in branch
         }
     ],
     "minimum-stability": "dev",

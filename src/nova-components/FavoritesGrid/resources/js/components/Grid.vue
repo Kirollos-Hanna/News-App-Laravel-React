@@ -13,9 +13,18 @@
       </tr>
     </thead>
     <tbody class="grid-body">
-      <tr v-for="favorite in favorites" v-bind:key="favorite.id">
-        <td>{{ favorite.id }}</td>
-        <td>{{ favorite.title }}</td>
+      <tr
+        v-for="favorite in favorites"
+        v-bind:key="favorite.id"
+        :class="{ 'soft-deleted': favorite.softDeleted }"
+      >
+        <td>
+          {{ favorite.id }}
+        </td>
+        <td>
+          {{ favorite.title }}
+          <span v-if="favorite.softDeleted">(Deleted)</span>
+        </td>
         <td>{{ favorite.source }}</td>
         <td c v-if="favorite.author">{{ favorite.author }}</td>
         <td class="no-val-error" v-else>Author is not found</td>
@@ -43,7 +52,7 @@ export default {
   },
   beforeCreate: function () {
     Nova.request()
-      .get("/nova-api/favorites")
+      .get("/nova-api/favorites?search=&trashed=with")
       .then((res) => {
         const arrayOfFields = parseResponse(res);
 
@@ -56,6 +65,7 @@ export default {
             posting_date: fields.posting_date,
             created_at: fields.created_at,
             user: fields.user,
+            softDeleted: fields.softDeleted,
           });
         });
       });

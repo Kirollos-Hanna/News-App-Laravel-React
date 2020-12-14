@@ -8,6 +8,7 @@ export function parseResponse(response) {
     let arrayOfFields=[];
     resources.forEach((resource) => {
       let fields = {};
+      fields["softDeleted"] = resource.softDeleted;
       resource.fields.forEach((field) => {
         if (field.value) {
           fields[field.attribute] = field.value;

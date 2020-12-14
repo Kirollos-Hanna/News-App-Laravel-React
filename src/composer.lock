@@ -2069,11 +2069,11 @@
         },
         {
             "name": "laravel/nova",
-            "version": "dev-CreateFavoritesTool",
+            "version": "dev-master",
             "dist": {
                 "type": "path",
                 "url": "./nova",
-                "reference": "c23edf54faa783cf661da6862ae80a7b76673825"
+                "reference": "2958a886b93007b956517a0cea01e2d287c5c3a5"
             },
             "require": {
                 "brick/money": "^0.5.0",
@@ -3401,8 +3401,8 @@
             "version": "dev-TestTool",
             "dist": {
                 "type": "path",
-                "url": "./nova-components/TestTool",
-                "reference": "6c1a3212680a804cbf79fce4dcbd870b50632dac"
+                "url": "./nova-components/FavoritesGrid",
+                "reference": "273f0c19e48f5abfacdbe66798ed935d4b1c4379"
             },
             "require": {
                 "php": ">=7.1.0"
@@ -3411,13 +3411,13 @@
             "extra": {
                 "laravel": {
                     "providers": [
-                        "Newsapi\\TestTool\\ToolServiceProvider"
+                        "Newsapi\\FavoritesGrid\\ToolServiceProvider"
                     ]
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "Newsapi\\TestTool\\": "src/"
+                    "Newsapi\\FavoritesGrid\\": "src/"
                 }
             },
             "license": [

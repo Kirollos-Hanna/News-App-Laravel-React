@@ -18,9 +18,7 @@
         v-bind:key="favorite.id"
         :class="{ 'soft-deleted': favorite.softDeleted }"
       >
-        <td>
-          {{ favorite.id }}
-        </td>
+        <td>{{ favorite.id }}</td>
         <td>
           {{ favorite.title }}
           <span v-if="favorite.softDeleted">(Deleted)</span>

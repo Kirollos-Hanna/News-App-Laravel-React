@@ -1,4 +1,4 @@
-import FavoritesGrid from "./FavoritesGrid.vue";
+import Grid from "./Grid.vue";
 
 
-export {FavoritesGrid};
+export {Grid};

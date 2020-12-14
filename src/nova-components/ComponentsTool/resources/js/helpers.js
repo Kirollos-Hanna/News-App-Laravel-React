@@ -1,23 +1,23 @@
 export function parseResponse(response) {
-  if(!(response || response.data || response.data.resources)){
-    return ;
-  } 
+    if(!(response || response.data || response.data.resources)){
+      return ;
+    } 
 
-  const resources = response.data.resources;
+    const resources = response.data.resources;
 
-  let arrayOfFields=[];
-  resources.forEach((resource) => {
-    let fields = {};
-    fields["softDeleted"] = resource.softDeleted;
-    resource.fields.forEach((field) => {
-      if (field.value) {
-        fields[field.attribute] = field.value;
-      }
+    let arrayOfFields=[];
+    resources.forEach((resource) => {
+      let fields = {};
+      fields["softDeleted"] = resource.softDeleted;
+      resource.fields.forEach((field) => {
+        if (field.value) {
+          fields[field.attribute] = field.value;
+        }
+      });
+      arrayOfFields.push(fields);
     });
-    arrayOfFields.push(fields);
-  });
-  
-  return arrayOfFields;
+    
+    return arrayOfFields;
 }
 
 

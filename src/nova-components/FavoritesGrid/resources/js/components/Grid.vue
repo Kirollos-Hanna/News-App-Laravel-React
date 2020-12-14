@@ -50,7 +50,7 @@ export default {
   },
   beforeCreate: function () {
     Nova.request()
-      .get("/nova-api/favorites?search=&trashed=with")
+      .get("/nova-api/favorites?&trashed=with")
       .then((res) => {
         const arrayOfFields = parseResponse(res);
 

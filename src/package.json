@@ -14,7 +14,9 @@
         "build-test-tool": "cd nova-components/TestTool && npm run dev",
         "build-test-tool-prod": "cd nova-components/TestTool && npm run prod",
         "build-favorites-grid": "cd nova-components/FavoritesGrid && npm run dev",
-        "build-favorites-grid-prod": "cd nova-components/FavoritesGrid && npm run prod"
+        "build-favorites-grid-prod": "cd nova-components/FavoritesGrid && npm run prod",
+        "build-components-tool": "cd nova-components/ComponentsTool && npm run dev",
+        "build-components-tool-prod": "cd nova-components/ComponentsTool && npm run prod"
     },
     "devDependencies": {
         "@babel/core": "^7.0.0",

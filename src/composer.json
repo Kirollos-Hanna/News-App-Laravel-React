@@ -28,7 +28,8 @@
         "newsapi/create-favorites": "*",
         "venturecraft/revisionable": "1.*",
         "newsapi/test-tool": "*",
-        "newsapi/favorites-grid": "*"
+        "newsapi/favorites-grid": "*",
+        "newsapi/components-tool": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -76,6 +77,10 @@
         {
             "type": "path",
             "url": "./nova-components/FavoritesGrid"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/ComponentsTool"
         }
     ],
     "minimum-stability": "dev",

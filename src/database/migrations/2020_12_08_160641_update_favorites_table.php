@@ -27,8 +27,10 @@ class UpdateFavoritesTable extends Migration
      */
     public function down()
     {
-        Schema::table('favorites', function (Blueprint $table) {
-            $table->dropColumn(['author', 'posting_date']);
-        });
+        if (Schema::hasColumn('favorites', 'author')) {
+            Schema::table('favorites', function (Blueprint $table) {
+                $table->dropColumn(['author', 'posting_date']);
+            });
+        }
     }
 }

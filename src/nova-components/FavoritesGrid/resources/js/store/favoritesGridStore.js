@@ -63,4 +63,6 @@ const actions = {
     }
 }
 
-export default {state, mutations, getters, actions};
+const namespaced = true;
+
+export default {state, mutations, getters, actions, namespaced};

@@ -233,23 +233,23 @@ export default {
     clearInputs: function () {
       this.clearInputsAndErrors();
     },
-    ...mapMutations({
-      setInputTitle: "createFavorites/setInputTitle",
-      setInputSource: "createFavorites/setInputSource",
-      setInputUser: "createFavorites/setInputUser",
-      setInputPostDate: "createFavorites/setInputPostDate",
-      setInputAuthor: "createFavorites/setInputAuthor",
-      setInputPosted: "createFavorites/setInputPosted",
-      setErrorTitle: "createFavorites/setErrorTitle",
-      setErrorSource: "createFavorites/setErrorSource",
-      setErrorUser: "createFavorites/setErrorUser",
-      setErrorPostDate: "createFavorites/setErrorPostDate",
-      setValidationErrorSource: "createFavorites/setValidationErrorSource",
-      setErrorSameTitle: "createFavorites/setErrorSameTitle",
-      clearInputsAndErrors: "createFavorites/clearInputsAndErrors",
+    ...mapMutations("createFavorites", {
+      setInputTitle: "setInputTitle",
+      setInputSource: "setInputSource",
+      setInputUser: "setInputUser",
+      setInputPostDate: "setInputPostDate",
+      setInputAuthor: "setInputAuthor",
+      setInputPosted: "setInputPosted",
+      setErrorTitle: "setErrorTitle",
+      setErrorSource: "setErrorSource",
+      setErrorUser: "setErrorUser",
+      setErrorPostDate: "setErrorPostDate",
+      setValidationErrorSource: "setValidationErrorSource",
+      setErrorSameTitle: "setErrorSameTitle",
+      clearInputsAndErrors: "clearInputsAndErrors",
     }),
-    ...mapActions({
-      setUser: "createFavorites/setUser",
+    ...mapActions("createFavorites", {
+      setUser: "setUser",
     }),
   },
 };

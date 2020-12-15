@@ -107,50 +107,60 @@ import {
   validateEmptyInput,
   parseResponse,
 } from "../../../../ComponentsTool/resources/js/helpers.js";
+import { mapState } from "vuex";
 
 export default {
-  data() {
-    return {
+  beforeCreate: function () {
+    this.$store.dispatch("setUser");
+  },
+  computed: {
+    ...mapState({
       // Input types
-      textInput: "text",
-      urlInput: "url",
-      dateInput: "date",
-      title: "Article Title",
-      source: "Article Source",
-      postDate: "Post Date",
-      author: "Author",
-      user: "User",
-      createdAt: "Created At",
-
-      // Values
-      // valUser: "",
-      users: [],
+      textInput: (state) => state.createFavorites.textInput,
+      urlInput: (state) => state.createFavorites.urlInput,
+      dateInput: (state) => state.createFavorites.dateInput,
+      title: (state) => state.createFavorites.title,
+      source: (state) => state.createFavorites.source,
+      postDate: (state) => state.createFavorites.postDate,
+      author: (state) => state.createFavorites.author,
+      user: (state) => state.createFavorites.user,
+      createdAt: (state) => state.createFavorites.createdAt,
 
       // Input values
-      inputTitle: "",
-      inputSource: "",
-      inputUser: "",
-      inputPostDate: "",
-      inputAuthor: "",
+      inputTitle: (state) => state.createFavorites.inputTitle,
+      inputSource: (state) => state.createFavorites.inputSource,
+      inputUser: (state) => state.createFavorites.inputUser,
+      inputPostDate: (state) => state.createFavorites.inputPostDate,
+      inputAuthor: (state) => state.createFavorites.inputAuthor,
+
+      // Dropdown options value
+      users: (state) => state.createFavorites.users,
 
       // Errors
-      errorTitle: false,
-      errorSource: false,
-      errorUser: false,
-      errorPostDate: false,
-      validationErrorSource: false,
-      errorSameTitle: false,
-    };
+      errorTitle: (state) => state.createFavorites.errorTitle,
+      errorSource: (state) => state.createFavorites.errorSource,
+      errorUser: (state) => state.createFavorites.errorUser,
+      errorPostDate: (state) => state.createFavorites.errorPostDate,
+      validationErrorSource: (state) =>
+        state.createFavorites.validationErrorSource,
+      errorSameTitle: (state) => state.createFavorites.errorSameTitle,
+    }),
   },
   methods: {
     submitForm: function (event) {
-      this.errorTitle = validateEmptyInput(this.inputTitle);
-      this.errorSource = validateEmptyInput(this.inputSource);
-      this.errorUser = validateEmptyInput(this.inputUser);
-      this.errorPostDate = validateEmptyInput(this.inputPostDate);
+      this.$store.commit("setErrorTitle", validateEmptyInput(this.inputTitle));
+      this.$store.commit(
+        "setErrorSource",
+        validateEmptyInput(this.inputSource)
+      );
+      this.$store.commit("setErrorUser", validateEmptyInput(this.inputUser));
+      this.$store.commit(
+        "setErrorPostDate",
+        validateEmptyInput(this.inputPostDate)
+      );
 
       if (!validateUrl(this.inputSource)) {
-        this.validationErrorSource = true;
+        this.$store.commit("setValidationErrorSource", true);
         return;
       }
 
@@ -184,42 +194,32 @@ export default {
             e.response.data.errors.title[0] ===
             "The Article Title has already been taken."
           ) {
-            this.errorSameTitle = true;
+            this.$store.commit("setErrorSameTitle", true);
           }
         });
     },
     changeInput: function (...args) {
       const [input, type] = args;
       if (type === this.title) {
-        this.inputTitle = input;
-        this.errorTitle = false;
-        this.errorSameTitle = false;
+        this.$store.commit("setInputTitle", input);
+        this.$store.commit("setErrorTitle", false);
+        this.$store.commit("setErrorSameTitle", false);
       } else if (type === this.source) {
-        this.inputSource = input;
-        this.errorSource = false;
-        this.validationErrorSource = false;
+        this.$store.commit("setInputSource", input);
+        this.$store.commit("setErrorSource", false);
+        this.$store.commit("setValidationErrorSource", false);
       } else if (type === this.user) {
-        this.inputUser = input;
-        this.errorUser = false;
+        this.$store.commit("setInputUser", input);
+        this.$store.commit("setErrorUser", false);
       } else if (type === this.postDate) {
-        this.inputPostDate = input;
-        this.errorPostDate = false;
+        this.$store.commit("setInputPostDate", input);
+        this.$store.commit("setErrorPostDate", false);
       } else if (type === this.author) {
-        this.inputAuthor = input;
+        this.$store.commit("setInputAuthor", input);
       }
     },
     clearInputs: function () {
-      this.inputTitle = "";
-      this.inputSource = "";
-      this.inputUser = "";
-      this.inputPostDate = "";
-      this.inputAuthor = "";
-      this.errorSameTitle = false;
-      this.validationErrorSource = false;
-      this.errorTitle = false;
-      this.errorSource = false;
-      this.errorUser = false;
-      this.errorPostDate = false;
+      this.$store.commit("clearInputsAndErrors");
     },
     getUsers: async function () {
       return Nova.request()

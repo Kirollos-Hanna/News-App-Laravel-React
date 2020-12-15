@@ -13,6 +13,7 @@ const state = () => ({
     postDate: "Post Date",
     author: "Author",
     user: "User",
+    posted: "Posted",
 
     // Input values
     inputTitle: "",
@@ -20,6 +21,7 @@ const state = () => ({
     inputUser: "",
     inputPostDate: "",
     inputAuthor: "",
+    inputPosted: false,
 
     // Errors
     errorTitle: false,
@@ -48,6 +50,9 @@ const mutations = {
     },
     setInputAuthor(state, author){
         state.inputAuthor = author;
+    },
+    setInputPosted(state, posted){
+        state.inputPosted = posted;
     },
     setErrorTitle(state, errorTitle){
         state.errorTitle = errorTitle;

@@ -8,6 +8,7 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Favorite extends Resource
@@ -66,6 +67,9 @@ class Favorite extends Resource
             DateTime::make('Created At', 'created_at')
                 ->sortable(),
 
+            Boolean::make('Posted', 'posted')
+                ->sortable(),
+
             BelongsTo::make('User', 'user')
                 ->sortable()
                 ->rules('required'),
@@ -102,6 +106,7 @@ class Favorite extends Resource
             new Filters\FilterFavoriteByUser,
             new Filters\DateAfterFilter,
             new Filters\DateBeforeFilter,
+            new Filters\FilterPosted,
         ];
     }
 

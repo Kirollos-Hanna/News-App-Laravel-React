@@ -20,4 +20,9 @@ h1 {
     align-items: center;
     justify-content: center;
   }
+
+.checkbox-input { 
+  width: 25px !important;
+  height: 25px !important;
+}
   

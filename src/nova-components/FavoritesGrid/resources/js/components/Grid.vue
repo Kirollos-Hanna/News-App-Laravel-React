@@ -10,6 +10,7 @@
         <td>Created At</td>
         <td>User</td>
         <td>E-mail</td>
+        <td>Posted</td>
       </tr>
     </thead>
     <tbody class="grid-body">
@@ -31,6 +32,7 @@
         <td class="no-val-error" v-else>Created At is not found</td>
         <td v-if="favorite.user">{{ favorite.user }}</td>
         <td>{{ getEmail(favorite.user) }}</td>
+        <td>{{ favorite.posted ? "true" : "false" }}</td>
       </tr>
     </tbody>
   </table>

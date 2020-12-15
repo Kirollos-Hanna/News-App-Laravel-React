@@ -4,6 +4,10 @@
 }
   
 .input-spacing {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
     margin: 5px;
     padding: 10px;
     margin-right: 20%;

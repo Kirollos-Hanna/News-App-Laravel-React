@@ -78,6 +78,20 @@
 
         <div class="field-container">
           <div class="label-spacing">
+            <label-text label="Posted" :isRequired="false" />
+          </div>
+          <div class="input-spacing">
+            <input
+              type="checkbox"
+              class="checkbox-input input-decoration"
+              placeholder="Posted"
+              v-model="checked"
+              @change="changeInput(checked, 'Posted')"
+            />
+          </div>
+        </div>
+        <div class="field-container">
+          <div class="label-spacing">
             <label-text :label="user" :isRequired="true" />
           </div>
           <div class="input-spacing">
@@ -124,6 +138,7 @@ export default {
       postDate: (state) => state.createFavorites.postDate,
       author: (state) => state.createFavorites.author,
       user: (state) => state.createFavorites.user,
+      posted: (state) => state.createFavorites.posted,
 
       // Input values
       inputTitle: (state) => state.createFavorites.inputTitle,
@@ -131,6 +146,7 @@ export default {
       inputUser: (state) => state.createFavorites.inputUser,
       inputPostDate: (state) => state.createFavorites.inputPostDate,
       inputAuthor: (state) => state.createFavorites.inputAuthor,
+      inputPosted: (state) => state.createFavorites.inputPosted,
 
       // Dropdown options value
       users: (state) => state.createFavorites.users,
@@ -167,6 +183,7 @@ export default {
       formData.append("source", this.inputSource);
       formData.append("posting_date", this.inputPostDate);
       formData.append("author", this.inputAuthor);
+      formData.append("posted", this.inputPosted ? 1 : 0);
       formData.append("created_at", new Date().toLocaleString());
       formData.append("user", this.inputUser);
       formData.append("user_trashed", false);
@@ -209,6 +226,8 @@ export default {
         this.setErrorPostDate(false);
       } else if (type === this.author) {
         this.setInputAuthor(input);
+      } else if (type === this.posted) {
+        this.setInputPosted(input);
       }
     },
     clearInputs: function () {
@@ -220,6 +239,7 @@ export default {
       setInputUser: "createFavorites/setInputUser",
       setInputPostDate: "createFavorites/setInputPostDate",
       setInputAuthor: "createFavorites/setInputAuthor",
+      setInputPosted: "createFavorites/setInputPosted",
       setErrorTitle: "createFavorites/setErrorTitle",
       setErrorSource: "createFavorites/setErrorSource",
       setErrorUser: "createFavorites/setErrorUser",

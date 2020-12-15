@@ -27,6 +27,10 @@ h1 {
 }
 
 .input-spacing {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: center;
   margin: 5px;
   padding: 10px;
   margin-right: 20%;
@@ -40,3 +44,15 @@ h1 {
   padding-top: 20px;
   width: 25%;
 }
+  .btn-container {
+    margin-right: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+.checkbox-input { 
+  width: 25px !important;
+  height: 25px !important;
+}
+  

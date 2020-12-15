@@ -25,7 +25,8 @@ class Favorite extends Model
         'source',
         'posting_date',
         'author',
-        'user_id'
+        'user_id',
+        'posted'
     ];
 
     /**

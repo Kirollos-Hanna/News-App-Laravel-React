@@ -10,12 +10,12 @@
           'input-decoration': true,
           'arrow-decoration': true,
         }"
-        v-model="computedInput"
+        v-model="input"
         @change="changeInput(input, label)"
       >
         <option value="" selected="selected" disabled="disabled">—</option>
-        <option v-for="user in users" :value="user.id" :key="user.name">
-          {{ user.name }}
+        <option v-for="option in options" :value="option.id" :key="option.name">
+          {{ option.name }}
         </option>
       </select>
 
@@ -26,25 +26,10 @@
 
 <script>
 import { parseResponse } from "../../helpers.js";
+import { mapState } from "vuex";
 
 export default {
   name: "dropdown-field",
-  beforeCreate: function () {
-    Nova.request()
-      .get("/nova-api/users")
-      .then((res) => {
-        const arrayOfFields = parseResponse(res);
-
-        arrayOfFields.forEach((fields) => {
-          this.users.push({ name: fields.name, id: fields.id });
-        });
-      });
-  },
-  data() {
-    return {
-      users: [],
-    };
-  },
   props: {
     label: {
       default: "",
@@ -64,16 +49,12 @@ export default {
       default: "",
       type: String,
     },
+    options: {
+      default: [],
+      type: Array,
+    },
   },
   computed: {
-    computedInput: {
-      get: function () {
-        return this.input;
-      },
-      set: function (newInput) {
-        this.input = newInput;
-      },
-    },
     errorText: function () {
       return "The " + this.label + " field is required.";
     },

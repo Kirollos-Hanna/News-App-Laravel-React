@@ -39,42 +39,17 @@
 
 <script>
 import { parseResponse } from "../helpers.js";
+import { mapState } from "vuex";
 
 export default {
   name: "grid",
-  data() {
-    return {
-      favorites: [],
-      emails: [],
-    };
-  },
+  computed: mapState({
+    favorites: (state) => state.favoritesGridStore.favorites,
+    emails: (state) => state.favoritesGridStore.users,
+  }),
   beforeCreate: function () {
-    Nova.request()
-      .get("/nova-api/favorites?&trashed=with")
-      .then((res) => {
-        const arrayOfFields = parseResponse(res);
-
-        arrayOfFields.forEach((fields) => {
-          this.favorites.push({
-            id: fields.id,
-            title: fields.title,
-            source: fields.source,
-            author: fields.author,
-            posting_date: fields.posting_date,
-            created_at: fields.created_at,
-            user: fields.user,
-            softDeleted: fields.softDeleted,
-          });
-        });
-      });
-    Nova.request()
-      .get("/nova-api/users")
-      .then((res) => {
-        const arrayOfFields = parseResponse(res);
-        arrayOfFields.forEach((fields) => {
-          this.emails.push({ name: fields.name, email: fields.email });
-        });
-      });
+    this.$store.dispatch("setFavorites");
+    this.$store.dispatch("setUsers");
   },
   methods: {
     getEmail: function (name) {

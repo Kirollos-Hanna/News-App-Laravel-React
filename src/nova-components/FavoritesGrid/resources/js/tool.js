@@ -1,6 +1,10 @@
 import Grid from "./components/Grid.vue";
+import favoritesGridStore from "./store/favoritesGridStore.js";
 
 Nova.booting((Vue, router, store) => {
+  store.registerModule(
+    'favoritesGridStore', favoritesGridStore
+  );
 
   Vue.component('grid', Grid);
 

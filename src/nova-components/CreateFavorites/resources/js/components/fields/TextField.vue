@@ -11,7 +11,7 @@
           'input-decoration': true,
         }"
         :placeholder="placeholder"
-        v-model="computedInput"
+        v-model="input"
         @input="changeInput(input, placeholder)"
       />
 
@@ -68,9 +68,6 @@ export default {
       default: "",
       type: String,
     },
-  },
-  data: function () {
-    return {};
   },
   computed: {
     computedInput: {

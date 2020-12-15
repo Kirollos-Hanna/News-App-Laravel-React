@@ -5,6 +5,7 @@ import createFavorites from "./store/favoritesStore.js";
 
 
 Nova.booting((Vue, router, store) => {
+  createFavorites['namespaced'] = true;
   store.registerModule(
     'createFavorites', createFavorites
   );

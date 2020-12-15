@@ -13,7 +13,6 @@ const state = () => ({
     postDate: "Post Date",
     author: "Author",
     user: "User",
-    createdAt: "Created At",
 
     // Input values
     inputTitle: "",
@@ -83,11 +82,7 @@ const mutations = {
     }
 };
 
-const getters = {
-    // doubleCount (state) {
-    //     return state.count * 2
-    // }     
-}
+const getters = {}
 
 const actions = {
     setUser(context){

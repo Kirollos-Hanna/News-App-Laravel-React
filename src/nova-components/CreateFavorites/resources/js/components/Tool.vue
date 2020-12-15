@@ -58,11 +58,11 @@
 
 <script>
 import { validateUrl, validateEmptyInput } from "../helpers.js";
-import { mapState } from "vuex";
+import { mapActions, mapMutations, mapState } from "vuex";
 
 export default {
-  beforeCreate: function () {
-    this.$store.dispatch("setUser");
+  mounted: function () {
+    this.setUser();
   },
   computed: {
     ...mapState({
@@ -75,7 +75,6 @@ export default {
       postDate: (state) => state.createFavorites.postDate,
       author: (state) => state.createFavorites.author,
       user: (state) => state.createFavorites.user,
-      createdAt: (state) => state.createFavorites.createdAt,
 
       // Input values
       inputTitle: (state) => state.createFavorites.inputTitle,
@@ -99,19 +98,13 @@ export default {
   },
   methods: {
     submitForm: function (event) {
-      this.$store.commit("setErrorTitle", validateEmptyInput(this.inputTitle));
-      this.$store.commit(
-        "setErrorSource",
-        validateEmptyInput(this.inputSource)
-      );
-      this.$store.commit("setErrorUser", validateEmptyInput(this.inputUser));
-      this.$store.commit(
-        "setErrorPostDate",
-        validateEmptyInput(this.inputPostDate)
-      );
+      this.setErrorTitle(validateEmptyInput(this.inputTitle));
+      this.setErrorSource(validateEmptyInput(this.inputSource));
+      this.setErrorUser(validateEmptyInput(this.inputUser));
+      this.setErrorPostDate(validateEmptyInput(this.inputPostDate));
 
       if (!validateUrl(this.inputSource)) {
-        this.$store.commit("setValidationErrorSource", true);
+        this.setValidationErrorSource(true);
         return;
       }
 
@@ -145,33 +138,50 @@ export default {
             e.response.data.errors.title[0] ===
             "The Article Title has already been taken."
           ) {
-            this.$store.commit("setErrorSameTitle", true);
+            this.setErrorSameTitle(true);
           }
         });
     },
     changeInput: function (...args) {
       const [input, type] = args;
       if (type === this.title) {
-        this.$store.commit("setInputTitle", input);
-        this.$store.commit("setErrorTitle", false);
-        this.$store.commit("setErrorSameTitle", false);
+        this.setInputTitle(input);
+        this.setErrorTitle(false);
+        this.setErrorSameTitle(false);
       } else if (type === this.source) {
-        this.$store.commit("setInputSource", input);
-        this.$store.commit("setErrorSource", false);
-        this.$store.commit("setValidationErrorSource", false);
+        this.setInputSource(input);
+        this.setErrorSource(false);
+        this.setValidationErrorSource(false);
       } else if (type === this.user) {
-        this.$store.commit("setInputUser", input);
-        this.$store.commit("setErrorUser", false);
+        this.setInputUser(input);
+        this.setErrorUser(false);
       } else if (type === this.postDate) {
-        this.$store.commit("setInputPostDate", input);
-        this.$store.commit("setErrorPostDate", false);
+        this.setInputPostDate(input);
+        this.setErrorPostDate(false);
       } else if (type === this.author) {
-        this.$store.commit("setInputAuthor", input);
+        this.setInputAuthor(input);
       }
     },
     clearInputs: function () {
-      this.$store.commit("clearInputsAndErrors");
+      this.clearInputsAndErrors();
     },
+    ...mapMutations({
+      setInputTitle: "createFavorites/setInputTitle",
+      setInputSource: "createFavorites/setInputSource",
+      setInputUser: "createFavorites/setInputUser",
+      setInputPostDate: "createFavorites/setInputPostDate",
+      setInputAuthor: "createFavorites/setInputAuthor",
+      setErrorTitle: "createFavorites/setErrorTitle",
+      setErrorSource: "createFavorites/setErrorSource",
+      setErrorUser: "createFavorites/setErrorUser",
+      setErrorPostDate: "createFavorites/setErrorPostDate",
+      setValidationErrorSource: "createFavorites/setValidationErrorSource",
+      setErrorSameTitle: "createFavorites/setErrorSameTitle",
+      clearInputsAndErrors: "createFavorites/clearInputsAndErrors",
+    }),
+    ...mapActions({
+      setUser: "createFavorites/setUser",
+    }),
   },
 };
 </script>

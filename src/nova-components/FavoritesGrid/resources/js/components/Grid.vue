@@ -39,22 +39,29 @@
 
 <script>
 import { parseResponse } from "../helpers.js";
-import { mapState } from "vuex";
 
 export default {
   name: "grid",
-  computed: mapState({
-    favorites: (state) => state.favoritesGridStore.favorites,
-    emails: (state) => state.favoritesGridStore.users,
-  }),
-  beforeCreate: function () {
-    this.$store.dispatch("setFavorites");
-    this.$store.dispatch("setUsers");
-  },
+  // computed: {
+  //   ...mapState({
+  //     favorites: (state) => state.favoritesGridStore.favorites,
+  //     emails: (state) => state.favoritesGridStore.users,
+  //   }),
+  // },
   methods: {
     getEmail: function (name) {
       let elm = this.emails.find((elm) => elm.name === name);
       return elm ? elm.email : null;
+    },
+  },
+  props: {
+    favorites: {
+      default: [],
+      type: Array,
+    },
+    emails: {
+      default: [],
+      type: Array,
     },
   },
 };

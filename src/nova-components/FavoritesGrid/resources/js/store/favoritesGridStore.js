@@ -14,11 +14,7 @@ const mutations = {
     }
 };
 
-const getters = {
-    doubleCount (state) {
-        return state.count * 2
-    }
-}
+const getters = {}
 
 const actions = {
     setFavorites(context){

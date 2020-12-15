@@ -14,7 +14,7 @@
         @change="changeInput(input, label)"
       >
         <option value="" selected="selected" disabled="disabled">—</option>
-        <option v-for="option in options" :value="option.id" :key="option.name">
+        <option v-for="option in options" :value="option.id" :key="option.id">
           {{ option.name }}
         </option>
       </select>
@@ -26,7 +26,6 @@
 
 <script>
 import { parseResponse } from "../../helpers.js";
-import { mapState } from "vuex";
 
 export default {
   name: "dropdown-field",

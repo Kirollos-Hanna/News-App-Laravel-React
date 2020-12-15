@@ -35,10 +35,10 @@ export default {
       this.setFilterPosted(filterPosted);
       this.setFavorites(filterPosted);
     },
-    ...mapActions({
-      setFavorites: "favoritesGridStore/setFavorites",
-      setUsers: "favoritesGridStore/setUsers",
-      setFilterPosted: "favoritesGridStore/setFilterPosted",
+    ...mapActions('favoritesGridStore',{
+      setFavorites: "setFavorites",
+      setUsers: "setUsers",
+      setFilterPosted: "setFilterPosted",
     }),
   },
   computed: {

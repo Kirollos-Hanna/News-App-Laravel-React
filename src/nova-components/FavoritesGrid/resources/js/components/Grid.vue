@@ -44,12 +44,6 @@ import { parseResponse } from "../helpers.js";
 
 export default {
   name: "grid",
-  // computed: {
-  //   ...mapState({
-  //     favorites: (state) => state.favoritesGridStore.favorites,
-  //     emails: (state) => state.favoritesGridStore.users,
-  //   }),
-  // },
   methods: {
     getEmail: function (name) {
       let elm = this.emails.find((elm) => elm.name === name);

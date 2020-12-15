@@ -25,8 +25,12 @@ class AddPostedToFavoritesTable extends Migration
      */
     public function down()
     {
-        Schema::table('favorites', function (Blueprint $table) {
-            $table->dropColumn('posted');
-        });
+        if (Schema::hasColumn('favorites', 'posted')) {
+
+            Schema::table('favorites', function (Blueprint $table) {
+
+                $table->dropColumn('posted');
+            });
+        }
     }
 }

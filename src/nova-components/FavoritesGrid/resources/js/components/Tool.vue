@@ -2,11 +2,7 @@
   <div>
     <heading>Favorites Grid</heading>
     <div>
-      <select v-model="filterPosted" @change="setFavorites">
-        <option value="" selected="selected">All</option>
-        <option value="0">Not Posted</option>
-        <option value="1">Posted</option>
-      </select>
+      <dropdown-input :input="filterPosted" :setInput="setFavorites" />
       <button class="create-favorites-button" @click="redirect">
         Create Favorites
       </button>
@@ -55,7 +51,7 @@ export default {
       this.setFilterPosted(filterPosted);
       this.setFavorites(filterPosted);
     },
-    ...mapActions('favoritesGridStore',{
+    ...mapActions("favoritesGridStore", {
       setFavorites: "setFavorites",
       setUsers: "setUsers",
       setFilterPosted: "setFilterPosted",

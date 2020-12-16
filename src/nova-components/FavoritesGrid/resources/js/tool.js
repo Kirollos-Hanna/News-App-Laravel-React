@@ -1,4 +1,5 @@
 import Grid from "./components/Grid.vue";
+import DropdownInput from "./components/DropdownInput.vue"
 import favoritesGridStore from "./store/favoritesGridStore.js";
 
 Nova.booting((Vue, router, store) => {
@@ -7,6 +8,7 @@ Nova.booting((Vue, router, store) => {
   );
 
   Vue.component('grid', Grid);
+  Vue.component('dropdown-input', DropdownInput);
 
   router.addRoutes([
     {

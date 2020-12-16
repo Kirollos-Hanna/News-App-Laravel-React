@@ -1,5 +1,5 @@
 
-import { parseResponse } from "../helpers.js";
+import { parseResponse } from "../../../../ComponentsTool/resources/js/helpers.js";
 
 const state = () => ({
     users: [],

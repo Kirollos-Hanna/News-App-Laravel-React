@@ -5,12 +5,6 @@ Nova.booting((Vue, router, store) => {
     'createFavorites', createFavorites
   );
   
-
-Nova.booting((Vue, router, store) => {
-  store.registerModule(
-    'createFavorites', createFavorites
-  );
-  
   router.addRoutes([
     {
       name: 'create-favorites',

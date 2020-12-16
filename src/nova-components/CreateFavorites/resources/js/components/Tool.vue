@@ -75,21 +75,6 @@
             <error-label :label="postDate" :emptyError="errorPostDate" />
           </div>
         </div>
-
-        <div class="field-container">
-          <div class="label-spacing">
-            <label-text label="Posted" :isRequired="false" />
-          </div>
-          <div class="input-spacing">
-            <input
-              type="checkbox"
-              class="checkbox-input input-decoration"
-              placeholder="Posted"
-              v-model="checked"
-              @change="changeInput(checked, 'Posted')"
-            />
-          </div>
-        </div>
         <div class="field-container">
           <div class="label-spacing">
             <label-text :label="user" :isRequired="true" />
@@ -99,7 +84,7 @@
               :label="user"
               :input="inputUser"
               :changeInput="changeInput"
-              :getOptions="getUsers"
+              :options="users"
               :error="errorUser"
             />
 
@@ -183,7 +168,6 @@ export default {
       formData.append("source", this.inputSource);
       formData.append("posting_date", this.inputPostDate);
       formData.append("author", this.inputAuthor);
-      formData.append("posted", this.inputPosted ? 1 : 0);
       formData.append("created_at", new Date().toLocaleString());
       formData.append("user", this.inputUser);
       formData.append("user_trashed", false);

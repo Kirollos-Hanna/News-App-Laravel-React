@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddPostedToFavoritesTable extends Migration
+class CreateFavoriteStatusTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AddPostedToFavoritesTable extends Migration
      */
     public function up()
     {
-        Schema::table('favorites', function (Blueprint $table) {
-            $table->boolean('posted')->default(false);
+        Schema::create('favorite_status', function (Blueprint $table) {
+            $table->foreignId('favorite_id')->constrained('favorites');
+            $table->foreignId('status_id')->constrained('statuses');
         });
     }
 
@@ -25,12 +26,6 @@ class AddPostedToFavoritesTable extends Migration
      */
     public function down()
     {
-        if (Schema::hasColumn('favorites', 'posted')) {
-
-            Schema::table('favorites', function (Blueprint $table) {
-
-                $table->dropColumn('posted');
-            });
-        }
+        Schema::dropIfExists('favorite_status');
     }
 }

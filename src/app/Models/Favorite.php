@@ -25,8 +25,7 @@ class Favorite extends Model
         'source',
         'posting_date',
         'author',
-        'user_id',
-        'posted'
+        'user_id'
     ];
 
     /**
@@ -48,5 +47,10 @@ class Favorite extends Model
     public function user()
     {
         return $this->belongsTo('App\Models\User');
+    }
+
+    public function status()
+    {
+        return $this->belongsToMany(Status::class);
     }
 }

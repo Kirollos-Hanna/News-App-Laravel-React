@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "eb50cc22b282107387dc8a4c45047ad3",
+    "content-hash": "fcad24347638ba06ea20ab1904f4d141",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2069,11 +2069,11 @@
         },
         {
             "name": "laravel/nova",
-            "version": "dev-master",
+            "version": "dev-CreateFavoritesTool",
             "dist": {
                 "type": "path",
                 "url": "./nova",
-                "reference": "2958a886b93007b956517a0cea01e2d287c5c3a5"
+                "reference": "c23edf54faa783cf661da6862ae80a7b76673825"
             },
             "require": {
                 "brick/money": "^0.5.0",
@@ -3331,6 +3331,39 @@
             "time": "2020-11-28T14:25:28+00:00"
         },
         {
+            "name": "newsapi/components-tool",
+            "version": "dev-resourceTool",
+            "dist": {
+                "type": "path",
+                "url": "./nova-components/ComponentsTool",
+                "reference": "5478bc872f6fa9c5a9b041865ee0fbe9bced1154"
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Newsapi\\ComponentsTool\\ToolServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Newsapi\\ComponentsTool\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova resource tool.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ]
+        },
+        {
             "name": "newsapi/create-favorites",
             "version": "dev-CreateFavoritesTool",
             "dist": {
@@ -3365,7 +3398,7 @@
         },
         {
             "name": "newsapi/favorites-grid",
-            "version": "dev-FavoritesGrid",
+            "version": "dev-resourceTool",
             "dist": {
                 "type": "path",
                 "url": "./nova-components/FavoritesGrid",
@@ -3401,8 +3434,8 @@
             "version": "dev-TestTool",
             "dist": {
                 "type": "path",
-                "url": "./nova-components/FavoritesGrid",
-                "reference": "273f0c19e48f5abfacdbe66798ed935d4b1c4379"
+                "url": "./nova-components/TestTool",
+                "reference": "6c1a3212680a804cbf79fce4dcbd870b50632dac"
             },
             "require": {
                 "php": ">=7.1.0"
@@ -3411,13 +3444,13 @@
             "extra": {
                 "laravel": {
                     "providers": [
-                        "Newsapi\\FavoritesGrid\\ToolServiceProvider"
+                        "Newsapi\\TestTool\\ToolServiceProvider"
                     ]
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "Newsapi\\FavoritesGrid\\": "src/"
+                    "Newsapi\\TestTool\\": "src/"
                 }
             },
             "license": [

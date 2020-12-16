@@ -20,6 +20,7 @@ export function parseResponse(response) {
     return arrayOfFields;
 }
 
+
 export function validateUrl (urlString) {
     var pattern = new RegExp(
       "^(https?:\\/\\/)?" + // protocol

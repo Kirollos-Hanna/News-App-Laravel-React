@@ -18,8 +18,8 @@
         postDate: 'Posting Date',
         createdAt: 'Created At',
         user: 'User',
-        email: 'E-mail',
         status: 'Status',
+        email: 'E-mail',
       }"
       :displayData="favorites"
     />

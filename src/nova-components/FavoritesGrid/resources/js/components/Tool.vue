@@ -3,7 +3,6 @@
     <heading>Favorites Grid</heading>
     <div class="options-spacing">
       <multi-dropdown-input
-        :input="filterPosted"
         :setInput="setFavorites"
         :changeInput="changeInput"
         :options="options"
@@ -20,6 +19,7 @@
         createdAt: 'Created At',
         user: 'User',
         email: 'E-mail',
+        status: 'Status',
       }"
       :displayData="favorites"
     />
@@ -42,7 +42,6 @@ Vue.use(VueRouter);
 export default {
   mounted: function () {
     this.setStatusOptions();
-    this.setFavorites(this.filterPosted);
   },
   methods: {
     redirect: function () {
@@ -50,16 +49,14 @@ export default {
     },
     changeInput: function (...args) {
       const [input, type] = args;
-      if (input.length > 0 && input.indexOf("") === -1) {
-        this.setStatus(input);
-      } else {
-        this.setFavorites();
-      }
+      this.setFavorites({
+        num: this.options.length,
+        filters: input.slice(0, input.length),
+      });
     },
     ...mapActions("favoritesGridStore", {
       setFavorites: "setFavorites",
       setUsers: "setUsers",
-      setStatus: "setStatus",
       setStatusOptions: "setStatusOptions",
     }),
     ...mapMutations("favoritesGridStore", {
@@ -70,7 +67,6 @@ export default {
     ...mapState({
       favorites: (state) => state.favoritesGridStore.favorites,
       emails: (state) => state.favoritesGridStore.users,
-      filterPosted: (state) => state.favoritesGridStore.filterPosted,
       options: (state) => state.favoritesGridStore.options,
     }),
   },

@@ -30,10 +30,19 @@ const mutations = {
 const getters = {}
 
 const actions = {
-    setFavorites(context, filterPosted){
-        let filter = filterPosted? filterPosted.target.value: "";
+    setFavorites(context, ...args){
+        const [options] = args;
+        const {num, filters} = options;
+
+        let statusFilters = {};
+        for(let i = 1; i <= num; i++){
+            statusFilters[i] = filters.includes(i);
+        }
+
+        let filterStr = '[{"class":"App\\\\Nova\\\\Filters\\\\FilterFavoriteByUser","value":""},{"class":"App\\\\Nova\\\\Filters\\\\DateAfterFilter","value":""},{"class":"App\\\\Nova\\\\Filters\\\\DateBeforeFilter","value":""},{"class":"App\\\\Nova\\\\Filters\\\\FilterFavoriteByStatus","value":'+ JSON.stringify(statusFilters) +'}]';
+        let encodedFilterStr = btoa(filterStr);
         Nova.request()
-            .get("/nova-api/favorites?trashed=with")
+            .get("/nova-api/favorites?filters="+encodedFilterStr+"&trashed=with")
             .then((res) => {
                 let favorites = [];
                 const arrayOfFields = parseResponse(res);
@@ -52,7 +61,6 @@ const actions = {
                     favorites.push(item);
                 });
                 context.commit('setFavorites', favorites);
-                context.commit('setFilterPosted', filter);
                 context.dispatch('setUsers');
         });
     },
@@ -69,7 +77,6 @@ const actions = {
                 context.commit('formatDisplayedData');
         });
     },
-
     setStatusOptions(context){
         Nova.request()
             .get("/nova-api/statuses")
@@ -80,43 +87,9 @@ const actions = {
                     options.push({ id: fields.id, name: fields.status });
                 });
                 context.commit('setStatusOptions', options);
+                context.dispatch('setFavorites', {num:options.length, filters: []});
         });
     },
-    setStatus(context, ...favoriteIDs){
-        const [ids] = favoriteIDs;
-        let favs = [];
-        let itemIds = [];
-        ids.forEach(async (id) => {
-            await Nova.request()
-                .get("/nova-api/favorites?viaResource=statuses&viaResourceId="+id+"&viaRelationship=favorite&relationshipType=belongsToMany&trashed=with")
-                .then((res) => {
-                    const arrayOfFields = parseResponse(res);
-
-                    arrayOfFields.forEach((fields) => {
-                        if(itemIds.includes(fields.id)){
-                            return;
-                        }
-
-                        const item = {
-                            id: fields.id,
-                            title: fields.title,
-                            source: fields.source,
-                            author: fields.author,
-                            posting_date: fields.posting_date,
-                            created_at: fields.created_at,
-                            user: fields.user,
-                            softDeleted: fields.softDeleted,
-                        };
-
-                        favs.push(item);
-                        itemIds.push(fields.id);
-                    });
-                });
-        });
-
-        context.commit('setFavorites', favs);
-        context.dispatch('setUsers');
-    }
 }
 
 const namespaced = true;

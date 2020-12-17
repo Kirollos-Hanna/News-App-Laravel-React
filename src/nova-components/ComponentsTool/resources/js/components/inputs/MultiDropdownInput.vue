@@ -2,9 +2,17 @@
   <div class="dropdown-check-list" :class="{ visible: visible }">
     <span class="anchor" @click="changeVisible">Select Status</span>
     <ul class="items">
-      <li value=""><input type="checkbox" @click="addOption('')" /> All</li>
-      <li v-for="option in options" :value="option.id" :key="option.id">
-        <input type="checkbox" @click="addOption(option)" />
+      <li value="">
+        <input type="checkbox" v-model="selectAll" />
+        All
+      </li>
+      <li v-for="option in options" :key="option.id">
+        <input
+          type="checkbox"
+          v-model="selected"
+          :value="option.id"
+          @click="addOption(option)"
+        />
         {{ option.name }}
       </li>
     </ul>
@@ -18,6 +26,7 @@ export default {
     return {
       visible: false,
       inputs: [],
+      selected: [],
     };
   },
   props: {
@@ -30,10 +39,6 @@ export default {
         return;
       },
       type: Function,
-    },
-    input: {
-      default: "",
-      type: String,
     },
   },
   methods: {
@@ -57,6 +62,32 @@ export default {
         }
       }
       this.changeInput(this.inputs, "multi-input");
+    },
+  },
+  computed: {
+    selectAll: {
+      get: function () {
+        return this.options
+          ? this.selected.length == this.options.length
+          : false;
+      },
+      set: function (value) {
+        let selected = [];
+        let arrayInputs = [];
+
+        if (value) {
+          this.options.forEach(function (option) {
+            selected.push(option.id);
+          });
+
+          for (let i = 0; i < this.options.length; i++) {
+            arrayInputs.push(this.options[i].id);
+          }
+        }
+        this.inputs = arrayInputs.map((elm) => elm);
+        this.changeInput(this.inputs, "multi-input");
+        this.selected = selected;
+      },
     },
   },
 };

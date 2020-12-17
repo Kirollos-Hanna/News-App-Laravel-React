@@ -1,26 +1,24 @@
 <template>
-  <select
-    :class="{
-      'input-decoration': true,
-      'multi-select-decoration': true,
-    }"
-    v-model="input"
-    @change="changeInput(input, 'multi-input')"
-    multiple
-  >
-    <option value="" selected="selected">—</option>
-    <option v-for="option in options" :value="option.id" :key="option.id">
-      <input type="checkbox" />
-      {{ option.name }}
-    </option>
-  </select>
+  <div class="dropdown-check-list" :class="{ visible: visible }">
+    <span class="anchor" @click="changeVisible">Select Status</span>
+    <ul class="items">
+      <li value=""><input type="checkbox" @click="addOption('')" /> All</li>
+      <li v-for="option in options" :value="option.id" :key="option.id">
+        <input type="checkbox" @click="addOption(option)" />
+        {{ option.name }}
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
 export default {
   name: "multi-dropdown-input",
   data() {
-    return { expanded: false };
+    return {
+      visible: false,
+      inputs: [],
+    };
   },
   props: {
     options: {
@@ -39,15 +37,26 @@ export default {
     },
   },
   methods: {
-    showCheckboxes: function () {
-      var checkboxes = document.getElementById("checkboxes");
-      if (!this.expanded) {
-        checkboxes.style.display = "block";
-        this.expanded = true;
+    changeVisible: function () {
+      this.visible = !this.visible;
+    },
+    addOption: function (option) {
+      let ind = 0;
+      if (!option) {
+        ind = this.inputs.indexOf(option);
       } else {
-        checkboxes.style.display = "none";
-        this.expanded = false;
+        ind = this.inputs.indexOf(option.id);
       }
+      if (ind !== -1) {
+        this.inputs.splice(ind, 1);
+      } else {
+        if (option) {
+          this.inputs.push(option.id);
+        } else {
+          this.inputs.push(option);
+        }
+      }
+      this.changeInput(this.inputs, "multi-input");
     },
   },
 };

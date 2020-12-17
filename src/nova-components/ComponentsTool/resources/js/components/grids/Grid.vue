@@ -13,15 +13,12 @@
       >
         <td
           :class="{
-            'no-val-error':
-              typeof data === 'string'
-                ? data.split(' ').splice(-3).join(' ') === 'is not found'
-                : false,
+            'no-val-error': !data,
           }"
           v-for="data in filterItem(item)"
           v-bind:key="data"
         >
-          {{ data }}
+          {{ data ? data : "Not Found" }}
         </td>
       </tr>
     </tbody>
@@ -49,7 +46,7 @@ export default {
   },
   methods: {
     filterItem: function (item) {
-      let newItem = Object.assign({}, item);
+      let newItem = { ...item };
       delete newItem.softDeleted;
       return newItem;
     },

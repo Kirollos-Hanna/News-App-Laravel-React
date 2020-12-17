@@ -3,17 +3,7 @@ import {parseResponse} from "../../../../ComponentsTool/resources/js/helpers.js"
 const state = () => ({
     favorites: [],
     users: [],
-    filterPosted: 0,
-    options: [
-        {
-            name: 'Posted',
-            id: '1'
-        },
-        {
-            name: 'Not Posted',
-            id: '2'
-        }
-    ],
+    options: [],
 });
 
 const mutations = {
@@ -23,15 +13,15 @@ const mutations = {
     setUsers(state, users){
         state.users = users;
     },
-    setFilterPosted(state, filterPosted){
-        state.filterPosted = filterPosted;
+    setStatusOptions(state, options){
+        state.options = options;
     },
     formatDisplayedData(state) {
         state.favorites.map((item) => {
           let elm = state.users.find((elm) => elm.name === item.user);
           item["email"] = elm? elm.email: null;
-          if (!item["author"]) item["author"] = "Author is not found";
-          if (!item["created_at"]) item["created_at"] = "Created At is not found";
+          if (!item["author"]) item["author"] = "";
+          if (!item["created_at"]) item["created_at"] = "";
           return item;
         });
     },
@@ -79,6 +69,19 @@ const actions = {
                 context.commit('formatDisplayedData');
         });
     },
+
+    setStatusOptions(context){
+        Nova.request()
+            .get("/nova-api/statuses")
+            .then((res) => {
+                let options = [];
+                const arrayOfFields = parseResponse(res);
+                arrayOfFields.forEach((fields) => {
+                    options.push({ id: fields.id, name: fields.status });
+                });
+                context.commit('setStatusOptions', options);
+        });
+    },
     setStatus(context, ...favoriteIDs){
         const [ids] = favoriteIDs;
         let favs = [];
@@ -108,7 +111,6 @@ const actions = {
                         favs.push(item);
                         itemIds.push(fields.id);
                     });
-                    console.log(arrayOfFields);
                 });
         });
 

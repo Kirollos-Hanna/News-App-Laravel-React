@@ -16,10 +16,10 @@ class StatusSeeder extends Seeder
     {
 
         DB::table('statuses')->insert([
-            'status' => 'posted',
+            'status' => 'Posted',
         ]);
         DB::table('statuses')->insert([
-            'status' => 'not_posted',
+            'status' => 'Not Posted',
         ]);
     }
 }

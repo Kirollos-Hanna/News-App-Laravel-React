@@ -41,6 +41,7 @@ Vue.use(VueRouter);
 
 export default {
   mounted: function () {
+    this.setStatusOptions();
     this.setFavorites(this.filterPosted);
   },
   methods: {
@@ -49,8 +50,7 @@ export default {
     },
     changeInput: function (...args) {
       const [input, type] = args;
-      this.setFilterPosted(input);
-      if (input[0]) {
+      if (input.length > 0 && input.indexOf("") === -1) {
         this.setStatus(input);
       } else {
         this.setFavorites();
@@ -60,9 +60,9 @@ export default {
       setFavorites: "setFavorites",
       setUsers: "setUsers",
       setStatus: "setStatus",
+      setStatusOptions: "setStatusOptions",
     }),
     ...mapMutations("favoritesGridStore", {
-      setFilterPosted: "setFilterPosted",
       formatDisplayedData: "formatDisplayedData",
     }),
   },

@@ -108,6 +108,7 @@ class Favorite extends Resource
             new Filters\DateAfterFilter,
             new Filters\DateBeforeFilter,
             new Filters\FilterFavoriteByStatus,
+            new Filters\FilterFavoriteWithStatus
         ];
     }
 

@@ -55,3 +55,13 @@ td:last-child, .grid-body tr:last-child{
 .soft-deleted{
     background-color: #808080 !important;
 }
+
+.loading{
+    display: flex;
+    justify-content: center;
+}
+
+.loading p {
+    font-weight: bold;
+    font-size: 24px;
+}

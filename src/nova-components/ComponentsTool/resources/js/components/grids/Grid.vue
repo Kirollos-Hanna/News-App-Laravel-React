@@ -1,5 +1,8 @@
 <template>
-  <table class="grid">
+  <div v-if="isLoading" class="loading">
+    <p>Loading...</p>
+  </div>
+  <table v-else class="grid">
     <thead class="grid-head">
       <tr>
         <td v-for="column in columns" v-bind:key="column">{{ column }}</td>
@@ -36,6 +39,10 @@ export default {
     displayData: {
       default: [],
       type: Array,
+    },
+    isLoading: {
+      default: true,
+      type: Boolean,
     },
   },
   data() {

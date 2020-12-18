@@ -2,11 +2,7 @@
   <div>
     <heading>Favorites Grid</heading>
     <div class="options-spacing">
-      <multi-dropdown-input
-        :setInput="setFavorites"
-        :changeInput="changeInput"
-        :options="options"
-      />
+      <multi-dropdown-input :changeInput="changeInput" :options="options" />
       <submit-button @click.native="redirect"> Create Favorites </submit-button>
     </div>
     <grid
@@ -22,6 +18,7 @@
         email: 'E-mail',
       }"
       :displayData="favorites"
+      :isLoading="isGridLoading"
     />
     <!-- TODO: Call nova-api/favorites?page=2,3,4...etc to get the rest of the requested data ON BACK/NEXT BUTTON CLICK -->
   </div>
@@ -49,18 +46,23 @@ export default {
     },
     changeInput: function (...args) {
       const [input, type] = args;
-      this.setFavorites({
-        num: this.options.length,
-        filters: input.slice(0, input.length),
-      });
+      if (input === "None") {
+        this.setFavorites({
+          num: this.options.length,
+          filters: [],
+          noStatusOnly: true,
+        });
+      } else {
+        this.setFavorites({
+          num: this.options.length,
+          filters: input.slice(0, input.length),
+        });
+      }
     },
     ...mapActions("favoritesGridStore", {
       setFavorites: "setFavorites",
       setUsers: "setUsers",
       setStatusOptions: "setStatusOptions",
-    }),
-    ...mapMutations("favoritesGridStore", {
-      formatDisplayedData: "formatDisplayedData",
     }),
   },
   computed: {
@@ -68,6 +70,7 @@ export default {
       favorites: (state) => state.favoritesGridStore.favorites,
       emails: (state) => state.favoritesGridStore.users,
       options: (state) => state.favoritesGridStore.options,
+      isGridLoading: (state) => state.favoritesGridStore.isGridLoading,
     }),
   },
 };

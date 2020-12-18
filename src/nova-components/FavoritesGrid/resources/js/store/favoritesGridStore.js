@@ -4,6 +4,7 @@ const state = () => ({
     favorites: [],
     users: [],
     options: [],
+    isGridLoading: true,
 });
 
 const mutations = {
@@ -16,31 +17,39 @@ const mutations = {
     setStatusOptions(state, options){
         state.options = options;
     },
-    formatDisplayedData(state) {
-        state.favorites.map((item) => {
-          let elm = state.users.find((elm) => elm.name === item.user);
-          item["email"] = elm? elm.email: null;
-          item["status"] = item["status"].map((status) => status.status).join(", ");
-          if (!item["author"]) item["author"] = "";
-          if (!item["created_at"]) item["created_at"] = "";
-          return item;
+    formatDisplayedData(state)  {
+        state.favorites.map((favorite) => {
+          let elm = state.users.find((elm) => elm.name === favorite.user);
+          favorite["email"] = elm? elm.email: null;
+          favorite["status"] = favorite["status"].map((status) => status.status).join(", ");
+          if (!favorite["author"]) favorite["author"] = "";
+          if (!favorite["created_at"]) favorite["created_at"] = "";
+          return favorite;
         });
     },
+    setIsLoading(state, loadingStatus){
+        state.isGridLoading = loadingStatus;
+    }
 };
 
 const getters = {}
 
 const actions = {
     setFavorites(context, ...args){
+        context.commit('setIsLoading', true);
         const [options] = args;
-        const {num, filters} = options;
+        const {num, filters, noStatusOnly} = options;
 
+        let statusExistsFilter = "";
+        if(noStatusOnly){
+            statusExistsFilter = 0;
+        }
         let statusFilters = {};
         for(let i = 1; i <= num; i++){
             statusFilters[i] = filters.includes(i);
         }
 
-        let filterStr = '[{"class":"App\\\\Nova\\\\Filters\\\\FilterFavoriteByUser","value":""},{"class":"App\\\\Nova\\\\Filters\\\\DateAfterFilter","value":""},{"class":"App\\\\Nova\\\\Filters\\\\DateBeforeFilter","value":""},{"class":"App\\\\Nova\\\\Filters\\\\FilterFavoriteByStatus","value":'+ JSON.stringify(statusFilters) +'}]';
+        let filterStr = '[{"class":"App\\\\Nova\\\\Filters\\\\FilterFavoriteByUser","value":""},{"class":"App\\\\Nova\\\\Filters\\\\DateAfterFilter","value":""},{"class":"App\\\\Nova\\\\Filters\\\\DateBeforeFilter","value":""},{"class":"App\\\\Nova\\\\Filters\\\\FilterFavoriteByStatus","value":'+ JSON.stringify(statusFilters) +'},{"class":"App\\\\Nova\\\\Filters\\\\FilterFavoriteWithStatus","value":"'+statusExistsFilter+'"}]';
         let encodedFilterStr = btoa(filterStr);
         Nova.request()
             .get("/nova-api/favorites?filters="+encodedFilterStr+"&trashed=with")
@@ -79,6 +88,7 @@ const actions = {
                 });
                 context.commit('setUsers', users);
                 context.commit('formatDisplayedData');
+                context.commit('setIsLoading', false);
         });
     },
     setStatusPerFavorite(context, favoriteID){

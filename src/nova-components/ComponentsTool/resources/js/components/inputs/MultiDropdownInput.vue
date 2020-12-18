@@ -2,9 +2,13 @@
   <div class="dropdown-check-list" :class="{ visible: visible }">
     <span class="anchor" @click="changeVisible">Select Status</span>
     <ul class="items">
-      <li value="">
+      <li>
         <input type="checkbox" v-model="selectAll" />
         All
+      </li>
+      <li>
+        <input type="checkbox" @click="showNoStatusOnly" :checked="noStatus" />
+        No Status
       </li>
       <li v-for="option in options" :key="option.id">
         <input
@@ -27,6 +31,7 @@ export default {
       visible: false,
       inputs: [],
       selected: [],
+      noStatus: false,
     };
   },
   props: {
@@ -46,6 +51,7 @@ export default {
       this.visible = !this.visible;
     },
     addOption: function (option) {
+      this.noStatus = false;
       let ind = 0;
       if (!option) {
         ind = this.inputs.indexOf(option);
@@ -63,6 +69,12 @@ export default {
       }
       this.changeInput(this.inputs, "multi-input");
     },
+    showNoStatusOnly: function () {
+      this.noStatus = !this.noStatus;
+      this.selectAll = false;
+      this.selected = [];
+      this.inputs = [];
+    },
   },
   computed: {
     selectAll: {
@@ -76,6 +88,7 @@ export default {
         let arrayInputs = [];
 
         if (value) {
+          this.noStatus = false;
           this.options.forEach(function (option) {
             selected.push(option.id);
           });
@@ -84,9 +97,14 @@ export default {
             arrayInputs.push(this.options[i].id);
           }
         }
-        this.inputs = arrayInputs.map((elm) => elm);
-        this.changeInput(this.inputs, "multi-input");
         this.selected = selected;
+
+        if (this.noStatus) {
+          this.changeInput("None", "multi-input");
+        } else {
+          this.inputs = arrayInputs.map((elm) => elm);
+          this.changeInput(this.inputs, "multi-input");
+        }
       },
     },
   },

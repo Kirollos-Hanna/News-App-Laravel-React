@@ -12,6 +12,6 @@ class Status extends Model
 
     public function favorite()
     {
-        return $this->belongsToMany(Favorite::class);
+        return $this->belongsToMany(Favorite::class)->withTrashed();
     }
 }

@@ -4,6 +4,7 @@ namespace App\Nova\Filters;
 
 use App\Models\Favorite;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Laravel\Nova\Filters\Filter;
 
 class FilterFavoriteWithStatus extends Filter
@@ -25,23 +26,13 @@ class FilterFavoriteWithStatus extends Filter
      */
     public function apply(Request $request, $query, $value)
     {
-        $favorites = Favorite::withTrashed()->get()->all();
-        $filteredFavoritesWithStatus = [];
-        $filteredFavoritesWithoutStatus = [];
+        $favorites = $value == 1 ? Favorite::withTrashed()->has('status')->get() : Favorite::withTrashed()->doesntHave('status')->get();
+        $filteredFavorites = [];
 
         foreach ($favorites as $favorite) {
-            if (count($favorite->status) > 0) {
-                array_push($filteredFavoritesWithStatus, $favorite->id);
-            } else {
-                array_push($filteredFavoritesWithoutStatus, $favorite->id);
-            }
+            array_push($filteredFavorites, $favorite->id);
         }
-
-        if ($value) {
-            return $filteredFavoritesWithStatus ? $query->find($filteredFavoritesWithStatus) : $query->find("");
-        }
-
-        return $filteredFavoritesWithoutStatus ? $query->find($filteredFavoritesWithoutStatus) : $query->find("");
+        return $query->whereIn('id', $filteredFavorites);
     }
 
     /**

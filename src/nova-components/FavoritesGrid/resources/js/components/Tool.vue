@@ -46,18 +46,10 @@ export default {
     },
     changeInput: function (...args) {
       const [input, type] = args;
-      if (input === "None") {
-        this.setFavorites({
-          num: this.options.length,
-          filters: [],
-          noStatusOnly: true,
-        });
-      } else {
-        this.setFavorites({
-          num: this.options.length,
-          filters: input.slice(0, input.length),
-        });
-      }
+      this.setFavorites({
+        num: this.options.length,
+        filters: input.slice(0, input.length),
+      });
     },
     ...mapActions("favoritesGridStore", {
       setFavorites: "setFavorites",

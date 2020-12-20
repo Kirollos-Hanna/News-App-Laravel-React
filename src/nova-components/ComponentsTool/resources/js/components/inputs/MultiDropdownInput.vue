@@ -7,7 +7,12 @@
         All
       </li>
       <li>
-        <input type="checkbox" @click="showNoStatusOnly" :checked="noStatus" />
+        <input
+          type="checkbox"
+          v-model="selected"
+          :value="0"
+          @click="addOption({ id: 0, name: 'None' })"
+        />
         No Status
       </li>
       <li v-for="option in options" :key="option.id">
@@ -31,7 +36,6 @@ export default {
       visible: false,
       inputs: [],
       selected: [],
-      noStatus: false,
     };
   },
   props: {
@@ -51,7 +55,6 @@ export default {
       this.visible = !this.visible;
     },
     addOption: function (option) {
-      this.noStatus = false;
       let ind = 0;
       if (!option) {
         ind = this.inputs.indexOf(option);
@@ -69,18 +72,12 @@ export default {
       }
       this.changeInput(this.inputs, "multi-input");
     },
-    showNoStatusOnly: function () {
-      this.noStatus = !this.noStatus;
-      this.selectAll = false;
-      this.selected = [];
-      this.inputs = [];
-    },
   },
   computed: {
     selectAll: {
       get: function () {
         return this.options
-          ? this.selected.length == this.options.length
+          ? this.selected.length == this.options.length + 1
           : false;
       },
       set: function (value) {
@@ -88,23 +85,20 @@ export default {
         let arrayInputs = [];
 
         if (value) {
-          this.noStatus = false;
           this.options.forEach(function (option) {
             selected.push(option.id);
           });
+          selected.push(0);
 
           for (let i = 0; i < this.options.length; i++) {
             arrayInputs.push(this.options[i].id);
           }
+          arrayInputs.push(0);
         }
         this.selected = selected;
 
-        if (this.noStatus) {
-          this.changeInput("None", "multi-input");
-        } else {
-          this.inputs = arrayInputs.map((elm) => elm);
-          this.changeInput(this.inputs, "multi-input");
-        }
+        this.inputs = arrayInputs.map((elm) => elm);
+        this.changeInput(this.inputs, "multi-input");
       },
     },
   },

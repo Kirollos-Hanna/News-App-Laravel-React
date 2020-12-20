@@ -21,7 +21,7 @@ const mutations = {
         state.favorites.map((favorite) => {
           let elm = state.users.find((elm) => elm.name === favorite.user);
           favorite["email"] = elm? elm.email: null;
-          favorite["status"] = favorite["status"].map((status) => status.status).join(", ");
+          favorite["status"] = favorite["status"]? favorite["status"].map((status) => status.status).join(", ") : "";
           if (!favorite["author"]) favorite["author"] = "";
           if (!favorite["created_at"]) favorite["created_at"] = "";
           return favorite;
@@ -38,44 +38,70 @@ const actions = {
     setFavorites(context, ...args){
         context.commit('setIsLoading', true);
         const [options] = args;
-        const {num, filters, noStatusOnly} = options;
+        const {num, filters} = options;
 
         let statusExistsFilter = "";
-        if(noStatusOnly){
+        if(filters.includes(0)){
             statusExistsFilter = 0;
         }
         let statusFilters = {};
         for(let i = 1; i <= num; i++){
             statusFilters[i] = filters.includes(i);
         }
+        let filterStatusStr = '[{"class":"App\\\\Nova\\\\Filters\\\\FilterFavoriteByUser","value":""},{"class":"App\\\\Nova\\\\Filters\\\\DateAfterFilter","value":""},{"class":"App\\\\Nova\\\\Filters\\\\DateBeforeFilter","value":""},{"class":"App\\\\Nova\\\\Filters\\\\FilterFavoriteByStatus","value":'+ JSON.stringify(statusFilters) +'},{"class":"App\\\\Nova\\\\Filters\\\\FilterFavoriteWithStatus","value":""}]';
+        let filterNoStatusStr = '[{"class":"App\\\\Nova\\\\Filters\\\\FilterFavoriteByUser","value":""},{"class":"App\\\\Nova\\\\Filters\\\\DateAfterFilter","value":""},{"class":"App\\\\Nova\\\\Filters\\\\DateBeforeFilter","value":""},{"class":"App\\\\Nova\\\\Filters\\\\FilterFavoriteByStatus","value":""},{"class":"App\\\\Nova\\\\Filters\\\\FilterFavoriteWithStatus","value":"'+statusExistsFilter+'"}]';
+        let encodedFilterStr = btoa(filterStatusStr);
+        let encodedNoStatusFilterStr = btoa(filterNoStatusStr);
+        let favorites = [];
+        if(!filters.includes(0) || (filters.length > 1 && filters.includes(0)) || filters.length === 0){
+            Nova.request()
+                .get("/nova-api/favorites?filters="+encodedFilterStr+"&trashed=with")
+                .then((res) => {
+                    const arrayOfFields = parseResponse(res);
 
-        let filterStr = '[{"class":"App\\\\Nova\\\\Filters\\\\FilterFavoriteByUser","value":""},{"class":"App\\\\Nova\\\\Filters\\\\DateAfterFilter","value":""},{"class":"App\\\\Nova\\\\Filters\\\\DateBeforeFilter","value":""},{"class":"App\\\\Nova\\\\Filters\\\\FilterFavoriteByStatus","value":'+ JSON.stringify(statusFilters) +'},{"class":"App\\\\Nova\\\\Filters\\\\FilterFavoriteWithStatus","value":"'+statusExistsFilter+'"}]';
-        let encodedFilterStr = btoa(filterStr);
-        Nova.request()
-            .get("/nova-api/favorites?filters="+encodedFilterStr+"&trashed=with")
-            .then((res) => {
-                let favorites = [];
-                const arrayOfFields = parseResponse(res);
+                    arrayOfFields.forEach((fields) => {
+                        let item = {
+                            id: fields.id,
+                            title: fields.title,
+                            source: fields.source,
+                            author: fields.author,
+                            posting_date: fields.posting_date,
+                            created_at: fields.created_at,
+                            user: fields.user,
+                            softDeleted: fields.softDeleted,
+                        };
+                        context.dispatch('setStatusPerFavorite', fields.id).then((res) => {
+                            item['status'] = res
+                            favorites.push(item);
+                        });
+                    });
+                    context.dispatch('setUsers');
+            });
+        }
+        if(filters.includes(0)){
+            Nova.request()
+                .get("/nova-api/favorites?filters="+encodedNoStatusFilterStr+"&trashed=with")
+                .then((res) => {
+                    const arrayOfFields = parseResponse(res);
 
-                arrayOfFields.forEach((fields) => {
-                    let item = {
-                        id: fields.id,
-                        title: fields.title,
-                        source: fields.source,
-                        author: fields.author,
-                        posting_date: fields.posting_date,
-                        created_at: fields.created_at,
-                        user: fields.user,
-                        softDeleted: fields.softDeleted,
-                    };
-                    context.dispatch('setStatusPerFavorite', fields.id).then((res) => {
-                        item['status'] = res
+                    arrayOfFields.forEach((fields) => {
+                        let item = {
+                            id: fields.id,
+                            title: fields.title,
+                            source: fields.source,
+                            author: fields.author,
+                            posting_date: fields.posting_date,
+                            created_at: fields.created_at,
+                            user: fields.user,
+                            softDeleted: fields.softDeleted,
+                        };
+                        item['status'] = [];
                         favorites.push(item);
                     });
-                });
-                context.commit('setFavorites', favorites);
-                context.dispatch('setUsers');
-        });
+                    context.dispatch('setUsers');
+            });
+        }
+        context.commit('setFavorites', favorites);
     },
     setUsers(context){
         Nova.request()

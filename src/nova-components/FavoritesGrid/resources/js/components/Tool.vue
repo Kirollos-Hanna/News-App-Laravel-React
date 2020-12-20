@@ -20,7 +20,16 @@
       :displayData="favorites"
       :isLoading="isGridLoading"
     />
-    <!-- TODO: Call nova-api/favorites?page=2,3,4...etc to get the rest of the requested data ON BACK/NEXT BUTTON CLICK -->
+    <div class="pagination-buttons">
+      <submit-button @click.native="paginateLeft" :disabled="this.page <= 1"
+        >Prev</submit-button
+      >
+      <submit-button
+        @click.native="paginateRight"
+        :disabled="this.page >= this.totalFavoriteCount / 25"
+        >Next</submit-button
+      >
+    </div>
   </div>
 </template>
 
@@ -44,8 +53,26 @@ export default {
     redirect: function () {
       this.$router.push("/create-favorites");
     },
+    paginateLeft: function () {
+      this.setPage(this.page - 1);
+      this.setFavorites({
+        num: this.options.length,
+        filters: this.input.slice(0, this.input.length),
+        page: this.page,
+      });
+    },
+    paginateRight: function () {
+      this.setPage(this.page + 1);
+      this.setFavorites({
+        num: this.options.length,
+        filters: this.input.slice(0, this.input.length),
+        page: this.page,
+      });
+    },
     changeInput: function (...args) {
-      const [input, type] = args;
+      const [input] = args;
+      this.setInput(input);
+      this.setPage(1);
       this.setFavorites({
         num: this.options.length,
         filters: input.slice(0, input.length),
@@ -56,6 +83,10 @@ export default {
       setUsers: "setUsers",
       setStatusOptions: "setStatusOptions",
     }),
+    ...mapMutations("favoritesGridStore", {
+      setPage: "setPage",
+      setInput: "setInput",
+    }),
   },
   computed: {
     ...mapState({
@@ -63,6 +94,10 @@ export default {
       emails: (state) => state.favoritesGridStore.users,
       options: (state) => state.favoritesGridStore.options,
       isGridLoading: (state) => state.favoritesGridStore.isGridLoading,
+      page: (state) => state.favoritesGridStore.page,
+      input: (state) => state.favoritesGridStore.favoriteFilterInputs,
+      totalFavoriteCount: (state) =>
+        state.favoritesGridStore.totalFavoriteCount,
     }),
   },
 };

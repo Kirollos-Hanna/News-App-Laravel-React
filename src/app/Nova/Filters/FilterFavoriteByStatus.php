@@ -35,7 +35,11 @@ class FilterFavoriteByStatus extends BooleanFilter
             }
         }
 
-        return $query->whereIn('id', $favorites);
+
+        if ($favorites) {
+            return $query->whereIn('id', $favorites);
+        }
+        return $query;
     }
 
     /**

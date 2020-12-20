@@ -32,7 +32,10 @@ class FilterFavoriteWithStatus extends Filter
         foreach ($favorites as $favorite) {
             array_push($filteredFavorites, $favorite->id);
         }
-        return $query->whereIn('id', $filteredFavorites);
+        if ($filteredFavorites) {
+            return $query->whereIn('id', $filteredFavorites);
+        }
+        return $query;
     }
 
     /**

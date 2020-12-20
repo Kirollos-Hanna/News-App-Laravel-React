@@ -8,6 +8,7 @@ const state = () => ({
     page: 1,
     favoriteFilterInputs: [],
     totalFavoriteCount: 0,
+    itemsPerPage: 4,
 });
 
 const mutations = {
@@ -59,7 +60,7 @@ const actions = {
         let encodedFilterStr = btoa(filterStr);
         let favorites = [];
             Nova.request()
-            .get("/nova-api/favorites?filters="+encodedFilterStr+"&trashed=with&page="+ page)
+            .get("/nova-api/favorites?filters="+encodedFilterStr+"&trashed=with&perPage="+context.state.itemsPerPage+"&page="+ page)
             .then((res) => {
                 const arrayOfFields = parseResponse(res);
                 arrayOfFields.forEach((fields) => {
@@ -118,7 +119,7 @@ const actions = {
         let filterStr = '[{"class":"App\\\\Nova\\\\Filters\\\\FilterFavoriteByUser","value":""},{"class":"App\\\\Nova\\\\Filters\\\\DateAfterFilter","value":""},{"class":"App\\\\Nova\\\\Filters\\\\DateBeforeFilter","value":""},{"class":"App\\\\Nova\\\\Filters\\\\FilterFavoriteByStatus","value":'+JSON.stringify(statusFilters)+'}]';
         let encodedFilterStr = btoa(filterStr);
         Nova.request()
-        .get("/nova-api/favorites/count?search=&filters="+encodedFilterStr+"&orderBy=&perPage=25&trashed=with&page="+context.state.page+"&relationshipType=")
+        .get("/nova-api/favorites/count?search=&filters="+encodedFilterStr+"&orderBy=&perPage="+context.state.itemsPerPage+"&trashed=with&page="+context.state.page+"&relationshipType=")
         .then((res)=> context.state.totalFavoriteCount = res.data.count);
     }
 }

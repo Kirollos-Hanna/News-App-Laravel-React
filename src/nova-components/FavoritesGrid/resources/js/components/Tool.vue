@@ -26,7 +26,7 @@
       >
       <submit-button
         @click.native="paginateRight"
-        :disabled="this.page >= this.totalFavoriteCount / 25"
+        :disabled="this.page >= this.totalFavoriteCount / this.itemsPerPage"
         >Next</submit-button
       >
     </div>
@@ -98,6 +98,7 @@ export default {
       input: (state) => state.favoritesGridStore.favoriteFilterInputs,
       totalFavoriteCount: (state) =>
         state.favoritesGridStore.totalFavoriteCount,
+      itemsPerPage: (state) => state.favoritesGridStore.itemsPerPage,
     }),
   },
 };

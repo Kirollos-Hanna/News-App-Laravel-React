@@ -2,7 +2,6 @@
 
 namespace App\Nova\Filters;
 
-use App\Models\Favorite;
 use App\Models\Status;
 use Illuminate\Http\Request;
 use Laravel\Nova\Filters\BooleanFilter;
@@ -27,6 +26,7 @@ class FilterFavoriteByStatus extends BooleanFilter
     public function apply(Request $request, $query, $value)
     {
         $favorites = [];
+
         $hasValue = false;
         for ($i = 1; $i < count($value); $i++) {
             if ($value[$i]) {
@@ -40,7 +40,7 @@ class FilterFavoriteByStatus extends BooleanFilter
 
         if ($value["None"]) {
             $hasValue = true;
-            $favoritesWithNoStatus = Favorite::withTrashed()->doesntHave('status')->get();
+            $favoritesWithNoStatus = $query->withTrashed()->doesntHave('status')->get();
 
             foreach ($favoritesWithNoStatus as $favorite) {
                 array_push($favorites, $favorite->id);
@@ -48,7 +48,7 @@ class FilterFavoriteByStatus extends BooleanFilter
         }
 
         if ($hasValue) {
-            return $query->whereIn('id', $favorites);
+            return $query->orWhereIn('id', $favorites);
         }
         return $query;
     }

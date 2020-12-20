@@ -5,7 +5,6 @@ namespace App\Nova\Filters;
 use App\Models\Status;
 use Illuminate\Http\Request;
 use Laravel\Nova\Filters\BooleanFilter;
-use Illuminate\Support\Facades\Log;
 
 class FilterFavoriteByStatus extends BooleanFilter
 {

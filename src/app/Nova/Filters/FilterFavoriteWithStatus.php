@@ -31,7 +31,7 @@ class FilterFavoriteWithStatus extends Filter
         foreach ($favorites as $favorite) {
             array_push($filteredFavorites, $favorite->id);
         }
-        if ($filteredFavorites) {
+        if ($filteredFavorites || $value == 1) {
             return $query->whereIn('id', $filteredFavorites);
         }
         return $query;

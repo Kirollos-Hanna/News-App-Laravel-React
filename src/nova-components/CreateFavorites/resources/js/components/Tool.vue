@@ -95,7 +95,7 @@
     </div>
     <div class="btn-container">
       <cancel-button @click.native="clearInputs" />
-      <submit-button @click.native="submitForm" />
+      <submit-button @click.native="submitForm">Create Favorite</submit-button>
     </div>
   </div>
 </template>

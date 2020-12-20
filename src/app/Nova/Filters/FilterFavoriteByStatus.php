@@ -5,6 +5,7 @@ namespace App\Nova\Filters;
 use App\Models\Status;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Laravel\Nova\Filters\BooleanFilter;
 
 class FilterFavoriteByStatus extends BooleanFilter
@@ -26,11 +27,9 @@ class FilterFavoriteByStatus extends BooleanFilter
      */
     public function apply(Request $request, $query, $value)
     {
-        $noFilter = true;
-        foreach ($value as $val) {
-            if ($val) {
-                $noFilter = false;
-            }
+        $noFilter = false;
+        if (count(array_unique($value)) == 1 && !$value[1]) {
+            $noFilter = true;
         }
         if ($noFilter) {
             return $query;

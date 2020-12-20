@@ -65,6 +65,15 @@ class Favorite extends Resource
                 ->sortable()
                 ->rules('required', 'max:254'),
 
+            Text::make('Status', function () {
+                $allStatus = $this->status;
+                $displayedStatus = [];
+                foreach ($allStatus as $status) {
+                    array_push($displayedStatus, $status->status);
+                }
+                return implode(", ", $displayedStatus);
+            }),
+
             DateTime::make('Created At', 'created_at')
                 ->sortable(),
 
@@ -82,7 +91,7 @@ class Favorite extends Resource
      *
      * @var array
      */
-    public static $with = ['user'];
+    public static $with = ['user', 'status'];
 
     /**
      * Get the cards available for the request.

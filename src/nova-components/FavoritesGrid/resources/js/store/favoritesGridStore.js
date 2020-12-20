@@ -21,7 +21,6 @@ const mutations = {
         state.favorites.map((favorite) => {
           let elm = state.users.find((elm) => elm.name === favorite.user);
           favorite["email"] = elm? elm.email: null;
-          favorite["status"] = favorite["status"]? favorite["status"].map((status) => status.status).join(", ") : "";
           if (!favorite["author"]) favorite["author"] = "";
           if (!favorite["created_at"]) favorite["created_at"] = "";
           return favorite;
@@ -58,7 +57,6 @@ const actions = {
                 .get("/nova-api/favorites?filters="+encodedFilterStr+"&trashed=with")
                 .then((res) => {
                     const arrayOfFields = parseResponse(res);
-
                     arrayOfFields.forEach((fields) => {
                         let item = {
                             id: fields.id,
@@ -69,11 +67,9 @@ const actions = {
                             created_at: fields.created_at,
                             user: fields.user,
                             softDeleted: fields.softDeleted,
+                            status: fields.ComputedField,
                         };
-                        context.dispatch('setStatusPerFavorite', fields.id).then((res) => {
-                            item['status'] = res
-                            favorites.push(item);
-                        });
+                        favorites.push(item);
                     });
                     context.dispatch('setUsers');
             });
@@ -94,8 +90,8 @@ const actions = {
                             created_at: fields.created_at,
                             user: fields.user,
                             softDeleted: fields.softDeleted,
+                            status: "",
                         };
-                        item['status'] = [];
                         favorites.push(item);
                     });
                     context.dispatch('setUsers');
@@ -116,19 +112,6 @@ const actions = {
                 context.commit('formatDisplayedData');
                 context.commit('setIsLoading', false);
         });
-    },
-    setStatusPerFavorite(context, favoriteID){
-        let statusForFavorite = [];
-        Nova.request()
-            .get("/nova-api/statuses?trashed=with&viaResource=favorites&viaResourceId="+favoriteID+"&viaRelationship=status&relationshipType=belongsToMany")
-            .then((res) => {
-                const arrayOfFields = parseResponse(res);
-                arrayOfFields.forEach((fields) => {
-                    statusForFavorite.push({ favorite_id: favoriteID, status_id: fields.id, status: fields.status });
-                });
-                return statusForFavorite;
-        });
-        return statusForFavorite;
     },
     setStatusOptions(context){
         Nova.request()

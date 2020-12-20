@@ -46,8 +46,13 @@ import { mapActions, mapMutations, mapState } from "vuex";
 Vue.use(VueRouter);
 
 export default {
-  mounted: function () {
+  created: function () {
     this.setStatusOptions();
+  },
+  destroyed: function () {
+    this.setStatusOptions([]);
+    this.setPage(1);
+    this.setInput([]);
   },
   methods: {
     redirect: function () {

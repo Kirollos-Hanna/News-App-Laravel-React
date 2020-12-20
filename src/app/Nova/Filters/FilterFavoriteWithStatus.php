@@ -4,7 +4,6 @@ namespace App\Nova\Filters;
 
 use App\Models\Favorite;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Laravel\Nova\Filters\Filter;
 
 class FilterFavoriteWithStatus extends Filter

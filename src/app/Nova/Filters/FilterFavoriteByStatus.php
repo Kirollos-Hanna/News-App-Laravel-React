@@ -3,6 +3,7 @@
 namespace App\Nova\Filters;
 
 use App\Models\Status;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Laravel\Nova\Filters\BooleanFilter;
 
@@ -25,32 +26,28 @@ class FilterFavoriteByStatus extends BooleanFilter
      */
     public function apply(Request $request, $query, $value)
     {
-        $favorites = [];
-
-        $hasValue = false;
-        for ($i = 1; $i < count($value); $i++) {
-            if ($value[$i]) {
-                $hasValue = true;
-                $status = Status::find($i);
-                foreach ($status->favorite as $favorite) {
-                    array_push($favorites, $favorite->id);
-                }
+        $noFilter = true;
+        foreach ($value as $val) {
+            if ($val) {
+                $noFilter = false;
             }
         }
+        if ($noFilter) {
+            return $query;
+        }
 
+        $idValues = [];
+        foreach ($value as $key => $val) {
+            if ($val) {
+                array_push($idValues, $key);
+            }
+        }
         if ($value["None"]) {
-            $hasValue = true;
-            $favoritesWithNoStatus = $query->withTrashed()->doesntHave('status')->get();
-
-            foreach ($favoritesWithNoStatus as $favorite) {
-                array_push($favorites, $favorite->id);
-            }
+            $query->withTrashed()->doesntHave('status');
         }
-
-        if ($hasValue) {
-            return $query->orWhereIn('id', $favorites);
-        }
-        return $query;
+        return $query->orWhereHas('status', function (Builder $query) use ($idValues) {
+            $query->whereIn('id', $idValues);
+        });
     }
 
     /**

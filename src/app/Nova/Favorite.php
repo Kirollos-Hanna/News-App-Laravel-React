@@ -34,7 +34,7 @@ class Favorite extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'title', 'source',
+        'title', 'author',
     ];
 
     /**
@@ -79,6 +79,7 @@ class Favorite extends Resource
 
             BelongsTo::make('User', 'user')
                 ->sortable()
+                ->searchable()
                 ->rules('required'),
 
             BelongsToMany::make('Status', 'status')
@@ -156,4 +157,13 @@ class Favorite extends Resource
         }
         return $query->where('user_id', $request->user()->id);
     }
+
+    /**
+     * The relationship columns that should be searched.
+     *
+     * @var array
+     */
+    public static $searchRelations = [
+        'user' => ['email'],
+    ];
 }

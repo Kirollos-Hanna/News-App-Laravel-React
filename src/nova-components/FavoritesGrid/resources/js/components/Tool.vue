@@ -7,6 +7,9 @@
         :options="options"
         :defaultInputs="input"
       />
+      <div class="search-container">
+        <text-input :placeholder="'Search'" :changeInput="searchInput" />
+      </div>
       <submit-button @click.native="redirect"> Create Favorites </submit-button>
     </div>
     <div :class="{ 'grid-container': true, 'no-overflow': isEmpty }">
@@ -87,6 +90,16 @@ export default {
       this.setFavorites({
         num: this.options.length,
         filters: input.slice(0, input.length),
+      });
+    },
+    searchInput: function (...args) {
+      const [search] = args;
+      this.setPage(1);
+      this.setFavorites({
+        num: this.options.length,
+        filters: this.input.slice(0, this.input.length),
+        page: this.page,
+        search: search,
       });
     },
     ...mapActions("favoritesGridStore", {

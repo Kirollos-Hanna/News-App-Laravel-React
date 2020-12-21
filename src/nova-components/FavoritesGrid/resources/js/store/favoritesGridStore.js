@@ -34,7 +34,7 @@ const mutations = {
         state.options = options;
     },
     formatDisplayedData(state)  {
-        state.favorites.map((favorite) => {
+        state.favorites = state.favorites.map((favorite) => {
           let elm = state.users.find((elm) => elm.name === favorite.user);
           favorite["email"] = elm? elm.email: null;
           if (!favorite["author"]) favorite["author"] = "";
@@ -49,8 +49,7 @@ const getters = {}
 const actions = {
     setFavorites(context, ...args){
         const [options] = args;
-        const {num, filters, page} = options;
-
+        const {num, filters, page, search} = options;
         context.commit("setInput", filters);
         context.dispatch('getCountOfFavorites', filters);
 
@@ -61,6 +60,7 @@ const actions = {
             return;
         }
 
+        let searchFilter = search? search: "";
         let statusFilters = {};
         for(let i = 1; i <= num; i++){
             statusFilters[i] = filters.includes(i);
@@ -71,7 +71,7 @@ const actions = {
         let encodedFilterStr = btoa(filterStr);
         let favorites = [];
         Nova.request()
-            .get("/nova-api/favorites?filters="+encodedFilterStr+"&trashed=with&perPage="+context.state.itemsPerPage+"&page="+ page)
+            .get("/nova-api/favorites?search="+searchFilter+"&filters="+encodedFilterStr+"&trashed=with&perPage="+context.state.itemsPerPage+"&page="+ page)
             .then((res) => {
                 const arrayOfFields = parseResponse(res);
                 arrayOfFields.forEach((fields) => {
@@ -89,12 +89,12 @@ const actions = {
                     favorites.push(item);
                 });
 
-                if(arrayOfFields.length > 1){
+                context.dispatch('setUsers');
+                if(arrayOfFields.length >= 1){
                     context.commit("setIsEmpty", false);
                 } else{
                     context.commit("setIsEmpty", true);
                 }
-                context.dispatch('setUsers');
         });
         context.commit('setFavorites', favorites);
     },

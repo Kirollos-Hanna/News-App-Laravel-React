@@ -21,15 +21,16 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.1",
         "mll-lab/laravel-graphql-playground": "^2.4",
+        "newsapi/components-tool": "*",
+        "newsapi/create-favorites": "*",
+        "newsapi/favorites-grid": "*",
+        "newsapi/test-tool": "*",
         "nuwave/lighthouse": "^4.18",
         "silber/bouncer": "v1.0.0-rc.9",
+        "titasgailius/search-relations": "^1.0",
         "tymon/jwt-auth": "^1.0",
-        "yadahan/nova-bouncer": "^0.6.0",
-        "newsapi/create-favorites": "*",
         "venturecraft/revisionable": "1.*",
-        "newsapi/test-tool": "*",
-        "newsapi/favorites-grid": "*",
-        "newsapi/components-tool": "*"
+        "yadahan/nova-bouncer": "^0.6.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

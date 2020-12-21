@@ -9,6 +9,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 5px;
 }
 
 .pagination-buttons{
@@ -22,4 +23,8 @@
 
 .no-overflow{
     overflow: auto;
+}
+
+.search-container{
+    width: 300px;
 }

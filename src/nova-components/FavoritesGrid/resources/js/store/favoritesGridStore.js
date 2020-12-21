@@ -7,8 +7,9 @@ const state = () => ({
     page: 1,
     favoriteFilterInputs: [],
     totalFavoriteCount: 0,
-    itemsPerPage: 25,
+    itemsPerPage: 4,
     isEmpty: false,
+    searchTerm: "",
 });
 
 const mutations = {
@@ -30,11 +31,14 @@ const mutations = {
     setTotalFavoriteCount(state, totalFavoriteCount){
         state.totalFavoriteCount = totalFavoriteCount;
     },
+    setSearchTerm(state, searchTerm){
+        state.searchTerm = searchTerm;
+    },
     setStatusOptions(state, options){
         state.options = options;
     },
     formatDisplayedData(state)  {
-        state.favorites.map((favorite) => {
+        state.favorites = state.favorites.map((favorite) => {
           let elm = state.users.find((elm) => elm.name === favorite.user);
           favorite["email"] = elm? elm.email: null;
           if (!favorite["author"]) favorite["author"] = "";
@@ -49,10 +53,11 @@ const getters = {}
 const actions = {
     setFavorites(context, ...args){
         const [options] = args;
-        const {num, filters, page} = options;
-
+        const {num, filters, page, search} = options;
         context.commit("setInput", filters);
-        context.dispatch('getCountOfFavorites', filters);
+        
+        let searchFilter = search? search: "";
+        context.dispatch('getCountOfFavorites', {"filters": filters, "search":searchFilter});
 
         if(filters.length < 1){
             context.dispatch('setUsers');
@@ -71,7 +76,7 @@ const actions = {
         let encodedFilterStr = btoa(filterStr);
         let favorites = [];
         Nova.request()
-            .get("/nova-api/favorites?filters="+encodedFilterStr+"&trashed=with&perPage="+context.state.itemsPerPage+"&page="+ page)
+            .get("/nova-api/favorites?search="+searchFilter+"&filters="+encodedFilterStr+"&trashed=with&perPage="+context.state.itemsPerPage+"&page="+ page)
             .then((res) => {
                 const arrayOfFields = parseResponse(res);
                 arrayOfFields.forEach((fields) => {
@@ -89,12 +94,12 @@ const actions = {
                     favorites.push(item);
                 });
 
-                if(arrayOfFields.length > 1){
+                context.dispatch('setUsers');
+                if(arrayOfFields.length >= 1){
                     context.commit("setIsEmpty", false);
                 } else{
                     context.commit("setIsEmpty", true);
                 }
-                context.dispatch('setUsers');
         });
         context.commit('setFavorites', favorites);
     },
@@ -126,16 +131,19 @@ const actions = {
                 context.commit("setInput", inputs);
                 context.commit('setStatusOptions', options);
                 context.dispatch('setFavorites', {num:options.length, filters: inputs});
-                context.dispatch('getCountOfFavorites', context.state.favoriteFilterInputs);
+                context.dispatch('getCountOfFavorites', {"filters":context.state.favoriteFilterInputs, "search": context.state.searchTerm});
         });
     },
     getCountOfFavorites(context, ...args){
-        const [filters] = args;
-
+        const [options] = args;
+        const {filters, search} = options;
         if(filters.length < 1){
             context.commit("setTotalFavoriteCount", 0);
             return;
         }
+
+        let searchFilter = search? search: context.state.searchTerm;
+        
 
         let statusFilters = {};
         for(let i = 1; i <= context.state.options.length; i++){
@@ -145,7 +153,7 @@ const actions = {
         let filterStr = '[{"class":"App\\\\Nova\\\\Filters\\\\FilterFavoriteByUser","value":""},{"class":"App\\\\Nova\\\\Filters\\\\DateAfterFilter","value":""},{"class":"App\\\\Nova\\\\Filters\\\\DateBeforeFilter","value":""},{"class":"App\\\\Nova\\\\Filters\\\\FilterFavoriteByStatus","value":'+JSON.stringify(statusFilters)+'}]';
         let encodedFilterStr = btoa(filterStr);
         Nova.request()
-        .get("/nova-api/favorites/count?search=&filters="+encodedFilterStr+"&orderBy=&perPage="+context.state.itemsPerPage+"&trashed=with&page="+context.state.page+"&relationshipType=")
+        .get("/nova-api/favorites/count?search="+searchFilter+"&filters="+encodedFilterStr+"&orderBy=&perPage="+context.state.itemsPerPage+"&trashed=with&page="+context.state.page+"&relationshipType=")
         .then((res)=> context.commit("setTotalFavoriteCount", res.data.count));
     }
 }

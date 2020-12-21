@@ -41,11 +41,14 @@ class FilterFavoriteByStatus extends BooleanFilter
                 array_push($idValues, $key);
             }
         }
-        if ($value["None"]) {
-            $query->withTrashed()->doesntHave('status');
-        }
-        return $query->orWhereHas('status', function (Builder $query) use ($idValues) {
-            $query->whereIn('id', $idValues);
+        
+        return $query->where(function ($query) use ($idValues, $value) {
+            if ($value["None"]) {
+                $query->withTrashed()->doesntHave('status');
+            }
+            $query->orWhereHas('status', function (Builder $query) use ($idValues) {
+                $query->whereIn('id', $idValues);
+            });
         });
     }
 

@@ -4,7 +4,6 @@ const state = () => ({
     favorites: [],
     users: [],
     options: [],
-    isGridLoading: true,
     page: 1,
     favoriteFilterInputs: [],
     totalFavoriteCount: 0,
@@ -35,9 +34,6 @@ const mutations = {
           if (!favorite["created_at"]) favorite["created_at"] = "";
           return favorite;
         });
-    },
-    setIsLoading(state, loadingStatus){
-        state.isGridLoading = loadingStatus;
     }
 };
 
@@ -45,7 +41,6 @@ const getters = {}
 
 const actions = {
     setFavorites(context, ...args){
-        context.commit('setIsLoading', true);
         context.dispatch('getCountOfFavorites');
         const [options] = args;
         const {num, filters, page} = options;
@@ -98,7 +93,6 @@ const actions = {
                 });
                 context.commit('setUsers', users);
                 context.commit('formatDisplayedData');
-                context.commit('setIsLoading', false);
         });
     },
     setStatusOptions(context){

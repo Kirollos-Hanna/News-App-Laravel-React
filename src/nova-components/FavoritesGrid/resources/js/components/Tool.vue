@@ -22,7 +22,6 @@
         email: 'E-mail',
       }"
       :displayData="favorites"
-      :isLoading="isGridLoading"
     />
     <div class="pagination-buttons">
       <submit-button @click.native="paginateLeft" :disabled="this.page <= 1"

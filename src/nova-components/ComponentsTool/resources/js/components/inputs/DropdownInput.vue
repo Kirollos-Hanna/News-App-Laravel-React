@@ -5,6 +5,7 @@
       'input-decoration': true,
       'arrow-decoration': true,
     }"
+    :name="label"
     v-model="input"
     @change="changeInput(input, label)"
   >

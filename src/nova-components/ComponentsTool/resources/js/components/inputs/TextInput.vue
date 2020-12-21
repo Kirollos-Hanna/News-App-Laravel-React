@@ -1,6 +1,7 @@
 <template>
   <input
     :type="type"
+    :name="placeholder"
     :class="{
       'input-error': error || validationError || sameError,
       'input-decoration': true,

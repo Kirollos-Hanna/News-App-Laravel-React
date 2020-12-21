@@ -62,7 +62,7 @@
 
         <div class="field-container">
           <div class="label-spacing">
-            <label-text :label="source" :isRequired="true" />
+            <label-text :label="postDate" :isRequired="true" />
           </div>
           <div class="input-spacing">
             <text-input

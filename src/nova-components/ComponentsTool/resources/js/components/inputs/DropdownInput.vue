@@ -5,6 +5,7 @@
       'input-decoration': true,
       'arrow-decoration': true,
     }"
+    :dusk="label"
     v-model="input"
     @change="changeInput(input, label)"
   >

@@ -9,22 +9,24 @@
       />
       <submit-button @click.native="redirect"> Create Favorites </submit-button>
     </div>
-    <grid
-      :columns="{
-        id: 'ID',
-        title: 'Article Title',
-        source: 'Article Source',
-        author: 'Author',
-        postDate: 'Posting Date',
-        createdAt: 'Created At',
-        user: 'User',
-        status: 'Status',
-        email: 'E-mail',
-      }"
-      :displayData="favorites"
-      :isEmpty="isEmpty"
-    />
-    <div v-if="!isEmpty" class="pagination-buttons">
+    <div :class="{ 'grid-container': true, 'no-overflow': isEmpty }">
+      <grid
+        :columns="{
+          id: 'ID',
+          title: 'Article Title',
+          source: 'Article Source',
+          author: 'Author',
+          postDate: 'Posting Date',
+          createdAt: 'Created At',
+          user: 'User',
+          status: 'Status',
+          email: 'E-mail',
+        }"
+        :displayData="favorites"
+        :isEmpty="isEmpty"
+      />
+    </div>
+    <div class="pagination-buttons">
       <submit-button @click.native="paginateLeft" :disabled="this.page <= 1"
         >Prev</submit-button
       >

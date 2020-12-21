@@ -36,11 +36,11 @@ class CreateFavoritesTest extends DuskTestCase
             $browser->loginAs(User::find(1))->visit('/nova/create-favorites');
 
             for ($i = 0; $i < 5; $i++) {
-                $browser->type('Article Title', $favorites[$i]['title'])
-                    ->type('Author', $favorites[$i]['author'])
-                    ->type('Article Source', $favorites[$i]['source'])
-                    ->type('Post Date', $favorites[$i]['posting_date'])
-                    ->select('User')
+                $browser->type('@Article Title', $favorites[$i]['title'])
+                    ->type('@Author', $favorites[$i]['author'])
+                    ->type('@Article Source', $favorites[$i]['source'])
+                    ->type('@Post Date', $favorites[$i]['posting_date'])
+                    ->select('@User')
                     ->press('Create Favorite');
             }
             $browser->pause(100);

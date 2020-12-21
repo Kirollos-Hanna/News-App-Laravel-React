@@ -1,7 +1,7 @@
 <template>
   <input
     :type="type"
-    :name="placeholder"
+    :dusk="placeholder"
     :class="{
       'input-error': error || validationError || sameError,
       'input-decoration': true,

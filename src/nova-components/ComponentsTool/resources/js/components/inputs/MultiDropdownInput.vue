@@ -9,7 +9,7 @@
       <li>
         <input
           type="checkbox"
-          v-model="selected"
+          v-model="defaultInputs"
           :value="0"
           @click="addOption({ id: 0, name: 'None' })"
         />
@@ -18,7 +18,7 @@
       <li v-for="option in options" :key="option.id">
         <input
           type="checkbox"
-          v-model="selected"
+          v-model="defaultInputs"
           :value="option.id"
           @click="addOption(option)"
         />
@@ -35,11 +35,14 @@ export default {
     return {
       visible: false,
       inputs: [],
-      selected: [],
     };
   },
   props: {
     options: {
+      default: [],
+      type: Array,
+    },
+    defaultInputs: {
       default: [],
       type: Array,
     },
@@ -77,7 +80,7 @@ export default {
     selectAll: {
       get: function () {
         return this.options
-          ? this.selected.length == this.options.length + 1
+          ? this.defaultInputs.length == this.options.length + 1
           : false;
       },
       set: function (value) {
@@ -95,7 +98,7 @@ export default {
           }
           arrayInputs.push(0);
         }
-        this.selected = selected;
+        this.defaultInputs = selected;
 
         this.inputs = arrayInputs.map((elm) => elm);
         this.changeInput(this.inputs, "multi-input");

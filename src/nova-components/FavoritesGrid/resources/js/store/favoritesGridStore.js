@@ -8,7 +8,7 @@ const state = () => ({
     page: 1,
     favoriteFilterInputs: [],
     totalFavoriteCount: 0,
-    itemsPerPage: 4,
+    itemsPerPage: 25,
 });
 
 const mutations = {
@@ -49,6 +49,12 @@ const actions = {
         context.dispatch('getCountOfFavorites');
         const [options] = args;
         const {num, filters, page} = options;
+
+        if(filters.length < 1){
+            context.dispatch('setUsers');
+            context.commit("setFavorites", []);
+            return;
+        }
 
         let statusFilters = {};
         for(let i = 1; i <= num; i++){
@@ -100,12 +106,16 @@ const actions = {
             .get("/nova-api/statuses")
             .then((res) => {
                 let options = [];
+                let inputs = [];
                 const arrayOfFields = parseResponse(res);
                 arrayOfFields.forEach((fields) => {
                     options.push({ id: fields.id, name: fields.status });
+                    inputs.push(fields.id);
                 });
+                inputs.push(0);
+                context.commit("setInput", inputs);
                 context.commit('setStatusOptions', options);
-                context.dispatch('setFavorites', {num:options.length, filters: []});
+                context.dispatch('setFavorites', {num:options.length, filters: inputs});
                 context.dispatch('getCountOfFavorites');
         });
     },

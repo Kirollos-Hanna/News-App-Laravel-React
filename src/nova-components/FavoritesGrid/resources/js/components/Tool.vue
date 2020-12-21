@@ -2,7 +2,11 @@
   <div>
     <heading>Favorites Grid</heading>
     <div class="options-spacing">
-      <multi-dropdown-input :changeInput="changeInput" :options="options" />
+      <multi-dropdown-input
+        :changeInput="changeInput"
+        :options="options"
+        :defaultInputs="input"
+      />
       <submit-button @click.native="redirect"> Create Favorites </submit-button>
     </div>
     <grid

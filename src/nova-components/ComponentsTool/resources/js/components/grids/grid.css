@@ -1,6 +1,5 @@
 .grid{
     margin: 10px auto;
-    max-width: 1500px;
     width: 100%;
     height: auto;
     border-collapse: collapse;
@@ -8,6 +7,7 @@
     background-color: white;
     overflow-y: scroll;
     border-radius: 10px;
+    word-wrap: break-word;
 }
 
 .grid-head {
@@ -65,4 +65,10 @@ td:last-child, .grid-body tr:last-child{
 .loading p {
     font-weight: bold;
     font-size: 24px;
+}
+
+@media(max-width: 1550px){
+    .grid{
+        font-size: 12px;
+    }
 }

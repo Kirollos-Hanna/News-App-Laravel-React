@@ -57,12 +57,12 @@ td:last-child, .grid-body tr:last-child{
     background-color: #808080 !important;
 }
 
-.loading{
+.empty{
     display: flex;
     justify-content: center;
 }
 
-.loading p {
+.empty p {
     font-weight: bold;
     font-size: 24px;
 }

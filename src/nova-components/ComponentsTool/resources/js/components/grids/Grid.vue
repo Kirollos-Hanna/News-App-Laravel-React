@@ -1,5 +1,8 @@
 <template>
-  <table class="grid">
+  <div v-if="isEmpty" class="empty">
+    <p>No Results</p>
+  </div>
+  <table v-else class="grid">
     <thead class="grid-head">
       <tr>
         <td v-for="column in columns" v-bind:key="column">{{ column }}</td>
@@ -37,11 +40,14 @@ export default {
       default: [],
       type: Array,
     },
+    isEmpty: {
+      default: false,
+      type: Boolean,
+    },
   },
   data() {
     return {
       data: [],
-      extraData: [],
     };
   },
   methods: {

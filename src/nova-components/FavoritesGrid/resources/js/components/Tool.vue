@@ -22,8 +22,9 @@
         email: 'E-mail',
       }"
       :displayData="favorites"
+      :isEmpty="isEmpty"
     />
-    <div class="pagination-buttons">
+    <div v-if="!isEmpty" class="pagination-buttons">
       <submit-button @click.native="paginateLeft" :disabled="this.page <= 1"
         >Prev</submit-button
       >
@@ -107,6 +108,7 @@ export default {
       totalFavoriteCount: (state) =>
         state.favoritesGridStore.totalFavoriteCount,
       itemsPerPage: (state) => state.favoritesGridStore.itemsPerPage,
+      isEmpty: (state) => state.favoritesGridStore.isEmpty,
     }),
   },
 };

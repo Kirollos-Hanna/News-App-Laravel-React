@@ -8,11 +8,15 @@ const state = () => ({
     favoriteFilterInputs: [],
     totalFavoriteCount: 0,
     itemsPerPage: 25,
+    isEmpty: false,
 });
 
 const mutations = {
     setFavorites(state, favorites){
         state.favorites = favorites;
+    },
+    setIsEmpty(state, isEmpty){
+        state.isEmpty = isEmpty;
     },
     setInput(state, input){
         state.favoriteFilterInputs = input;
@@ -22,6 +26,9 @@ const mutations = {
     },
     setUsers(state, users){
         state.users = users;
+    },
+    setTotalFavoriteCount(state, totalFavoriteCount){
+        state.totalFavoriteCount = totalFavoriteCount;
     },
     setStatusOptions(state, options){
         state.options = options;
@@ -41,13 +48,16 @@ const getters = {}
 
 const actions = {
     setFavorites(context, ...args){
-        context.dispatch('getCountOfFavorites');
         const [options] = args;
         const {num, filters, page} = options;
+
+        context.commit("setInput", filters);
+        context.dispatch('getCountOfFavorites', filters);
 
         if(filters.length < 1){
             context.dispatch('setUsers');
             context.commit("setFavorites", []);
+            context.commit("setIsEmpty", true);
             return;
         }
 
@@ -60,7 +70,7 @@ const actions = {
         let filterStr = '[{"class":"App\\\\Nova\\\\Filters\\\\FilterFavoriteByUser","value":""},{"class":"App\\\\Nova\\\\Filters\\\\DateAfterFilter","value":""},{"class":"App\\\\Nova\\\\Filters\\\\DateBeforeFilter","value":""},{"class":"App\\\\Nova\\\\Filters\\\\FilterFavoriteByStatus","value":'+JSON.stringify(statusFilters)+'}]';
         let encodedFilterStr = btoa(filterStr);
         let favorites = [];
-            Nova.request()
+        Nova.request()
             .get("/nova-api/favorites?filters="+encodedFilterStr+"&trashed=with&perPage="+context.state.itemsPerPage+"&page="+ page)
             .then((res) => {
                 const arrayOfFields = parseResponse(res);
@@ -78,6 +88,12 @@ const actions = {
                     };
                     favorites.push(item);
                 });
+
+                if(arrayOfFields.length > 1){
+                    context.commit("setIsEmpty", false);
+                } else{
+                    context.commit("setIsEmpty", true);
+                }
                 context.dispatch('setUsers');
         });
         context.commit('setFavorites', favorites);
@@ -110,21 +126,27 @@ const actions = {
                 context.commit("setInput", inputs);
                 context.commit('setStatusOptions', options);
                 context.dispatch('setFavorites', {num:options.length, filters: inputs});
-                context.dispatch('getCountOfFavorites');
+                context.dispatch('getCountOfFavorites', context.state.favoriteFilterInputs);
         });
     },
-    getCountOfFavorites(context){
+    getCountOfFavorites(context, ...args){
+        const [filters] = args;
+
+        if(filters.length < 1){
+            context.commit("setTotalFavoriteCount", 0);
+            return;
+        }
 
         let statusFilters = {};
         for(let i = 1; i <= context.state.options.length; i++){
-            statusFilters[i] = context.state.favoriteFilterInputs.includes(i);
+            statusFilters[i] = filters.includes(i);
         }
-        statusFilters['None'] = context.state.favoriteFilterInputs.includes(0);
+        statusFilters['None'] = filters.includes(0);
         let filterStr = '[{"class":"App\\\\Nova\\\\Filters\\\\FilterFavoriteByUser","value":""},{"class":"App\\\\Nova\\\\Filters\\\\DateAfterFilter","value":""},{"class":"App\\\\Nova\\\\Filters\\\\DateBeforeFilter","value":""},{"class":"App\\\\Nova\\\\Filters\\\\FilterFavoriteByStatus","value":'+JSON.stringify(statusFilters)+'}]';
         let encodedFilterStr = btoa(filterStr);
         Nova.request()
         .get("/nova-api/favorites/count?search=&filters="+encodedFilterStr+"&orderBy=&perPage="+context.state.itemsPerPage+"&trashed=with&page="+context.state.page+"&relationshipType=")
-        .then((res)=> context.state.totalFavoriteCount = res.data.count);
+        .then((res)=> context.commit("setTotalFavoriteCount", res.data.count));
     }
 }
 

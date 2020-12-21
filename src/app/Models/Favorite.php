@@ -48,4 +48,9 @@ class Favorite extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
+
+    public function status()
+    {
+        return $this->belongsToMany(Status::class);
+    }
 }

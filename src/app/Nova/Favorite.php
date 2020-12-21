@@ -8,6 +8,8 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Favorite extends Resource
@@ -63,12 +65,24 @@ class Favorite extends Resource
                 ->sortable()
                 ->rules('required', 'max:254'),
 
+            Text::make('Status', function () {
+                $allStatus = $this->status;
+                $displayedStatus = [];
+                foreach ($allStatus as $status) {
+                    array_push($displayedStatus, $status->status);
+                }
+                return implode(", ", $displayedStatus);
+            }),
+
             DateTime::make('Created At', 'created_at')
                 ->sortable(),
 
             BelongsTo::make('User', 'user')
                 ->sortable()
                 ->rules('required'),
+
+            BelongsToMany::make('Status', 'status')
+                ->sortable(),
         ];
     }
 
@@ -77,7 +91,7 @@ class Favorite extends Resource
      *
      * @var array
      */
-    public static $with = ['user'];
+    public static $with = ['user', 'status'];
 
     /**
      * Get the cards available for the request.
@@ -102,6 +116,7 @@ class Favorite extends Resource
             new Filters\FilterFavoriteByUser,
             new Filters\DateAfterFilter,
             new Filters\DateBeforeFilter,
+            new Filters\FilterFavoriteByStatus
         ];
     }
 

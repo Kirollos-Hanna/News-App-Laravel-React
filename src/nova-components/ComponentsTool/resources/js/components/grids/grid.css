@@ -7,6 +7,7 @@
     background-color: white;
     overflow-y: scroll;
     border-radius: 10px;
+    word-wrap: break-word;
 }
 
 .grid-head {
@@ -54,4 +55,20 @@ td:last-child, .grid-body tr:last-child{
 
 .soft-deleted{
     background-color: #808080 !important;
+}
+
+.empty{
+    display: flex;
+    justify-content: center;
+}
+
+.empty p {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+@media(max-width: 1550px){
+    .grid{
+        font-size: 12px;
+    }
 }

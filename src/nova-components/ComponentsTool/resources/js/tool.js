@@ -1,6 +1,6 @@
 import {CancelButton, SubmitButton} from "./components/buttons";
 import {ErrorLabel, LabelText} from "./components/labels";
-import {TextInput, DropdownInput} from "./components/inputs";
+import {TextInput, DropdownInput, MultiDropdownInput} from "./components/inputs";
 import {Grid} from "./components/grids";
 
 Nova.booting((Vue, router, store) => {
@@ -11,6 +11,7 @@ Nova.booting((Vue, router, store) => {
   Vue.component('label-text', LabelText);
   Vue.component('text-input', TextInput);
   Vue.component('dropdown-input', DropdownInput);
+  Vue.component('multi-dropdown-input', MultiDropdownInput);
   Vue.component('grid', Grid);
 
   Vue.component('components-tool', require('./components/Tool'))

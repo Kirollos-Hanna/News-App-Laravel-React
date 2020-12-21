@@ -18,17 +18,11 @@
 <script>
 export default {
   name: "dropdown-input",
-  created: function () {
-    this.getOptions().then((res) => {
-      this.options = res;
-    });
-  },
-  data() {
-    return {
-      options: [],
-    };
-  },
   props: {
+    options: {
+      default: [],
+      type: Array,
+    },
     label: {
       default: "",
       type: String,

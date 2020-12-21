@@ -60,20 +60,20 @@ export default {
     addOption: function (option) {
       let ind = 0;
       if (!option) {
-        ind = this.inputs.indexOf(option);
+        ind = this.defaultInputs.indexOf(option);
       } else {
-        ind = this.inputs.indexOf(option.id);
+        ind = this.defaultInputs.indexOf(option.id);
       }
       if (ind !== -1) {
-        this.inputs.splice(ind, 1);
+        this.defaultInputs.splice(ind, 1);
       } else {
         if (option) {
-          this.inputs.push(option.id);
+          this.defaultInputs.push(option.id);
         } else {
-          this.inputs.push(option);
+          this.defaultInputs.push(option);
         }
       }
-      this.changeInput(this.inputs, "multi-input");
+      this.changeInput(this.defaultInputs, "multi-input");
     },
   },
   computed: {
@@ -100,8 +100,8 @@ export default {
         }
         this.defaultInputs = selected;
 
-        this.inputs = arrayInputs.map((elm) => elm);
-        this.changeInput(this.inputs, "multi-input");
+        this.defaultInputs = arrayInputs.map((elm) => elm);
+        this.changeInput(this.defaultInputs, "multi-input");
       },
     },
   },

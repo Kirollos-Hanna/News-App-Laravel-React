@@ -7,8 +7,9 @@ const state = () => ({
     page: 1,
     favoriteFilterInputs: [],
     totalFavoriteCount: 0,
-    itemsPerPage: 25,
+    itemsPerPage: 4,
     isEmpty: false,
+    searchTerm: "",
 });
 
 const mutations = {
@@ -29,6 +30,9 @@ const mutations = {
     },
     setTotalFavoriteCount(state, totalFavoriteCount){
         state.totalFavoriteCount = totalFavoriteCount;
+    },
+    setSearchTerm(state, searchTerm){
+        state.searchTerm = searchTerm;
     },
     setStatusOptions(state, options){
         state.options = options;
@@ -51,7 +55,9 @@ const actions = {
         const [options] = args;
         const {num, filters, page, search} = options;
         context.commit("setInput", filters);
-        context.dispatch('getCountOfFavorites', filters);
+        
+        let searchFilter = search? search: "";
+        context.dispatch('getCountOfFavorites', {"filters": filters, "search":searchFilter});
 
         if(filters.length < 1){
             context.dispatch('setUsers');
@@ -60,7 +66,6 @@ const actions = {
             return;
         }
 
-        let searchFilter = search? search: "";
         let statusFilters = {};
         for(let i = 1; i <= num; i++){
             statusFilters[i] = filters.includes(i);
@@ -126,16 +131,19 @@ const actions = {
                 context.commit("setInput", inputs);
                 context.commit('setStatusOptions', options);
                 context.dispatch('setFavorites', {num:options.length, filters: inputs});
-                context.dispatch('getCountOfFavorites', context.state.favoriteFilterInputs);
+                context.dispatch('getCountOfFavorites', {"filters":context.state.favoriteFilterInputs, "search": context.state.searchTerm});
         });
     },
     getCountOfFavorites(context, ...args){
-        const [filters] = args;
-
+        const [options] = args;
+        const {filters, search} = options;
         if(filters.length < 1){
             context.commit("setTotalFavoriteCount", 0);
             return;
         }
+
+        let searchFilter = search? search: context.state.searchTerm;
+        
 
         let statusFilters = {};
         for(let i = 1; i <= context.state.options.length; i++){
@@ -145,7 +153,7 @@ const actions = {
         let filterStr = '[{"class":"App\\\\Nova\\\\Filters\\\\FilterFavoriteByUser","value":""},{"class":"App\\\\Nova\\\\Filters\\\\DateAfterFilter","value":""},{"class":"App\\\\Nova\\\\Filters\\\\DateBeforeFilter","value":""},{"class":"App\\\\Nova\\\\Filters\\\\FilterFavoriteByStatus","value":'+JSON.stringify(statusFilters)+'}]';
         let encodedFilterStr = btoa(filterStr);
         Nova.request()
-        .get("/nova-api/favorites/count?search=&filters="+encodedFilterStr+"&orderBy=&perPage="+context.state.itemsPerPage+"&trashed=with&page="+context.state.page+"&relationshipType=")
+        .get("/nova-api/favorites/count?search="+searchFilter+"&filters="+encodedFilterStr+"&orderBy=&perPage="+context.state.itemsPerPage+"&trashed=with&page="+context.state.page+"&relationshipType=")
         .then((res)=> context.commit("setTotalFavoriteCount", res.data.count));
     }
 }

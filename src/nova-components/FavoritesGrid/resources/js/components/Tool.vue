@@ -73,6 +73,7 @@ export default {
         num: this.options.length,
         filters: this.input.slice(0, this.input.length),
         page: this.page,
+        search: this.searchTerm,
       });
     },
     paginateRight: function () {
@@ -81,6 +82,7 @@ export default {
         num: this.options.length,
         filters: this.input.slice(0, this.input.length),
         page: this.page,
+        search: this.searchTerm,
       });
     },
     changeInput: function (...args) {
@@ -90,10 +92,12 @@ export default {
       this.setFavorites({
         num: this.options.length,
         filters: input.slice(0, input.length),
+        search: this.searchTerm,
       });
     },
     searchInput: function (...args) {
       const [search] = args;
+      this.setSearchTerm(search);
       this.setPage(1);
       this.setFavorites({
         num: this.options.length,
@@ -110,6 +114,7 @@ export default {
     ...mapMutations("favoritesGridStore", {
       setPage: "setPage",
       setInput: "setInput",
+      setSearchTerm: "setSearchTerm",
     }),
   },
   computed: {
@@ -124,6 +129,7 @@ export default {
         state.favoritesGridStore.totalFavoriteCount,
       itemsPerPage: (state) => state.favoritesGridStore.itemsPerPage,
       isEmpty: (state) => state.favoritesGridStore.isEmpty,
+      searchTerm: (state) => state.favoritesGridStore.searchTerm,
     }),
   },
 };
